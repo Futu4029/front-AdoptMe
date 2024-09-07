@@ -1,0 +1,52 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+}
+
+.profile__title {
+    font-size: 30px;
+    color: var(--color-2);;
+    margin-bottom: 10px;
+    text-align: center; /* Centrar el título */
+}
+
+.profile--wrapper {
+    position: relative;
+    width: 25%; /* Aumentar el ancho del contenedor */
+    max-width: 300px; /* Limitar el ancho máximo */
+    background-color: var(--color-1);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.FOTO .dog-photo {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0; /* Ajuste de bordes para mantener el radio en la parte superior */
+}
+
+.Boton {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: var(--color-1);
+    border-radius: 0 0 15px 15px; /* Ajuste de bordes para mantener el radio en la parte inferior */
+}
+
+.Boton button {
+    background-color: rgb(255, 255, 255);
+    border: none;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s;
+}
+
+

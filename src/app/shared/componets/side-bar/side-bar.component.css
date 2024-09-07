@@ -1,0 +1,42 @@
+.side-bar {
+    width: 10.5rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: .3rem 1rem;
+}
+
+.side-bar__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    opacity: .9;
+    margin-top: 3.5rem;
+}
+
+.side-bar__list .list-label {
+    font-size: 70%;
+    font-weight: 400;
+    
+}
+
+.side-bar__list .list-wrapper-item {
+    font-size: 2rem;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    
+}
+
+.side-bar__list .list-wrapper-item .uil {
+    font-size: 2rem;
+    padding-right: 1rem;
+    margin-top: 3.5rem;   
+}
+
+
+.side-bar__list li {
+    cursor: pointer;
+}

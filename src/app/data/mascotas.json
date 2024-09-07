@@ -1,0 +1,26 @@
+{
+    "data": [
+        {
+            "_id": 1,
+            "name": "Mila",
+            "age": 7,
+            "type":"Perro",
+            "size": "Chico",
+            "color": "Marron Claro",
+            "breed": "Salchicha",
+            "image": "assets/Mila.jpeg",
+            "description": "dsfsdfsd"
+        },
+        {
+            "_id": 2,
+            "name": "Calu",
+            "age": 1,
+            "type":"Perro",
+            "size": "Mediano",
+            "color": "Marrón",
+            "breed": "Mestizo",
+            "imagen": "assets/CALU.jpeg",
+            "description": "dsfsdfsd"
+        }
+    ]
+}
