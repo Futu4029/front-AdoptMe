@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MascotasRoutingModule } from './mascotas-routing.module';
 import { MascotasPageComponent } from './pages/mascotas-page/mascotas-page.component';
 import { SharedModule } from '@shared/shared.module';
+import { AdoptionService } from '../../service/adoption-service';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { SharedModule } from '@shared/shared.module';
     CommonModule,
     MascotasRoutingModule,
     SharedModule
-  ]
+  ],
+  providers: [AdoptionService]
 })
 export class MascotasModule { }

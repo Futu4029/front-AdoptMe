@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdoptionService } from '@service/adoption-service';
+import { Adoption } from '@core/adoption-model';
 
 @Component({
   selector: 'app-mascotas-page',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mascotas-page.component.css']
 })
 export class MascotasPageComponent implements OnInit {
+  adoption: Adoption | null = null;
 
   // Array de imágenes de los perros candidatos
   images: string[] = [
@@ -20,10 +23,11 @@ export class MascotasPageComponent implements OnInit {
   // Índice actual de la imagen que se está mostrando
   currentIndex: number = 0;
 
-  constructor() { }
+  constructor(private adoptionService: AdoptionService) { }
 
   ngOnInit(): void {
-    // Inicialización
+    this.fetchAdoptionById("1");
+    console.log(this.adoption);
   }
 
   // Método que retorna la imagen actual
@@ -46,5 +50,17 @@ export class MascotasPageComponent implements OnInit {
   // Método que cambia a la siguiente imagen en el carrusel
   nextImage(): void {
     this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
+
+  fetchAdoptionById(id: string): void {
+    this.adoptionService.getAdoptionById(id).subscribe(
+      (data: Adoption) => {
+        this.adoption = data;
+        console.log('Adoption data:', this.adoption);
+      },
+      (error) => {
+        console.error('Error fetching adoption:', error);
+      }
+    );
   }
 }
