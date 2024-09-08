@@ -1,0 +1,17 @@
+<!-- Botón para esconder/mostrar el menú -->
+<button class="toggle-menu-btn" (click)="toggleMenu()">
+    <i class="uil uil-bars"></i>
+  </button>
+  
+  <!-- Menú lateral -->
+  <div class="side-bar" [ngClass]="{'collapsed': isCollapsed}">
+    <ul class="side-bar__list list-one">
+      <li [routerLink]="item.router" *ngFor="let item of mainMenu.defaultOptions">
+        <div class="list-wrapper-item">
+          <i [ngClass]="['uil',item.icon]"></i>
+          <span class="side-bar__list list-label" *ngIf="!isCollapsed">{{item.name}}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
