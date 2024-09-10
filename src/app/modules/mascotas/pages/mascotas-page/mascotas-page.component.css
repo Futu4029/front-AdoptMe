@@ -1,74 +1,75 @@
 .profile {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Espaciado entre la imagen y los botones */
+    justify-content: space-between; 
     align-items: center;
-    height: 100vh; /* Ocupar toda la pantalla */
-    margin: 1rem;
-    padding: 2rem; 
-    box-sizing: border-box; 
-    overflow: hidden; /* Evitar scroll */
+    margin: 1em;
+    padding: 2rem;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 400px; 
+    overflow: hidden;
+    background-color: var(--color-primary); 
+    
 }
 
 .profile--wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distribuye imagen y botones */
+    justify-content: space-between;
     width: 90%;
     max-width: 400px;
-    background-color: #fc7975 !important;
+    background-color: var(--color-secondary);
     padding: 0; 
-    border-radius: 15px;
+    border-radius: var(--border-radius-large);
     overflow: hidden;
-    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-medium);
 }
 
+.profile-details {
+    color: var(--color-text); 
+    font-size: var(--font-size-base); 
+    font-family: var(--font-family-primary);
+    padding: 10px; 
+    background-color: var(--color-secondary); 
+  }
+
+
+
 .FOTO {
-    flex-grow: 2; /* Permitir que la imagen crezca para usar el espacio */
+    flex-grow: 2; 
     display: flex;
     align-items: center;
 }
 
 .FOTO .dog-photo {
     width: 100%;
-    max-height: 60vh; /* Limitar la altura de la imagen */
+    max-height: 60vh; 
     object-fit: cover;
-    border-radius: 15px 15px 0 0;
+    border-radius: var(--border-radius-large);
 }
 
 .Boton {
     display: flex;
     justify-content: space-between;
     padding: 10px 20px; 
-    background-color: rgba(0,0,0,0);;
-    border-radius: 0 0 15px 15px;
+    background-color: var(--color-transparente);
 }
 
 .Boton button {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--color-text);
     border: none;
-    font-size: 24px;
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-medium);
     transition: transform 0.1s;
 }
 
-/* Media Queries para pantallas pequeñas */
-@media (max-width: 480px) {
-    .profile {
-        margin-top: 0;
-    }
-    .profile--wrapper {
-        width: 95%;
-        max-height: 95vh; /* Limitar la altura total */
-    }
-    .FOTO .dog-photo {
-        max-height: 50vh; /* Reducir aún más en pantallas pequeñas */
-    }
-    .Boton button {
-        font-size: 20px;
-        padding: 8px;
-    }
-}
+app-filters {
+    position: fixed; 
+    top: 10px; 
+    left: 10px; 
+  }
+
+  

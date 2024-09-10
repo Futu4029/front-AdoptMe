@@ -1,0 +1,70 @@
+.filters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: absolute;
+    top: 5rem;
+    left: 0.25rem;
+    padding: 30px;
+    background-color: var(--color-secondary);
+    width: max-content;
+    box-shadow: var(--shadow-medium);
+    margin: 0 auto;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(-10px);
+
+  }
+
+  .filters-container.visible {
+    opacity: 5;
+    transform: translateY(0);
+    visibility: visible;
+  }
+  
+  .filters-container.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+  }
+  
+  .toggle-menu-btn {
+    position: absolute;
+    top: 4rem;
+    left: 0.1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 5;
+  }
+  
+  .toggle-menu-btn i {
+    font-size: 24px;
+    color: var(--color-dark);
+  }
+  
+ 
+.filters-container .filter-group h4 {
+  font-size: 1rem; 
+  font-weight: bolder;
+  margin-bottom: 3px; 
+  color: var(--color-dark);
+}
+
+.filters-container .filter-options {
+  display: flex;       
+  flex-wrap: wrap;     
+  gap: 10px;           
+}
+
+.filters-container .filter-options label {
+  font-size: 1rem; 
+  margin-bottom: 0px; 
+}
+
+.apply-button {
+  font-size: 1rem; 
+  padding: 5px 5px; 
+}
+

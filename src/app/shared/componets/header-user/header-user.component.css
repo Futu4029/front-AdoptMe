@@ -1,13 +1,13 @@
 .banner {
-  width: 100%;
+  width: 50%;
   display: flex;
   padding: 0;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   
 }
 
 .logo img {
-  max-width: 1920px; /* Controla el tamaño máximo del logo */
-  height: 30%
+  max-width: 400px; 
+  
 }

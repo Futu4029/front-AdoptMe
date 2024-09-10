@@ -1,10 +1,11 @@
 :root {
     /* Colores */
-    --color-primary: #71a098; /* Color principal */
-    --color-secondary: #87CEFA; /* Color secundario */
+    --color-primary: #375A6E; /* Color principal */
+    --color-secondary: #fc7975; /* Color secundario */
     --color-accent: #FFDAB9; /* Color de acento */
-    --color-dark: #173746; /* Color oscuro */
-    --color-text: #0a0a0a; /* Color del texto */
+    --color-dark: #000000; /* Color oscuro */
+    --color-text: #ffffff; /* Color del texto */
+    --color-transparente: rgba(0,0,0,0);
     
     /* Tamaños de fuente */
     --font-size-small: 0.875rem; /* Para textos pequeños */
@@ -22,21 +23,16 @@
     
     /* Fuente */
     --font-family-primary: 'Poppins', sans-serif; /* Fuente principal */
-    
-    /* Animaciones */
-    --animation-fast: 150ms ease-in-out; /* Para animaciones rápidas */
-    --animation-medium: 300ms ease-in-out; /* Para animaciones estándar */
 }
 
-html,
-body {
+html,body {
     margin: 0;
     padding: 0;
-    background-color: #375A6E; /* Color de fondo principal */
+    background-color:var(--color-primary); /* Color de fondo principal */
     font-family: var(--font-family-primary); /* Fuente principal */
-    font-size: var(--font-size-base); /* Tamaño de fuente base */
     color: var(--color-text); /* Color del texto */
-    line-height: 1.6; /* Mejora la legibilidad */
+    line-height: 1; /* Mejora la legibilidad */
+    overflow: hidden;
 }
 
 /* Estilos para elementos responsivos */
@@ -53,6 +49,11 @@ body {
         --font-size-base: 0.8rem; /* Disminuye el tamaño en pantallas pequeñas */
         --font-size-large: 0.9rem;
         --font-size-title: 1.2rem;
+    }
+
+    /* Ajustes para pantallas móviles */
+    body {
+        overflow-y: auto; /* Permite el desplazamiento vertical en pantallas pequeñas */
     }
 }
 
