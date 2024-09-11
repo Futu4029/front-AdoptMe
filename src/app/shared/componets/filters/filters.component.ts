@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {PetAge, PetSize, PetType} from "@core/adoption-model";
 
 @Component({
   selector: 'app-filters',
@@ -8,10 +9,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class FiltersComponent implements OnInit {
 
  isMenuVisible: boolean = false;  // Controla si el menú es visible
+  ageFilterValue!: PetAge | null;
+  sizeFilterValue!: PetSize | null;
+  typeFilterValue!: PetType | null;
+
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   // Cambia la visibilidad del menú

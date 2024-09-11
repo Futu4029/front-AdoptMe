@@ -2,25 +2,26 @@
     /* Colores */
     --color-primary: #375A6E; /* Color principal */
     --color-secondary: #fc7975; /* Color secundario */
+    --color-tertiary: #F2F1EC; /* Color secundario */
     --color-accent: #FFDAB9; /* Color de acento */
     --color-dark: #000000; /* Color oscuro */
     --color-text: #ffffff; /* Color del texto */
     --color-transparente: rgba(0,0,0,0);
-    
+
     /* Tamaños de fuente */
     --font-size-small: 0.875rem; /* Para textos pequeños */
     --font-size-base: 1rem; /* Tamaño base del texto */
     --font-size-large: 1.2rem; /* Tamaño para subtítulos */
     --font-size-title: 1.8rem; /* Tamaño para títulos */
-    
+
     /* Sombras */
     --shadow-light: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* Sombra ligera */
     --shadow-medium: rgba(0, 0, 0, 0.15) 0px 8px 24px; /* Sombra media */
-    
+
     /* Bordes */
     --border-radius-small: .25rem; /* Bordes pequeños */
     --border-radius-large: .5rem; /* Bordes grandes */
-    
+
     /* Fuente */
     --font-family-primary: 'Poppins', sans-serif; /* Fuente principal */
 }
@@ -32,30 +33,52 @@ html,body {
     font-family: var(--font-family-primary); /* Fuente principal */
     color: var(--color-text); /* Color del texto */
     line-height: 1; /* Mejora la legibilidad */
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-/* Estilos para elementos responsivos */
-@media (max-width: 768px) {
-    :root {
-        --font-size-base: 0.9rem; /* Disminuye el tamaño en pantallas medianas */
-        --font-size-large: 1rem;
-        --font-size-title: 1.5rem;
-    }
+/* Estilo general */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
 }
 
-@media (max-width: 480px) {
-    :root {
-        --font-size-base: 0.8rem; /* Disminuye el tamaño en pantallas pequeñas */
-        --font-size-large: 0.9rem;
-        --font-size-title: 1.2rem;
-    }
+/* Para pantallas grandes (desktops) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+    font:var(--font-size-base);
+  }
+  .profile--wrapper {
+    max-width: 700px;
+  }
 
-    /* Ajustes para pantallas móviles */
-    body {
-        overflow-y: auto; /* Permite el desplazamiento vertical en pantallas pequeñas */
-    }
 }
 
-html, body { height: 100%; }
+/* Para pantallas medianas (tablets) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .container {
+    max-width: 960px;
+    font:var(--font-size-base);
+  }
+  .profile--wrapper {
+    max-width: 600px;
+  }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+  .container {
+    max-width: 100%;
+    padding: 0 10px;
+    font:var(--font-size-base);
+  }
+  .profile--wrapper {
+    max-width: 500px;
+  }
+}
+
+html, body { }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

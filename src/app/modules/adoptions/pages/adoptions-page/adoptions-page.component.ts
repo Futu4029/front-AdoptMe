@@ -3,12 +3,12 @@ import { AdoptionService } from '@service/adoption-service';
 import { Adoption } from '@core/adoption-model';
 
 @Component({
-  selector: 'app-mascotas-page',
-  templateUrl: './mascotas-page.component.html',
-  styleUrls: ['./mascotas-page.component.css']
+  selector: 'app-adoptions-page',
+  templateUrl: './adoptions-page.component.html',
+  styleUrls: ['./adoptions-page.component.css']
 })
-export class MascotasPageComponent implements OnInit {
-  adoption: Adoption | null = null;
+export class AdoptionsPageComponent implements OnInit {
+  //adoption: any | null = null;
 
   // Array de objetos con imagen, nombre y edad
   pets: { src: string, name: string, age: number }[] = [
@@ -44,12 +44,12 @@ export class MascotasPageComponent implements OnInit {
 
   onLike(): void {
     console.log("Quiero hacer match");
-    this.nextImage(); 
+    this.nextImage();
   }
 
   onReject(): void {
     console.log("Lo dejo para otra familia");
-    this.nextImage(); 
+    this.nextImage();
   }
 
 
@@ -59,13 +59,12 @@ export class MascotasPageComponent implements OnInit {
 
 fetchAdoptionById(id: string): void {
   this.adoptionService.getAdoptionById(id).subscribe(
-    (data: any[]) => {
-
+    (reply: any) => {
       this.pets = this.pets.map((pet, index) => {
-        if (data[index]) {
-          const petData = data[index].pet;
+        if (reply.data[index]) {
+          const petData = reply.data[index].pet;
           return {
-            src: pet.src, 
+            src: pet.src,
             name: petData.name,
             age: petData.age,
             description: petData.description
