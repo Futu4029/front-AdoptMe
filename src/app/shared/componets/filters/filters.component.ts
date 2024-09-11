@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {PetAge, PetSize, PetType} from "@core/adoption-model";
+import {AdoptionService} from "@service/adoption-service";
 
 @Component({
   selector: 'app-filters',
@@ -9,15 +10,13 @@ import {PetAge, PetSize, PetType} from "@core/adoption-model";
 export class FiltersComponent implements OnInit {
 
  isMenuVisible: boolean = false;  // Controla si el menú es visible
-  ageFilterValue!: PetAge | null;
-  sizeFilterValue!: PetSize | null;
-  typeFilterValue!: PetType | null;
+  ageFilterValue: string | undefined;
+  sizeFilterValue: string | undefined;
+  typeFilterValue: string | undefined;
 
-
-  constructor() { }
+  constructor(private adoptionService: AdoptionService) { }
 
   ngOnInit(): void {
-
   }
 
   // Cambia la visibilidad del menú
@@ -25,14 +24,34 @@ export class FiltersComponent implements OnInit {
     this.isMenuVisible = !this.isMenuVisible;
   }
 
-  onFilterChange(filterCategory: string, filterValue: string): void {
+  onFilterChange(filterCategory: any, filterValue: any): void {
     // Lógica para manejar cambios en los filtros
-    console.log(`Filtro cambiado: ${filterCategory} - ${filterValue}`);
+    console.log(filterValue);
+    switch (filterCategory) {
+      case 'type':
+        this.typeFilterValue = filterValue;
+        break;
+      case 'size':
+        this.sizeFilterValue = filterValue;
+        break;
+      case 'age':
+        this.ageFilterValue = filterValue;
+        break;
+      default:
+        console.warn(`Unknown filter category: ${filterCategory}`);
+        break;
+    }
   }
 
   applyFilters(): void {
-    // Lógica para aplicar los filtros seleccionados
-    console.log('Filtros aplicados');
+    this.adoptionService.searchFilteredAdoptions(
+      this.sizeFilterValue,
+      this.ageFilterValue,
+      this.typeFilterValue
+    ).subscribe(data => {
+      console.log(data); // Maneja los datos de respuesta aquí
+    });
   }
+
 }
 

@@ -9,7 +9,7 @@ export class SideBarComponent implements OnInit {
 
   mainMenu : { defaultOptions: Array<any>} = {defaultOptions:[]};
 
-  isSideBarMenuVisible: boolean = false;  
+  isSideBarMenuVisible: boolean = false;
 
   constructor() { }
 
@@ -17,12 +17,10 @@ export class SideBarComponent implements OnInit {
     this.mainMenu.defaultOptions = [
       { name: 'Home', icon: 'fas fa-home', router: ['/'] },
       { name: 'Perfil', icon: 'fas fa-user', router: ['/', 'Perfil'] },
-      { name: 'Quiero Adoptar', icon: 'fas fa-heart', router: ['/', 'mascotas'] },
+      { name: 'Quiero Adoptar', icon: 'fas fa-heart', router: ['/', 'adopciones'] },
       { name: 'Solicitudes', icon: 'fas fa-book', router: ['/', 'Solicitudes'] },
     ];
   }
-  
-
 
   toggleSideBarMenu(): void {
     this.isSideBarMenuVisible = !this.isSideBarMenuVisible;

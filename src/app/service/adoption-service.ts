@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,5 +15,25 @@ export class AdoptionService {
     const url = `${this.baseUrl}/${id}`;
     console.log(url);
     return this.http.get<any>(url);
+  }
+
+  searchFilteredAdoptions(size?: string, age?: string, type?: string): Observable<any> {
+    let params = new HttpParams();
+
+    if (size) {
+      params = params.append('size', size);
+    }
+
+    if (age) {
+      params = params.append('age', age);
+    }
+
+    if (type) {
+      params = params.append('type', type);
+    }
+    console.log(this.baseUrl+'/search?');
+    console.log(params);
+
+    return this.http.get<any>(this.baseUrl+'/search?', { params });
   }
 }
