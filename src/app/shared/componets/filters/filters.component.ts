@@ -13,6 +13,7 @@ export class FiltersComponent implements OnInit {
   ageFilterValue: string | undefined;
   sizeFilterValue: string | undefined;
   typeFilterValue: string | undefined;
+  genderFilterValue: string | undefined;
 
   constructor(private adoptionService: AdoptionService) { }
 
@@ -37,6 +38,9 @@ export class FiltersComponent implements OnInit {
       case 'age':
         this.ageFilterValue = filterValue;
         break;
+      case 'gender':
+        this.genderFilterValue = filterValue;
+        break;
       default:
         console.warn(`Unknown filter category: ${filterCategory}`);
         break;
@@ -47,7 +51,8 @@ export class FiltersComponent implements OnInit {
     this.adoptionService.searchFilteredAdoptions(
       this.sizeFilterValue,
       this.ageFilterValue,
-      this.typeFilterValue
+      this.typeFilterValue,
+      this.genderFilterValue
     ).subscribe(data => {
       console.log(data); // Maneja los datos de respuesta aquí
     });

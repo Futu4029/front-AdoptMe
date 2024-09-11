@@ -17,7 +17,7 @@ export class AdoptionService {
     return this.http.get<any>(url);
   }
 
-  searchFilteredAdoptions(size?: string, age?: string, type?: string): Observable<any> {
+  searchFilteredAdoptions(size?: string, age?: string, type?: string, gender?: string): Observable<any> {
     let params = new HttpParams();
 
     if (size) {
@@ -30,6 +30,10 @@ export class AdoptionService {
 
     if (type) {
       params = params.append('type', type);
+    }
+
+    if (gender) {
+      params = params.append('gender', gender);
     }
     console.log(this.baseUrl+'/search?');
     console.log(params);
