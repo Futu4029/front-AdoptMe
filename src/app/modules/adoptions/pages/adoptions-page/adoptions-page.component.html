@@ -1,11 +1,11 @@
-<app-filters 
-  (filtersApplied)="onFiltersApplied($event)" 
+<app-filters
+  (filtersApplied)="onFiltersApplied($event)"
   (clearFilters)="onClearFilters()">
 </app-filters>
 <div class="profile">
 
     <div class="profile--wrapper">
-      
+
       <div class="FOTO">
         <img [src]="currentImage" alt="Dog Photo" class="dog-photo" />
       </div>
@@ -13,15 +13,16 @@
       <div class="profile-details">
         <p>Nombre: {{ currentName}}</p>
         <p>Edad: {{ currentAge }}</p>
+        <p>Desc: {{ currentDesc }}</p>
       </div>
-      
+
         <div class="Boton">
           <button class="rechazar" (click)="onReject()">❌</button>
-          <button class="me-gusta" (click)="onLike()">❤️</button>     
+          <button class="me-gusta" (click)="onLike()">❤️</button>
         </div>
     </div>
-    
+
   </div>
 
 
-  
+

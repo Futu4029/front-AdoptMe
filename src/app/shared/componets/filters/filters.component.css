@@ -73,7 +73,19 @@
   font-size: 1rem;
   padding: 5px 15px;
   margin-top: auto;
-  margin-right: 5px;
+  margin-right: 4px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.apply-button:hover {
+  background-color: var(--color-secondary);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .buttons-container {
@@ -81,5 +93,8 @@
   justify-content: flex-start;
   margin-top: auto;
   margin-left: -10px
+
 }
+
+
 

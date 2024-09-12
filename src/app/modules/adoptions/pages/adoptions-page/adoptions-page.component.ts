@@ -9,22 +9,9 @@ import { forkJoin } from 'rxjs';
 })
 
 export class AdoptionsPageComponent implements OnInit {
-  pets: { src: string, name: string, age: number }[] = [
-    { src: '', name: '', age: 0 },
-    { src: '', name: '', age: 0 },
-    { src: '', name: '', age: 0 }
-  ];
+  pets: { image: string, name: string, age: number, desc: string }[] = [
 
-  //Lo hacemos asi hasta q en la base se puedan subir fotos
-  private getImageForPet(name: string): string {
-    const imageMap: { [key: string]: string } = {
-      'Mila': 'assets/Mila.jpeg',
-      'Calu': 'assets/CALU.jpeg',
-      'Boni': 'assets/Boni.jpeg'
-    };
-  
-    return imageMap[name] || 'assets/default.jpeg';
-  }
+  ];
 
   currentIndex: number = 0;
 
@@ -36,7 +23,7 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   get currentImage(): string {
-    return this.pets[this.currentIndex]?.src || '';
+    return this.pets[this.currentIndex]?.image || '';
   }
 
   get currentName(): string {
@@ -45,6 +32,10 @@ export class AdoptionsPageComponent implements OnInit {
 
   get currentAge(): number {
     return this.pets[this.currentIndex]?.age || 0;
+  }
+
+  get currentDesc(): string {
+    return this.pets[this.currentIndex]?.desc || '';
   }
 
   onLike(): void {
@@ -62,14 +53,14 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   fetchAllAdoptions(): void {
-    forkJoin([
-      this.adoptionService.getAdoptionById("1"),
-      this.adoptionService.getAdoptionById("2"),
-      this.adoptionService.getAdoptionById("3")
-    ]).subscribe(
-      (responses: any[]) => {
-        const petsData = responses.map((reply) => reply.data[0]?.pet).filter(pet => pet); 
-        this.updatePetsList(petsData);      
+
+      this.adoptionService.searchFilteredAdoptions()
+    .subscribe(
+      (responses: any) => {
+        console.log(responses);
+        const petsData = responses.data.map((adoption: { pet: any; }) => adoption.pet).filter((pet: any) => pet);
+
+        this.updatePetsList(petsData);
       },
       (error) => {
         console.error('Error fetching adoptions:', error);
@@ -78,9 +69,9 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   onFiltersApplied(filteredPets: any[]): void {
-    const petsData = filteredPets.map((filteredPet) => filteredPet.pet); 
+    const petsData = filteredPets.map((filteredPet) => filteredPet.pet);
     this.updatePetsList(petsData);
-    this.currentIndex = 0; 
+    this.currentIndex = 0;
     console.log('Updated pets array after filtering:', this.pets);
   }
 
@@ -94,13 +85,14 @@ export class AdoptionsPageComponent implements OnInit {
       this.pets = [];
       return;
     }
-  
+
     this.pets = petsData.map((petData) => ({
-      src: this.getImageForPet(petData.name), 
+      image: petData.image,
       name: petData.name,
-      age: petData.age
+      age: petData.age,
+      desc:petData.description
     }));
-  
-    console.log('Updated pets array:', this.pets); 
+
+    console.log('Updated pets array:', this.pets);
   }
 }
