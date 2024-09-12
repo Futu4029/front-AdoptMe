@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {PetAge, PetSize, PetType} from "@core/adoption-model";
-import {AdoptionService} from "@service/adoption-service";
+import { AdoptionService } from '@service/adoption-service';
 
 @Component({
   selector: 'app-filters',
@@ -8,8 +7,10 @@ import {AdoptionService} from "@service/adoption-service";
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit {
+  @Output() filtersApplied = new EventEmitter<any[]>();
+  @Output() clearFilters = new EventEmitter<void>();
 
- isMenuVisible: boolean = false;  // Controla si el menú es visible
+  isMenuVisible: boolean = false;
   ageFilterValue: string | undefined;
   sizeFilterValue: string | undefined;
   typeFilterValue: string | undefined;
@@ -17,17 +18,13 @@ export class FiltersComponent implements OnInit {
 
   constructor(private adoptionService: AdoptionService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  // Cambia la visibilidad del menú
   toggleMenu(): void {
     this.isMenuVisible = !this.isMenuVisible;
   }
 
   onFilterChange(filterCategory: any, filterValue: any): void {
-    // Lógica para manejar cambios en los filtros
-    console.log(filterValue);
     switch (filterCategory) {
       case 'type':
         this.typeFilterValue = filterValue;
@@ -53,10 +50,18 @@ export class FiltersComponent implements OnInit {
       this.ageFilterValue,
       this.typeFilterValue,
       this.genderFilterValue
-    ).subscribe(data => {
-      console.log(`Esto imprime: ${data}`); 
+    ).subscribe(response => {
+      console.log('Datos filtrados recibidos:', response);
+      this.filtersApplied.emit(response.data);  
     });
   }
 
+  clearAllFilters(): void {
+  
+    this.clearFilters.emit();
+    this.ageFilterValue = undefined;
+    this.sizeFilterValue = undefined;
+    this.typeFilterValue = undefined;
+    this.genderFilterValue = undefined;
+  }
 }
-

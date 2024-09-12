@@ -67,7 +67,15 @@
 
 .apply-button {
   font-size: 1rem;
-  padding: 10px 15px; 
+  padding: 5px 15px;
   margin-top: auto;
+  margin-right: 5px; 
+}
+
+.buttons-container {
+  display: flex; 
+  justify-content: flex-start; 
+  margin-top: auto; 
+  margin-left: -10px
 }
 

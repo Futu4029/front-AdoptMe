@@ -7,6 +7,7 @@ import { FiltersComponent } from './componets/filters/filters.component';
 import {AdoptionService} from "@service/adoption-service";
 
 
+
 @NgModule({
   declarations: [
     SideBarComponent,

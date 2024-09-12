@@ -1,4 +1,7 @@
-<app-filters></app-filters>
+<app-filters 
+  (filtersApplied)="onFiltersApplied($event)" 
+  (clearFilters)="onClearFilters()">
+</app-filters>
 <div class="profile">
 
     <div class="profile--wrapper">

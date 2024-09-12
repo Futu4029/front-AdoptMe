@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AdoptionService {
-  private baseUrl = 'http://localhost:8085/adoption'; // Reemplaza con tu URL de backend
+  private baseUrl = 'http://localhost:8085/adoption'; 
 
   constructor(private http: HttpClient) {}
 
-  // Método para obtener la adopción por ID
+ 
   getAdoptionById(id: string): Observable<any> {
     const url = `${this.baseUrl}/${id}`;
     console.log(url);
@@ -35,9 +35,11 @@ export class AdoptionService {
     if (gender) {
       params = params.append('gender', gender);
     }
-    console.log(this.baseUrl+'/search?');
-    console.log(params);
 
-    return this.http.get<any>(this.baseUrl+'/search?', { params });
-  }
+    const url = `${this.baseUrl}/search`;
+    console.log(url + '?' + params.toString());
+
+    return this.http.get<any>(url, { params });
+}
+
 }
