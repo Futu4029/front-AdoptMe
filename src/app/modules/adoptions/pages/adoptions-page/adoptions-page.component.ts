@@ -95,4 +95,8 @@ export class AdoptionsPageComponent implements OnInit {
 
     console.log('Updated pets array:', this.pets);
   }
+
+  hasItems(): boolean {
+    return this.pets && this.pets.length > 0;
+  }
 }

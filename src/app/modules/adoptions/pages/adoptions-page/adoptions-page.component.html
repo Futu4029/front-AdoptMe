@@ -4,16 +4,15 @@
 </app-filters>
 <div class="profile">
 
-    <div class="profile--wrapper">
+    <div class="profile--wrapper" *ngIf="hasItems()">
 
       <div class="FOTO">
         <img [src]="currentImage" alt="Dog Photo" class="dog-photo" />
       </div>
 
       <div class="profile-details">
-        <p>Nombre: {{ currentName}}</p>
-        <p>Edad: {{ currentAge }}</p>
-        <p>Desc: {{ currentDesc }}</p>
+        <p>{{currentName}}, {{currentAge}}</p>
+        <p></p>
       </div>
 
         <div class="Boton">
@@ -21,6 +20,14 @@
           <button class="me-gusta" (click)="onLike()">❤️</button>
         </div>
     </div>
+
+    <div class="empty-message-box" *ngIf="!hasItems()">
+      <p>No encontramos un cadidato para vos</p>
+    </div>
+
+  <div class="description-box" *ngIf="hasItems()">
+    <p>Desc: {{ currentDesc }}</p>
+  </div>
 
   </div>
 

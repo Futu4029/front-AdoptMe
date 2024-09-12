@@ -11,8 +11,8 @@
     /* Tamaños de fuente */
     --font-size-small: 0.875rem; /* Para textos pequeños */
     --font-size-base: 1rem; /* Tamaño base del texto */
-    --font-size-large: 1.2rem; /* Tamaño para subtítulos */
-    --font-size-title: 1.8rem; /* Tamaño para títulos */
+    --font-size-large: 1.5rem; /* Tamaño para subtítulos */
+    --font-size-title: 2rem; /* Tamaño para títulos */
 
     /* Sombras */
     --shadow-light: rgba(0, 0, 0, 0.1) 0px 4px 12px; /* Sombra ligera */
@@ -24,6 +24,7 @@
 
     /* Fuente */
     --font-family-primary: 'Poppins', sans-serif; /* Fuente principal */
+    --font-family-secundary: 'Segoe UI', sans-serif; /* Fuente secundaria */
 }
 
 html,body {
@@ -51,15 +52,18 @@ html,body {
     max-width: 1200px;
     font:var(--font-size-base);
   }
+
   .profile--wrapper {
     max-width: 700px;
   }
+
   .side-bar-menu {
     max-width: 250px;
   }
 
-
-
+  .description-box {
+    max-width: 700px;
+  }
 }
 
 /* Para pantallas medianas (tablets) */
@@ -68,13 +72,18 @@ html,body {
     max-width: 960px;
     font:var(--font-size-base);
   }
+
   .profile--wrapper {
     max-width: 600px;
   }
+
   .side-bar-menu {
     max-width: 250px;
   }
 
+  .description-box {
+    max-width: 600px;
+  }
 }
 
 /* Para pantallas pequeñas (móviles) */
@@ -91,7 +100,11 @@ html,body {
   .side-bar-menu {
     max-width: 180px;
   }
+
+  .description-box {
+    max-width: 500px;
+  }
 }
 
 html, body { }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Segoe UI", "Helvetica Neue", sans-serif; }
