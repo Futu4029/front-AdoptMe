@@ -4,7 +4,8 @@
 
 
 <div class="filters-container" [ngClass]="{ 'visible': isMenuVisible, 'hidden': !isMenuVisible }">
-<div class="filter-group">
+
+  <div class="filter-group">
   <h4>Tipo</h4>
   <div class="filter-options">
     <label>
@@ -57,6 +58,7 @@
     </label>
   </div>
 </div>
+
 
 <button class="apply-button" (click)="applyFilters()">Aplicar Filtros</button>
 </div>

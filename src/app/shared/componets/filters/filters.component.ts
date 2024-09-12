@@ -54,7 +54,7 @@ export class FiltersComponent implements OnInit {
       this.typeFilterValue,
       this.genderFilterValue
     ).subscribe(data => {
-      console.log(data); // Maneja los datos de respuesta aquí
+      console.log(`Esto imprime: ${data}`); 
     });
   }
 
