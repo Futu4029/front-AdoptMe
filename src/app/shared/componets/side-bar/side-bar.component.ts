@@ -1,38 +1,28 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-side-bar', //NOMBRE PARA IMPLEMENTAR ESE COMPONENTE
+  selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
 
-  mainMenu : { defaultOptions: Array<any>, accessLink: Array<any> 
-  } = {defaultOptions:[], accessLink : []}
- 
+  mainMenu : { defaultOptions: Array<any>} = {defaultOptions:[]};
+
+  isSideBarMenuVisible: boolean = false;
+
   constructor() { }
 
-  ngOnInit(): void { // Ciclo que se usa para hacer llamados de servicios o peticiones a URL
-    this.mainMenu.defaultOptions =[
-      { name: 'Home',
-       icon: 'uil-estate',
-       router: ['/']
-      },
-      { name: 'Perfil',
-       icon: 'uil-user',
-       router: ['/','Perfil']
-      },
-      { name: 'Quiero Adoptar',
-        icon: 'uil-fire',
-        router: ['/','mascotas']
-       },
-      { name: 'Solicitudes',
-       icon: 'uil-bars',
-       router: ['/','Solicitudes']
-      },
-     
-       ]
-
+  ngOnInit(): void {
+    this.mainMenu.defaultOptions = [
+      { name: 'Home', icon: 'fas fa-home', router: ['/'] },
+      { name: 'Perfil', icon: 'fas fa-user', router: ['/', 'Perfil'] },
+      { name: 'Quiero Adoptar', icon: 'fas fa-heart', router: ['/', 'adopciones'] },
+      { name: 'Solicitudes', icon: 'fas fa-book', router: ['/', 'Solicitudes'] },
+    ];
   }
 
+  toggleSideBarMenu(): void {
+    this.isSideBarMenuVisible = !this.isSideBarMenuVisible;
+  }
 }

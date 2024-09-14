@@ -1,13 +1,12 @@
 .banner {
   width: 100%;
-  display: flex;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-  
+  display: flex; /* Convertir el banner en un contenedor flexible */
+  justify-content: center; /* Centrar horizontalmente la imagen */
+  align-items: center; /* Centrar verticalmente la imagen */
+  background-color: var(--color-tertiary);
+
 }
 
-.logo img {
-  max-width: 1920px; /* Controla el tamaño máximo del logo */
-  height: 30%
+.img{
+
 }
