@@ -6,7 +6,7 @@
 
 <div class="side-bar-menu" [ngClass]="{ 'visible': isSideBarMenuVisible, 'hidden': !isSideBarMenuVisible }">
   <ul class="side-bar__list list-one">
-    <li [routerLink]="item.router" *ngFor="let item of mainMenu.defaultOptions">
+    <li [routerLink]="item.router" *ngFor="let item of mainMenu.defaultOptions" (click)="toggleSideBarMenu()">
       <div class="list-wrapper-item">
         <i [ngClass]="['fas', item.icon]"></i>
         <span class="side-bar__list list-label">{{ item.name }}</span>

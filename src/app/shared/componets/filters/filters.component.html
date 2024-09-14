@@ -3,7 +3,7 @@
 </button>
 
 
-<div class="filters-container" [ngClass]="{ 'visible': isMenuVisible, 'hidden': !isMenuVisible }">
+<div class="filters-container" [ngClass]="{ 'visible': isMenuVisible, 'hidden': !isMenuVisible }" >
 
   <div class="filter-group">
   <h4>Tipo</h4>
@@ -61,7 +61,7 @@
 
 
 <div class="buttons-container">
-  <button class="apply-button" (click)="applyFilters()">Aplicar Filtros</button>
-  <button class="apply-button" (click)="clearAllFilters()">Borrar Filtros</button>
+  <button class="apply-button" (click)="applyFilters()" (click)="toggleMenu()">Aplicar Filtros</button>
+  <button class="apply-button" (click)="clearAllFilters()" (click)="toggleMenu()">Borrar Filtros</button>
 </div>
 </div>

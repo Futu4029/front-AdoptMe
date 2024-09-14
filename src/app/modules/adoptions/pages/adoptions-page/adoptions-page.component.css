@@ -44,7 +44,7 @@
   padding: 10px;
   background-color: var(--color-secondary);
   border-radius: var(--border-radius-large);
-
+  text-align: justify;
 }
 
 .empty-message-box  {
