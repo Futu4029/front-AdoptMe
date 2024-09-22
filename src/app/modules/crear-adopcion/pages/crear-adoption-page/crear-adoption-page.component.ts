@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AdoptionService} from "@service/adoption-service";
 
 @Component({
   selector: 'app-crear-adoption-page',
@@ -9,7 +10,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class CrearAdoptionPageComponent implements OnInit {
   adoptionForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private adoptionService: AdoptionService) {
     this.adoptionForm = this.fb.group({
       name: ['', Validators.required],
       age: ['', [Validators.required, Validators.min(0)]],
@@ -36,6 +37,24 @@ export class CrearAdoptionPageComponent implements OnInit {
     }
   }
   onSubmit(): void {
+    if (this.adoptionForm.valid) {
+      const formData = new FormData();
+      Object.keys(this.adoptionForm.value).forEach(key => {
+        formData.append(key, this.adoptionForm.value[key]);
+      });
+
+      // Llama al servicio para enviar los datos
+      this.adoptionService.createAdoption(formData).subscribe(
+        response => {
+          // Manejar la respuesta del servicio (por ejemplo, mostrar un mensaje)
+          console.log('Adopción creada con éxito', response);
+        },
+        error => {
+          // Manejar el error
+          console.error('Error al crear la adopción', error);
+        }
+      );
+    }
   }
 
 }

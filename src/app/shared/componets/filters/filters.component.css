@@ -12,35 +12,32 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  padding-top: 100px
-  }
+  padding-top: 100px;
+}
 
-  .filters-container.visible {
-    transform: translateX(0);
-  }
+.filters-container.visible {
+  transform: translateX(0);
+}
 
-  .filters-container.hidden {
-    transform: translateX(-100%);
-  }
+.filters-container.hidden {
+  transform: translateX(-100%);
+}
 
+.toggle-menu-btn {
+  position: fixed;
+  top: 4rem;
+  left: 0.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  z-index: 11;
+}
 
-  .toggle-menu-btn {
-    position: fixed;
-    top: 4rem;
-    left: 0.6rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 2rem;
-    z-index: 11;
-  }
-
-  .toggle-menu-btn i {
-    font-size: 24px;
-    color: var(--color-dark);
-  }
-
-
+.toggle-menu-btn i {
+  font-size: 24px;
+  color: var(--color-dark);
+}
 
 .filters-container .filter-group h4 {
   font-size: 1rem;
@@ -56,17 +53,26 @@
   flex-wrap: wrap;
   gap: 10px;
   padding: 0;
-  display: block;
   margin-bottom: 10px;
 }
 
-.filters-container .filter-options label {
-  font-size: 1rem;
-  white-space: nowrap;
-  display: block;
-  margin-bottom: 10px;
+.filters-container .filter-options button {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
 
+.filters-container .filter-options button.active {
+  background-color: #375a6e; /* Color activo */
+  color: white;
+}
 
+.filters-container .filter-options button:hover {
+  background-color: #00b39d; /* Color al pasar el mouse */
+  color: white;
 }
 
 .apply-button {
@@ -92,9 +98,5 @@
   display: flex;
   justify-content: flex-start;
   margin-top: 20px;
-  margin-left: -10px
-
+  margin-left: -10px;
 }
-
-
-

@@ -12,6 +12,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import {SharedModule} from "@shared/shared.module";
+import {AdoptionService} from "@service/adoption-service";
 
 
 
@@ -32,6 +33,7 @@ import {SharedModule} from "@shared/shared.module";
     MatDialogModule,
     MatMenuModule,
     SharedModule
-  ]
+  ],
+  providers: [AdoptionService]
 })
 export class CrearAdopcionModule { }

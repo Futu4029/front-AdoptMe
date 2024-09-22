@@ -2,66 +2,44 @@
   <i class="fas fa-filter"></i>
 </button>
 
-
-<div class="filters-container" [ngClass]="{ 'visible': isMenuVisible, 'hidden': !isMenuVisible }" >
+<div class="filters-container" [ngClass]="{ 'visible': isMenuVisible, 'hidden': !isMenuVisible }">
 
   <div class="filter-group">
-  <h4>Tipo</h4>
-  <div class="filter-options">
-    <label>
-      <input type="radio" name="type" (change)="onFilterChange('type', 'DOG')"> Perro
-    </label>
-    <label>
-      <input type="radio" name="type" (change)="onFilterChange('type', 'CAT')"> Gato
-    </label>
+    <h4>Tipo</h4>
+    <div class="filter-options">
+      <button (click)="onFilterChange('type', 'DOG')" [class.active]="typeFilterValue === 'DOG'">Perro</button>
+      <button (click)="onFilterChange('type', 'CAT')" [class.active]="typeFilterValue === 'CAT'">Gato</button>
+    </div>
   </div>
-</div>
 
-<div class="filter-group">
-  <h4>Género</h4>
-  <div class="filter-options">
-    <label>
-      <input type="radio" name="gender" (change)="onFilterChange('gender', 'MALE')"> Macho
-    </label>
-    <label>
-      <input type="radio" name="gender" (change)="onFilterChange('gender', 'FEMALE')"> Hembra
-    </label>
+  <div class="filter-group">
+    <h4>Género</h4>
+    <div class="filter-options">
+      <button (click)="onFilterChange('gender', 'MALE')" [class.active]="genderFilterValue === 'MALE'">Macho</button>
+      <button (click)="onFilterChange('gender', 'FEMALE')" [class.active]="genderFilterValue === 'FEMALE'">Hembra</button>
+    </div>
   </div>
-</div>
 
-<div class="filter-group">
-  <h4>Edad</h4>
-  <div class="filter-options">
-    <label>
-      <input type="radio" name="age" (change)="onFilterChange('age', 'PUPPY')"> Cachorro
-    </label>
-    <label>
-      <input type="radio" name="age" (change)="onFilterChange('age', 'YOUNG')"> Joven
-    </label>
-    <label>
-      <input type="radio" name="age" (change)="onFilterChange('age', 'ADULT')"> Adulto
-    </label>
+  <div class="filter-group">
+    <h4>Edad</h4>
+    <div class="filter-options">
+      <button (click)="onFilterChange('age', 'PUPPY')" [class.active]="ageFilterValue === 'PUPPY'">Cachorro</button>
+      <button (click)="onFilterChange('age', 'YOUNG')" [class.active]="ageFilterValue === 'YOUNG'">Joven</button>
+      <button (click)="onFilterChange('age', 'ADULT')" [class.active]="ageFilterValue === 'ADULT'">Adulto</button>
+    </div>
   </div>
-</div>
 
-<div class="filter-group">
-  <h4>Tamaño</h4>
-  <div class="filter-options">
-    <label>
-      <input type="radio" name="size" (change)="onFilterChange('size', 'SMALL')"> Chico
-    </label>
-    <label>
-      <input type="radio" name="size" (change)="onFilterChange('size', 'MEDIUM')"> Mediano
-    </label>
-    <label>
-      <input type="radio" name="size" (change)="onFilterChange('size', 'LARGE')"> Grande
-    </label>
+  <div class="filter-group">
+    <h4>Tamaño</h4>
+    <div class="filter-options">
+      <button (click)="onFilterChange('size', 'SMALL')" [class.active]="sizeFilterValue === 'SMALL'">Chico</button>
+      <button (click)="onFilterChange('size', 'MEDIUM')" [class.active]="sizeFilterValue === 'MEDIUM'">Mediano</button>
+      <button (click)="onFilterChange('size', 'LARGE')" [class.active]="sizeFilterValue === 'LARGE'">Grande</button>
+    </div>
   </div>
-</div>
 
-
-<div class="buttons-container">
-  <button class="apply-button" (click)="applyFilters()" (click)="toggleMenu()">Aplicar Filtros</button>
-  <button class="apply-button" (click)="clearAllFilters()" (click)="toggleMenu()">Borrar Filtros</button>
-</div>
+  <div class="buttons-container">
+    <button class="apply-button" (click)="applyFilters(); toggleMenu()">Aplicar Filtros</button>
+    <button class="apply-button" (click)="clearAllFilters(); toggleMenu()">Borrar Filtros</button>
+  </div>
 </div>

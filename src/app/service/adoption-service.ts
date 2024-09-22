@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AdoptionService {
-  private baseUrl = 'http://localhost:8085/adoption'; 
+  private baseUrl = 'http://localhost:8085/adoption';
 
   constructor(private http: HttpClient) {}
 
- 
+
   getAdoptionById(id: string): Observable<any> {
     const url = `${this.baseUrl}/${id}`;
     console.log(url);
@@ -40,6 +40,10 @@ export class AdoptionService {
     console.log(url + '?' + params.toString());
 
     return this.http.get<any>(url, { params });
+
 }
 
+  createAdoption(formData: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/adoptions`, formData);
+  }
 }
