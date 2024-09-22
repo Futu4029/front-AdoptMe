@@ -5,7 +5,12 @@ const routes: Routes = [
 {
   path:'adopciones',
   loadChildren:( ) => import('@modules/adoptions/adoptions.module').then(m =>m.AdoptionsModule)
-}
+},
+  {
+    path:'crearAdoption',
+    loadChildren:( ) => import('@modules/crear-adopcion/crear-adopcion.module').then(m =>m.CrearAdopcionModule)
+  }
+
 ];
 
 @NgModule({

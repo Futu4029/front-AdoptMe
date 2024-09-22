@@ -1,0 +1,73 @@
+<form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()" class="adoption-form">
+  <!-- Nombre -->
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name" placeholder="Nombre de la mascota">
+    <mat-error *ngIf="adoptionForm.get('name')?.hasError('required')">
+      El nombre es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Edad -->
+  <mat-form-field appearance="outline">
+    <mat-label>Edad</mat-label>
+    <input matInput type="number" formControlName="age" placeholder="Edad de la mascota">
+    <mat-error *ngIf="adoptionForm.get('age')?.hasError('required')">
+      La edad es obligatoria.
+    </mat-error>
+    <mat-error *ngIf="adoptionForm.get('age')?.hasError('min')">
+      La edad no puede ser negativa.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Tipo -->
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo</mat-label>
+    <mat-select formControlName="type">
+      <mat-option value="perro">Perro</mat-option>
+      <mat-option value="gato">Gato</mat-option>
+    </mat-select>
+    <mat-error *ngIf="adoptionForm.get('type')?.hasError('required')">
+      Selecciona el tipo de mascota.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Tamaño -->
+  <mat-form-field appearance="outline">
+    <mat-label>Tamaño</mat-label>
+    <mat-select formControlName="size">
+      <mat-option value="chico">Chico</mat-option>
+      <mat-option value="mediano">Mediano</mat-option>
+      <mat-option value="grande">Grande</mat-option>
+    </mat-select>
+    <mat-error *ngIf="adoptionForm.get('size')?.hasError('required')">
+      Selecciona el tamaño de la mascota.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Género -->
+  <mat-form-field appearance="outline">
+    <mat-label>Género</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option value="macho">Macho</mat-option>
+      <mat-option value="hembra">Hembra</mat-option>
+    </mat-select>
+    <mat-error *ngIf="adoptionForm.get('gender')?.hasError('required')">
+      Selecciona el género de la mascota.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Imagen (fuera de mat-form-field) -->
+  <div class="image-upload">
+    <label for="file">Subir Imagen</label>
+    <input type="file" id="file" (change)="onFileChange($event)">
+  </div>
+
+  <!-- Botones -->
+  <div class="buttons">
+    <button mat-raised-button color="primary" type="submit" [disabled]="adoptionForm.invalid">
+      Crear Adopción
+    </button>
+    <button mat-stroked-button type="reset">Limpiar</button>
+  </div>
+</form>

@@ -1,0 +1,64 @@
+.adoption-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto;
+  background-color: var(--color-accent);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.full-width {
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+input[type="file"] {
+  display: block;
+  margin-top: 10px;
+}
+
+.mat-error {
+  font-size: 0.85rem;
+  color: #ff1744;
+}
+
+@media (max-width: 600px) {
+  .adoption-form {
+    padding: 15px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+input, select, textarea {
+  color: #000; /* Color negro para el texto */
+}
+
+.adoption-form input[type="file"],
+.adoption-form button {
+  color: #000; /* Color negro para los textos de los botones dentro del formulario */
+}
+
+.adoption-form input[type="file"],
+.adoption-form button {
+  color: #000; /* Color negro para los textos de los botones dentro del formulario */
+}
+
+.adoption-form button.mat-raised-button,
+.adoption-form button.mat-stroked-button {
+  color: #000; /* Color negro para los textos de los botones específicos */
+}
+

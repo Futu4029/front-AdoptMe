@@ -15,6 +15,8 @@ export class AdoptionsPageComponent implements OnInit {
 
   currentIndex: number = 0;
 
+  showDescription: boolean = false;
+
   constructor(private adoptionService: AdoptionService) { }
 
   ngOnInit(): void {
@@ -98,5 +100,9 @@ export class AdoptionsPageComponent implements OnInit {
 
   hasItems(): boolean {
     return this.pets && this.pets.length > 0;
+  }
+
+  toggleDescription(): void {
+    this.showDescription = !this.showDescription;
   }
 }

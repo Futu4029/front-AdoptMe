@@ -17,6 +17,9 @@
 
         <div class="Boton">
           <button class="rechazar" (click)="onReject()">❌</button>
+          <button class="descripcion" (click)="toggleDescription()">
+            🔍
+          </button>
           <button class="me-gusta" (click)="onLike()">❤️</button>
         </div>
     </div>
@@ -25,7 +28,8 @@
       <p>No encontramos un cadidato para vos</p>
     </div>
 
-  <div class="description-box" *ngIf="hasItems()">
+
+  <div class="description-box" *ngIf="showDescription && hasItems()">
     <p>{{ currentDesc }}</p>
   </div>
 
