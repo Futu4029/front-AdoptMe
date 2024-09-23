@@ -43,6 +43,10 @@ input[type="file"] {
   }
 }
 
+.mat-label{
+  color: #000;
+}
+
 input, select, textarea {
   color: #000; /* Color negro para el texto */
 }

@@ -44,6 +44,6 @@ export class AdoptionService {
 }
 
   createAdoption(formData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/adoptions`, formData);
+    return this.http.post(`${this.baseUrl}`, formData);
   }
 }
