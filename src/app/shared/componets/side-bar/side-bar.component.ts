@@ -15,7 +15,6 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
-      { name: 'Home', icon: 'fas fa-home', router: ['/'] },
       { name: 'Perfil', icon: 'fas fa-user', router: ['/', 'Perfil'] },
       { name: 'Quiero Adoptar', icon: 'fas fa-heart', router: ['/', 'adopciones'] },
       { name: 'Solicitudes', icon: 'fas fa-book', router: ['/', 'Solicitudes'] },
