@@ -11,18 +11,31 @@ export class SideBarComponent implements OnInit {
 
   isSideBarMenuVisible: boolean = false;
 
+  sidenavWidth: string= '';
+
   constructor() { }
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
-      { name: 'Perfil', icon: 'fas fa-user', router: ['/', 'Perfil'] },
-      { name: 'Quiero Adoptar', icon: 'fas fa-heart', router: ['/', 'adopciones'] },
-      { name: 'Solicitudes', icon: 'fas fa-book', router: ['/', 'Solicitudes'] },
-      { name: 'Crear Solicitud', icon: 'fas fa-book', router: ['/', 'crearAdoption'] },
+      { name: 'Home', icon: 'home', router: ['/'] },
+      { name: 'Perfil', icon: 'person', router: ['/perfil'] },
+      { name: 'Solicitudes', icon: 'mail', router: ['/solicitudes'] },
+      { name: 'Crear Solicitud', icon: 'add_circle', router: ['/crearAdoption'] },
+      { name: 'Mis adopciones', icon: 'pets', router: ['/misAdopciones'] },
     ];
   }
 
   toggleSideBarMenu(): void {
     this.isSideBarMenuVisible = !this.isSideBarMenuVisible;
+  }
+
+  updateSidenavWidth(width: number) {
+    if (width >= 1200) {
+      this.sidenavWidth = '250px';
+    } else if (width >= 768) {
+      this.sidenavWidth = '220px';
+    } else {
+      this.sidenavWidth = '180px';
+    }
   }
 }

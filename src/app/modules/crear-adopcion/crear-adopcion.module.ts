@@ -5,7 +5,7 @@ import { CrearAdoptionPageComponent } from './pages/crear-adoption-page/crear-ad
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {OverlayModule} from "@angular/cdk/overlay";
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import {SharedModule} from "@shared/shared.module";
 import {AdoptionService} from "@service/adoption-service";
+import {BrowserModule} from "@angular/platform-browser";
 
 
 
@@ -32,7 +33,9 @@ import {AdoptionService} from "@service/adoption-service";
     ScrollingModule,
     MatDialogModule,
     MatMenuModule,
-    SharedModule
+    SharedModule,
+    FormsModule
+
   ],
   providers: [AdoptionService]
 })

@@ -1,21 +1,10 @@
 .adoption-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   margin: 20px auto;
-  background-color: var(--color-accent);
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-}
-
-.full-width {
-  width: 100%;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
+  width: 90%; 
+  padding: 20px;
+  background-color: #fff; 
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .mat-form-field {
@@ -27,42 +16,38 @@ input[type="file"] {
   margin-top: 10px;
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
 .mat-error {
   font-size: 0.85rem;
   color: #ff1744;
 }
 
-@media (max-width: 600px) {
-  .adoption-form {
-    padding: 15px;
-  }
-
-  .buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
-.mat-label{
+.mat-label, input, select, textarea {
   color: #000;
 }
 
-input, select, textarea {
-  color: #000; /* Color negro para el texto */
-}
-
-.adoption-form input[type="file"],
+input[type="file"],
 .adoption-form button {
-  color: #000; /* Color negro para los textos de los botones dentro del formulario */
+  color: #000;
 }
 
-.adoption-form input[type="file"],
-.adoption-form button {
-  color: #000; /* Color negro para los textos de los botones dentro del formulario */
+.adoption-form button.mat-raised-button {
+  background-color:var(--color-primary);
+  color: #fff;
 }
 
-.adoption-form button.mat-raised-button,
 .adoption-form button.mat-stroked-button {
-  color: #000; /* Color negro para los textos de los botones específicos */
+  border-color: (--color-primary);;
+  color: (--color-secondary);;
 }
 
+.adoption-form button.mat-raised-button:hover,
+.adoption-form button.mat-stroked-button:hover {
+  border-color: (--color-primary);;
+  color: (--color-secondary);;
+}

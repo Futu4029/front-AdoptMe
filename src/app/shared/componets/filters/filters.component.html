@@ -1,45 +1,57 @@
-<button class="toggle-menu-btn" (click)="toggleMenu()">
-  <i class="fas fa-filter"></i>
+<button mat-icon-button class="toggle-menu-btn" (click)="toggleMenu()">
+  <mat-icon>filter_list</mat-icon>
 </button>
 
-<div class="filters-container" [ngClass]="{ 'visible': isMenuVisible, 'hidden': !isMenuVisible }">
+<mat-drawer-container class="filters-container" [class.visible]="isMenuVisible" [class.hidden]="!isMenuVisible">
 
-  <div class="filter-group">
-    <h4>Tipo</h4>
-    <div class="filter-options">
-      <button (click)="onFilterChange('type', 'DOG')" [class.active]="typeFilterValue === 'DOG'">Perro</button>
-      <button (click)="onFilterChange('type', 'CAT')" [class.active]="typeFilterValue === 'CAT'">Gato</button>
+  <mat-drawer mode="side" [opened]="isMenuVisible" class="filter-drawer">
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Tipo </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-button-toggle-group [(ngModel)]="typeFilterValue" (change)="onFilterChange('type', $event.value)">
+        <mat-button-toggle value="DOG">Perro</mat-button-toggle>
+        <mat-button-toggle value="CAT">Gato</mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Género </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-button-toggle-group [(ngModel)]="genderFilterValue" (change)="onFilterChange('gender', $event.value)">
+        <mat-button-toggle value="MALE">Macho</mat-button-toggle>
+        <mat-button-toggle value="FEMALE">Hembra</mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Edad </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-button-toggle-group [(ngModel)]="ageFilterValue" (change)="onFilterChange('age', $event.value)">
+        <mat-button-toggle value="PUPPY">Cachorro</mat-button-toggle>
+        <mat-button-toggle value="YOUNG">Joven</mat-button-toggle>
+        <mat-button-toggle value="ADULT">Adulto</mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Tamaño </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-button-toggle-group [(ngModel)]="sizeFilterValue" (change)="onFilterChange('size', $event.value)">
+        <mat-button-toggle value="SMALL">Chico</mat-button-toggle>
+        <mat-button-toggle value="MEDIUM">Mediano</mat-button-toggle>
+        <mat-button-toggle value="LARGE">Grande</mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-expansion-panel>
+
+    <div class="buttons-container">
+      <button mat-raised-button color="primary" (click)="applyFilters(); toggleMenu()">Aplicar Filtros</button>
+      <button mat-raised-button color="warn" (click)="clearAllFilters(); toggleMenu()">Borrar Filtros</button>
     </div>
-  </div>
 
-  <div class="filter-group">
-    <h4>Género</h4>
-    <div class="filter-options">
-      <button (click)="onFilterChange('gender', 'MALE')" [class.active]="genderFilterValue === 'MALE'">Macho</button>
-      <button (click)="onFilterChange('gender', 'FEMALE')" [class.active]="genderFilterValue === 'FEMALE'">Hembra</button>
-    </div>
-  </div>
-
-  <div class="filter-group">
-    <h4>Edad</h4>
-    <div class="filter-options">
-      <button (click)="onFilterChange('age', 'PUPPY')" [class.active]="ageFilterValue === 'PUPPY'">Cachorro</button>
-      <button (click)="onFilterChange('age', 'YOUNG')" [class.active]="ageFilterValue === 'YOUNG'">Joven</button>
-      <button (click)="onFilterChange('age', 'ADULT')" [class.active]="ageFilterValue === 'ADULT'">Adulto</button>
-    </div>
-  </div>
-
-  <div class="filter-group">
-    <h4>Tamaño</h4>
-    <div class="filter-options">
-      <button (click)="onFilterChange('size', 'SMALL')" [class.active]="sizeFilterValue === 'SMALL'">Chico</button>
-      <button (click)="onFilterChange('size', 'MEDIUM')" [class.active]="sizeFilterValue === 'MEDIUM'">Mediano</button>
-      <button (click)="onFilterChange('size', 'LARGE')" [class.active]="sizeFilterValue === 'LARGE'">Grande</button>
-    </div>
-  </div>
-
-  <div class="buttons-container">
-    <button class="apply-button" (click)="applyFilters(); toggleMenu()">Aplicar Filtros</button>
-    <button class="apply-button" (click)="clearAllFilters(); toggleMenu()">Borrar Filtros</button>
-  </div>
-</div>
+  </mat-drawer>
+</mat-drawer-container>

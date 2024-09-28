@@ -11,10 +11,19 @@ export class FiltersComponent implements OnInit {
   @Output() clearFilters = new EventEmitter<void>();
 
   isMenuVisible: boolean = false;
-  ageFilterValue: string | undefined;
-  sizeFilterValue: string | undefined;
+
+  // Declare filter values
   typeFilterValue: string | undefined;
   genderFilterValue: string | undefined;
+  ageFilterValue: string | undefined;
+  sizeFilterValue: string | undefined;
+
+  filters: { [key: string]: string | undefined } = {
+    type: undefined,
+    size: undefined,
+    age: undefined,
+    gender: undefined
+  };
 
   constructor(private adoptionService: AdoptionService) { }
 
@@ -22,46 +31,46 @@ export class FiltersComponent implements OnInit {
 
   toggleMenu(): void {
     this.isMenuVisible = !this.isMenuVisible;
+    console.log('Menu visible:', this.isMenuVisible); // Para verificar el estado
   }
 
-  onFilterChange(filterCategory: any, filterValue: any): void {
-    switch (filterCategory) {
-      case 'type':
-        this.typeFilterValue = filterValue;
-        break;
-      case 'size':
-        this.sizeFilterValue = filterValue;
-        break;
-      case 'age':
-        this.ageFilterValue = filterValue;
-        break;
-      case 'gender':
-        this.genderFilterValue = filterValue;
-        break;
-      default:
-        console.warn(`Unknown filter category: ${filterCategory}`);
-        break;
+  onFilterChange(filterCategory: string, filterValue: string): void {
+    if (this.filters.hasOwnProperty(filterCategory)) {
+      this.filters[filterCategory] = filterValue;
+    } else {
+      console.warn(`Unknown filter category: ${filterCategory}`);
     }
   }
 
   applyFilters(): void {
     this.adoptionService.searchFilteredAdoptions(
-      this.sizeFilterValue,
-      this.ageFilterValue,
-      this.typeFilterValue,
-      this.genderFilterValue
-    ).subscribe(response => {
-      console.log('Datos filtrados recibidos:', response);
-      this.filtersApplied.emit(response.data);  
+      this.filters.size,
+      this.filters.age,
+      this.filters.type,
+      this.filters.gender
+    ).subscribe({
+      next: (response) => {
+        console.log('Datos filtrados recibidos:', response);
+        this.filtersApplied.emit(response.data);
+      },
+      error: (err) => {
+        console.error('Error fetching filtered adoptions:', err);
+      }
     });
   }
 
   clearAllFilters(): void {
-  
     this.clearFilters.emit();
-    this.ageFilterValue = undefined;
-    this.sizeFilterValue = undefined;
+    this.filters = {
+      type: undefined,
+      size: undefined,
+      age: undefined,
+      gender: undefined
+    };
+    // Reset filter values
     this.typeFilterValue = undefined;
     this.genderFilterValue = undefined;
+    this.ageFilterValue = undefined;
+    this.sizeFilterValue = undefined;
   }
 }

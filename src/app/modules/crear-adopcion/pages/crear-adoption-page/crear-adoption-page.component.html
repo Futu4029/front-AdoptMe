@@ -1,5 +1,5 @@
-<form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()" class="adoption-form">
-    <div formGroupName="petDto">
+<form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()" class="adoption-form" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="center center">
+  <div formGroupName="petDto" fxLayout="column" fxLayoutGap="16px">
       <!-- Nombre -->
       <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
@@ -87,10 +87,10 @@
     </div>
 
   <!-- Botones -->
-  <div class="buttons">
+  <div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
     <button mat-raised-button color="primary" type="submit" [disabled]="adoptionForm.invalid">
-      Crear Adopción
+        Crear Adopción
     </button>
     <button mat-stroked-button type="reset">Limpiar</button>
-  </div>
+</div>
 </form>

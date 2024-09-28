@@ -2,38 +2,52 @@
   (filtersApplied)="onFiltersApplied($event)"
   (clearFilters)="onClearFilters()">
 </app-filters>
-<div class="profile">
 
-    <div class="profile--wrapper" *ngIf="hasItems()">
+<div class="profile-container">
+  <!-- Botón para ir al perfil anterior -->
+  <button mat-button class="btn-left mat-icon-button" (click)="onPreviousProfile()">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
 
-      <div class="FOTO">
+  <!-- Perfil de la mascota -->
+  <mat-card class="profile" *ngIf="hasItems()">
+
+    <mat-card-content>
+      <div class="FOTO" [@swipeAnimation]="currentState">
         <img [src]="currentImage" alt="Dog Photo" class="dog-photo" />
       </div>
+    </mat-card-content>
 
-      <div class="profile-details">
-        <p>{{currentName}}, {{currentAge}}</p>
-        <p></p>
+    <!-- Nombre y edad debajo de la imagen -->
+    <mat-card-header style="position: relative;">
+      <mat-card-title>{{currentName}}, {{currentAge}}</mat-card-title>
+      <button mat-icon-button (click)="toggleDescription()" style="position: absolute; top: 0; right: 10px; background-color: transparent; padding: 0; border: none;">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+    </mat-card-header>
+
+
+    <mat-card-content>
+      <div class="description-box" *ngIf="showDescription">
+        <p>{{ currentDesc }}</p>
       </div>
+    </mat-card-content>
 
-        <div class="Boton">
-          <button class="rechazar" (click)="onReject()">❌</button>
-          <button class="descripcion" (click)="toggleDescription()">
-            🔍
-          </button>
-          <button class="me-gusta" (click)="onLike()">❤️</button>
-        </div>
-    </div>
+    <mat-card-actions>
+      <button mat-button  (click)="onReject()">❌</button>
 
-    <div class="empty-message-box" *ngIf="!hasItems()">
-      <p>No encontramos un cadidato para vos</p>
-    </div>
+      <button mat-button  (click)="onLike()">❤️</button>
+    </mat-card-actions>
 
+  </mat-card>
 
-  <div class="description-box" *ngIf="showDescription && hasItems()">
-    <p>{{ currentDesc }}</p>
+  <!-- Botón para ir al perfil siguiente -->
+  <button mat-button class="btn-right mat-icon-button" (click)="onNextProfile()"><mat-icon>chevron_right</mat-icon></button>
+
+  <div class="empty-message-box" *ngIf="!hasItems()">
+    <p>No encontramos un candidato para vos</p>
   </div>
-
-  </div>
-
+  
+</div>
 
 

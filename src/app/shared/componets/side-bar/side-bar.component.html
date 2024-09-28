@@ -1,15 +1,33 @@
-<button class="toggle-menu-btn" (click)="toggleSideBarMenu()">
-  <i class="fas fa-bars"></i>
-</button>
+<mat-sidenav-container>
+  <!-- Side-bar que se puede ocultar y desocultar -->
+  <mat-sidenav #sidenav mode="push" [ngStyle]="{width: sidenavWidth}">
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
 
+    <!-- Lista de navegación -->
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of mainMenu.defaultOptions" [routerLink]="item.router" (click)="sidenav.toggle()">
+        <mat-icon matListIcon>{{item.icon}}</mat-icon>
+        {{item.name}}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<div class="side-bar-menu" [ngClass]="{ 'visible': isSideBarMenuVisible, 'hidden': !isSideBarMenuVisible }">
-  <ul class="side-bar__list list-one">
-    <li [routerLink]="item.router" *ngFor="let item of mainMenu.defaultOptions" (click)="toggleSideBarMenu()">
-      <div class="list-wrapper-item">
-        <i [ngClass]="['fas', item.icon]"></i>
-        <span class="side-bar__list list-label">{{ item.name }}</span>
-      </div>
-    </li>
-  </ul>
-</div>
+  <!-- Barra de herramientas superior -->
+  <mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Imagen centrada en el banner -->
+    <img src="assets/LogoFinal.png" class="logo" alt="Logo Final">
+  </mat-toolbar>
+
+  <!-- Contenido principal -->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

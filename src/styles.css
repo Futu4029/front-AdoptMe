@@ -1,7 +1,8 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 :root {
+ 
     /* Colores */
-    --color-primary: #375a6e; /* Color principal */
+    --color-primary: #80a1ac; /* Color principal */
     --color-secondary: #00b39d; /* Color secundario */
     --color-tertiary: #F2F1EC; /* Color secundario */
     --color-accent: #f1f1e6; /* Color de acento */
@@ -28,7 +29,8 @@
     --font-family-secundary: 'Segoe UI', sans-serif; /* Fuente secundaria */
 }
 
-html,body {
+html,body,mat-sidenav-container {
+    height: 100%;
     margin: 0;
     padding: 0;
     background-color:var(--color-primary); /* Color de fondo principal */
@@ -49,79 +51,17 @@ html,body {
 
 /* Para pantallas grandes (desktops) */
 @media (min-width: 1200px) {
-  .container {
-    max-width: 1200px;
-    font:var(--font-size-base);
-  }
 
-  .profile--wrapper {
-    max-width: 700px;
-  }
 
-  .side-bar-menu {
-    max-width: 250px;
-  }
-
-  .description-box {
-    max-width: 700px;
-  }
-  .adoption-form {
-    max-width: 700px; /* El formulario ocupará el 100% del ancho de la pantalla */
-    padding: 15px; /* Espaciado interno del formulario */
-    margin: 0 10px; /* Margen lateral para evitar que toque los bordes */
-  }
 }
 
 /* Para pantallas medianas (tablets) */
 @media (max-width: 1199px) and (min-width: 768px) {
-  .container {
-    max-width: 960px;
-    font:var(--font-size-base);
-  }
 
-  .profile--wrapper {
-    max-width: 600px;
-  }
-
-  .side-bar-menu {
-    max-width: 250px;
-  }
-
-  .description-box {
-    max-width: 600px;
-  }
-  .adoption-form {
-    max-width: 600px; /* El formulario ocupará el 100% del ancho de la pantalla */
-    padding: 15px; /* Espaciado interno del formulario */
-    margin: 0 10px; /* Margen lateral para evitar que toque los bordes */
-  }
 }
 
 /* Para pantallas pequeñas (móviles) */
 @media (max-width: 767px) {
-  .container {
-    max-width: 100%;
-    padding: 0 10px;
-    font:var(--font-size-base);
-  }
-  .profile--wrapper {
-    max-width: 500px;
-  }
 
-  .side-bar-menu {
-    max-width: 180px;
-  }
 
-  .description-box {
-    max-width: 500px;
-  }
-
-  .adoption-form {
-    max-width: 400px; /* El formulario ocupará el 100% del ancho de la pantalla */
-    padding: 20px; /* Espaciado interno del formulario */
-    margin: 0 20px; /* Margen lateral para evitar que toque los bordes */
-  }
 }
-
-html, body { }
-body { margin: 0; font-family: "Segoe UI", "Helvetica Neue", sans-serif; }
