@@ -10,6 +10,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class CrearAdoptionPageComponent implements OnInit {
   adoptionForm: FormGroup;
+  private userId: any;
+
 
   constructor(private fb: FormBuilder, private adoptionService: AdoptionService, private snackBar: MatSnackBar) {
     this.adoptionForm = this.fb.group({
@@ -98,6 +100,9 @@ export class CrearAdoptionPageComponent implements OnInit {
       } else {
         control?.setErrors(null);
       }
+    });
+    this.adoptionForm.patchValue({
+      userId: '2'
     });
   }
 
