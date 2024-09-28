@@ -3,14 +3,14 @@
   (clearFilters)="onClearFilters()">
 </app-filters>
 
-<div class="profile-container">
+<div class="profile-container" *ngIf="hasItems()">
   <!-- Botón para ir al perfil anterior -->
   <button mat-button class="btn-left mat-icon-button" (click)="onPreviousProfile()">
     <mat-icon>chevron_left</mat-icon>
   </button>
 
   <!-- Perfil de la mascota -->
-  <mat-card class="profile" *ngIf="hasItems()">
+  <mat-card class="profile">
 
     <mat-card-content>
       <div class="FOTO" [@swipeAnimation]="currentState">
@@ -44,10 +44,11 @@
   <!-- Botón para ir al perfil siguiente -->
   <button mat-button class="btn-right mat-icon-button" (click)="onNextProfile()"><mat-icon>chevron_right</mat-icon></button>
 
-  <div class="empty-message-box" *ngIf="!hasItems()">
-    <p>No encontramos un candidato para vos</p>
-  </div>
-  
+
 </div>
 
-
+<mat-card-content *ngIf="!hasItems()">
+  <div class="not-found-photo">
+    <img [src]="notFoundImage" />
+  </div>
+</mat-card-content>

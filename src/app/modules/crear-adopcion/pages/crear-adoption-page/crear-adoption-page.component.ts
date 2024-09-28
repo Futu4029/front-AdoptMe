@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AdoptionService} from "@service/adoption-service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-crear-adoption-page',
@@ -10,7 +11,7 @@ import {AdoptionService} from "@service/adoption-service";
 export class CrearAdoptionPageComponent implements OnInit {
   adoptionForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private adoptionService: AdoptionService) {
+  constructor(private fb: FormBuilder, private adoptionService: AdoptionService, private snackBar: MatSnackBar) {
     this.adoptionForm = this.fb.group({
       petDto: this.fb.group({
         name: ['', Validators.required],
@@ -50,18 +51,22 @@ export class CrearAdoptionPageComponent implements OnInit {
     if (this.adoptionForm.valid) {
       const adoptionRequest = this.adoptionForm.value;
 
-
-      console.log('form', this.adoptionForm);
-      console.log('formValue', adoptionRequest);
+      this.resetForm()
       // Llama al servicio para enviar los datos
       this.adoptionService.createAdoption(adoptionRequest).subscribe(
-        response => {
-          // Manejar la respuesta del servicio (por ejemplo, mostrar un mensaje)
-          console.log('Adopción creada con éxito', response);
-        },
+      response => {
+        // Manejar la respuesta del servicio (por ejemplo, mostrar un mensaje)
+        this.snackBar.open('Adopción creada correctamente', 'Cerrar', {
+          duration: 5000,  // Duración del mensaje en milisegundos
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      },
         error => {
           // Manejar el error
-          console.error('Error al crear la adopción', error);
+          this.snackBar.open('Error al crear la adopción', 'Cerrar', {
+            duration: 3000,
+          });
         }
       );
     }else {
@@ -69,4 +74,10 @@ export class CrearAdoptionPageComponent implements OnInit {
     }
   }
 
+  resetForm(): void {
+    this.adoptionForm.reset();
+    this.adoptionForm.markAsPristine();
+    this.adoptionForm.markAsUntouched();
+    this.adoptionForm.updateValueAndValidity(); // Actualiza las validaciones
+  }
 }

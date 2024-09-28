@@ -16,28 +16,30 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [ //TODO: DEclaraciones, componenetes, directivas
     AppComponent
   ],
     imports: [ //TODO: Solo se importan otros modules
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        SharedModule,
-        NavegationModule,
+      BrowserModule,
+      AppRoutingModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      SharedModule,
+      NavegationModule,
       MatInputModule,
       MatFormFieldModule,
       MatSelectModule,
       MatButtonModule,
-        ReactiveFormsModule,
+      ReactiveFormsModule,
       MatIconModule,
       MatExpansionModule,
       MatButtonToggleModule,
       MatSidenavModule,
-      FormsModule
+      FormsModule,
+      MatSnackBarModule
     ],
   providers: [],
   bootstrap: [AppComponent]

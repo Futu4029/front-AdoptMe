@@ -1,13 +1,14 @@
 
 :root {
- 
+
     /* Colores */
-    --color-primary: #80a1ac; /* Color principal */
+    --color-primary: #398c80; /* Color principal */
     --color-secondary: #00b39d; /* Color secundario */
     --color-tertiary: #F2F1EC; /* Color secundario */
     --color-accent: #f1f1e6; /* Color de acento */
     --color-dark: #000000; /* Color oscuro */
     --color-text: #ffffff; /* Color del texto */
+    --color-background-container: #f1f1e6;
     --color-transparente: rgba(0,0,0,0);
 
     /* Tamaños de fuente */

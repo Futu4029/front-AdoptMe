@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AdoptionService } from '@service/adoption-service';
-import { forkJoin } from 'rxjs';
 import {trigger, transition, style, animate, state} from '@angular/animations';
 
 @Component({
@@ -55,6 +54,10 @@ export class AdoptionsPageComponent implements OnInit {
 
   get currentDesc(): string {
     return this.pets[this.currentIndex]?.desc || '';
+  }
+  get notFoundImage(): string {
+    //Crear alias para la ruta.
+    return "../../../../../assets/notfound.png";
   }
 
   onLike(): void {

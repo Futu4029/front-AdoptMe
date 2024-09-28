@@ -1,8 +1,8 @@
-.filters-container {
+.filter-drawer {
   position: fixed;
   top: 100px;
   left: 0px;
-  height: 70vh;
+  height: 55vh;
   width: 250px;
   box-shadow: var(--shadow-medium);
   padding: 3px;
@@ -92,10 +92,16 @@
 }
 
 .buttons-container {
-  display: flex;
-  justify-content: center; /* Alinea los botones a la izquierda */
-  gap: 10px; /* Espacio entre botones */
+  /*revisar*/
+  gap: 5px; /* Espacio entre botones */
   margin-top: 20px;
+  font-size: 12px;          /* Tamaño del texto */
+  height: 30px;             /* Altura del botón */
+  width: auto;              /* El ancho se ajusta al contenido */
+  min-width: 50px;          /* Reduce el ancho mínimo */
+  text-align: center;       /* Centrar el texto */
+  display: flex;            /* Flexbox para centrar */
+  align-items: center;
 }
 
 button.mat-raised-button {

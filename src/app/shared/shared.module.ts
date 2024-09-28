@@ -11,6 +11,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatListModule} from "@angular/material/list";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { MatButtonModule } from '@angular/material/button';
 import {FormsModule} from "@angular/forms";
 
 
@@ -31,7 +32,8 @@ import {FormsModule} from "@angular/forms";
     MatExpansionModule,
     MatButtonToggleModule,
     MatSidenavModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule
   ],
   exports:[
     SideBarComponent,

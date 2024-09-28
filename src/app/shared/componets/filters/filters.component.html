@@ -2,7 +2,6 @@
   <mat-icon>filter_list</mat-icon>
 </button>
 
-<mat-drawer-container class="filters-container" [class.visible]="isMenuVisible" [class.hidden]="!isMenuVisible">
 
   <mat-drawer mode="side" [opened]="isMenuVisible" class="filter-drawer">
 
@@ -47,11 +46,11 @@
         <mat-button-toggle value="LARGE">Grande</mat-button-toggle>
       </mat-button-toggle-group>
     </mat-expansion-panel>
-
-    <div class="buttons-container">
-      <button mat-raised-button color="primary" (click)="applyFilters(); toggleMenu()">Aplicar Filtros</button>
-      <button mat-raised-button color="warn" (click)="clearAllFilters(); toggleMenu()">Borrar Filtros</button>
-    </div>
+    <section>
+      <div class="buttons-container">
+        <button mat-stroked-button color="primary" (click)="applyFilters(); toggleMenu()">Aplicar Filtros</button>
+        <button mat-stroked-button color="warn" (click)="clearAllFilters(); toggleMenu()">Borrar Filtros</button>
+      </div>
+    </section>
 
   </mat-drawer>
-</mat-drawer-container>
