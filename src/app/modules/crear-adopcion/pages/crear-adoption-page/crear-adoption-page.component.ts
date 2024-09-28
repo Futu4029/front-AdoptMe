@@ -75,9 +75,31 @@ export class CrearAdoptionPageComponent implements OnInit {
   }
 
   resetForm(): void {
+
     this.adoptionForm.reset();
-    this.adoptionForm.markAsPristine();
-    this.adoptionForm.markAsUntouched();
-    this.adoptionForm.updateValueAndValidity(); // Actualiza las validaciones
+    this.adoptionForm.markAsPristine();   // Marca el formulario como 'pristine' (no modificado)
+    this.adoptionForm.markAsUntouched();  // Marca todos los campos como 'untouched'
+    this.adoptionForm.updateValueAndValidity();  // Revalida el formulario
+
+
+    const fileInput = document.getElementById('file-upload') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';  // Limpia el campo del archivo
+    }
+
+
+    Object.keys(this.adoptionForm.controls).forEach(key => {
+      const control = this.adoptionForm.get(key);
+      if (control instanceof FormGroup) {
+        Object.keys(control.controls).forEach(innerKey => {
+          const innerControl = control.get(innerKey);
+          innerControl?.setErrors(null);
+        });
+      } else {
+        control?.setErrors(null);
+      }
+    });
   }
+
+
 }
