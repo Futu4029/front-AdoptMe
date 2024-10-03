@@ -4,11 +4,14 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 //Rutas login register se vinculan aqui
 const routes: Routes = [
-{
-  path:'login',
-  component: LoginPageComponent
-}
-
+  {
+    path:'login',
+    component: LoginPageComponent
+  },
+  {
+    path:'**',
+    redirectTo: '/auth/login'
+  }
 ];
 
 @NgModule({

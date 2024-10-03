@@ -1,2 +1,8 @@
-<app-navigation></app-navigation>
+<div *ngIf="!authService.isLoggedIn(); else loggedInContent">
+  <router-outlet></router-outlet>
+</div>
+
+<ng-template #loggedInContent>
+  <app-navigation></app-navigation> <!-- Este contiene tu side-bar -->
+</ng-template>
 

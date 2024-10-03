@@ -24,7 +24,7 @@ export class CrearAdoptionPageComponent implements OnInit {
         image: ['', Validators.required], // Asumido para simplificar
         color: [''],
         breed: [''],
-        description: ['']
+        description: ['', Validators.required]
       }),
       userId: ['2']
     });
