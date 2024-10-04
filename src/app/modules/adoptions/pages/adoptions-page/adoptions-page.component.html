@@ -3,7 +3,7 @@
   (clearFilters)="onClearFilters()">
 </app-filters>
 
-<div class="profile-container" *ngIf="hasItems()">
+<div class="profile-container" *ngIf="hasItems()" [@swipeAnimation]="currentState">
   <!-- Botón para ir al perfil anterior -->
   <button mat-button class="btn-left mat-icon-button" (click)="onPreviousProfile()">
     <mat-icon>chevron_left</mat-icon>
@@ -13,7 +13,7 @@
   <mat-card class="profile">
 
     <mat-card-content>
-      <div class="FOTO" [@swipeAnimation]="currentState">
+      <div class="FOTO" >
         <img [src]="currentImage" alt="Dog Photo" class="dog-photo" />
       </div>
     </mat-card-content>
@@ -29,7 +29,9 @@
 
     <mat-card-content>
       <div class="description-box" *ngIf="showDescription">
-        <p>{{ currentDesc }}</p>
+        <p>Nombre: {{ currentName }}</p>
+        <p>Edad: {{ currentAge }}</p>
+        <p>Desc: {{ currentDesc }}</p>
       </div>
     </mat-card-content>
 

@@ -8,11 +8,9 @@ import {trigger, transition, style, animate, state} from '@angular/animations';
   styleUrls: ['./adoptions-page.component.css'],
   animations: [
     trigger('swipeAnimation', [
-      // Definir el estado inicial
-      state('current', style({ opacity: 1, transform: 'translateX(0)' })),
-      state('next', style({ opacity: 0, transform: 'translateX(100%)' })),
-      state('prev', style({ opacity: 0, transform: 'translateX(-100%)' })),
-      // Transiciones
+      state('current', style({ opacity: 1, transform: 'translateX(0) scale(1)', filter: 'blur(0)' })),
+      state('next', style({ opacity: 0, transform: 'translateX(100%) scale(0.95)', filter: 'blur(4px)' })),
+      state('prev', style({ opacity: 0, transform: 'translateX(-100%) scale(0.95)', filter: 'blur(4px)' })),
       transition('current => next', [
         animate('0.5s ease-out')
       ]),
@@ -55,6 +53,7 @@ export class AdoptionsPageComponent implements OnInit {
   get currentDesc(): string {
     return this.pets[this.currentIndex]?.desc || '';
   }
+
   get notFoundImage(): string {
     //Crear alias para la ruta.
     return "../../../../../assets/notfound.png";

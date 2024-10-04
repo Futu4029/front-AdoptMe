@@ -30,6 +30,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(): void {
+
+    console.log('¿Formulario válido?', this.formLogin.valid);
+
     if (this.formLogin.invalid) {
       return;
     }
@@ -37,13 +40,14 @@ export class LoginPageComponent implements OnInit {
     const { email, password } = this.formLogin.value;
 
     this.authService.sendCredentials(email, password).subscribe(
-      responseOk => {
-        console.log('Sesión iniciada correctamente', responseOk);
+      response => {
+        console.log('Sesión iniciada correctamente', response);
 
-        const { tokenSession, data } = responseOk;
+        const { tokenSession, data } = response;
 
         // Guardamos el token en el localStorage o en un servicio de sesión
         localStorage.setItem('tokenSession', tokenSession);
+        console.log('Local storage', localStorage);
 
         // Redirigimos al usuario a la página de inicio
         this.router.navigate(['/']);

@@ -1,1 +1,17 @@
-<p>mis-adopciones works!</p>
+<div class="mis-adopciones-container">
+  <h2>Mis Adopciones</h2>
+  <div *ngIf="misAdopciones.length === 0">No tienes adopciones realizadas.</div>
+  <div *ngFor="let adoption of misAdopciones" class="adopcion-card">
+    <img [src]="adoption.pet.image" alt="{{ adoption.pet.name }}" class="mascota-imagen" />
+    <div class="mascota-info">
+      <h3>{{ adoption.pet.name }}</h3>
+      <p>Edad: {{ adoption.pet.age }} años</p>
+      <p>Tipo: {{ adoption.pet.type }}</p>
+      <p>Tamaño: {{ adoption.pet.size }}</p>
+      <p>Color: {{ adoption.pet.color }}</p>
+      <p>Raza: {{ adoption.pet.breed }}</p>
+      <p>Dueño: {{ adoption.owner?.name }}</p>
+      <p>Estado: {{ adoption.status }}</p>
+    </div>
+  </div>
+</div>
