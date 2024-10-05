@@ -27,7 +27,7 @@ import {trigger, transition, style, animate, state} from '@angular/animations';
   ]
 })
 export class AdoptionsPageComponent implements OnInit {
-  pets: { image: string, name: string, age: number, desc: string }[] = [];
+  pets: { image: string, name: string, age: number, desc: string, color:string, breed: string, size: string, gender: string }[] = [];
   currentIndex: number = 0;
   currentState: string = 'current';
   showDescription: boolean = false;
@@ -36,6 +36,22 @@ export class AdoptionsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchAllAdoptions();
+  }
+
+  get currentcolor(): string {
+    return this.pets[this.currentIndex]?.color || '';
+  }
+
+  get currentbreed(): string {
+    return this.pets[this.currentIndex]?.breed || '';
+  }
+
+  get currentsize(): string {
+    return this.pets[this.currentIndex]?.size || '';
+  }
+
+  get currentgender(): string {
+    return this.pets[this.currentIndex]?.gender || '';
   }
 
   get currentImage(): string {
@@ -108,7 +124,12 @@ export class AdoptionsPageComponent implements OnInit {
       image: petData.image,
       name: petData.name,
       age: petData.age,
-      desc: petData.description
+      desc: petData.description,
+      color: petData.color,
+      breed: petData.breed,
+      size: petData.size,
+      gender: petData.gender
+
     }));
   }
 

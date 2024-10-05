@@ -7,7 +7,10 @@
 
 .logo {
   height: 60px;
-
+  margin: 0 auto; /* Centra el logo */
+  position: absolute; /* Permite centrar el logo */
+  left: 50%; /* Mueve el logo al 50% del ancho */
+  transform: translateX(-50%); /* Ajusta la posición del logo */
 }
 
 .menu-button {
@@ -15,6 +18,10 @@
   left: 9px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.logout-btn {
+  margin-left: auto; /* Empuja el botón de logout al extremo derecho */
 }
 
 .nav-item {
@@ -29,3 +36,5 @@
 mat-icon {
   font-size: 24px; /* Si quieres agrandar también los íconos */
 }
+
+

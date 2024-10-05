@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "@modules/auth/Service/auth.service";
 
 @Component({
   selector: 'app-side-bar',
@@ -13,7 +14,7 @@ export class SideBarComponent implements OnInit {
 
   sidenavWidth: string= '';
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
@@ -29,13 +30,8 @@ export class SideBarComponent implements OnInit {
     this.isSideBarMenuVisible = !this.isSideBarMenuVisible;
   }
 
-  updateSidenavWidth(width: number) {
-    if (width >= 1200) {
-      this.sidenavWidth = '250px';
-    } else if (width >= 768) {
-      this.sidenavWidth = '220px';
-    } else {
-      this.sidenavWidth = '180px';
-    }
+
+  logout() {
+    this.authService.logout();
   }
 }

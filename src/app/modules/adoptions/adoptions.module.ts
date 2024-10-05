@@ -6,8 +6,9 @@ import { AdoptionsPageComponent } from '@modules/adoptions/pages/adoptions-page/
 import { SharedModule } from '@shared/shared.module';
 import { AdoptionService } from '@service/adoption-service';
 import {MatCardModule} from "@angular/material/card";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+//import {TokenInterceptor} from "@service/token-interceptor.service";
 
 
 
@@ -22,6 +23,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatCardModule,
     MatIconModule
   ],
-  providers: [AdoptionService]
+  providers: [AdoptionService
+    //,{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ]
 })
 export class AdoptionsModule { }

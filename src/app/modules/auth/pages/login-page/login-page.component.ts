@@ -30,8 +30,8 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(): void {
-
-    console.log('¿Formulario válido?', this.formLogin.valid);
+    // Reiniciar el estado del error cada vez que se intenta enviar el formulario
+    this.errorSession = false;
 
     if (this.formLogin.invalid) {
       return;
@@ -41,22 +41,21 @@ export class LoginPageComponent implements OnInit {
 
     this.authService.sendCredentials(email, password).subscribe(
       response => {
-        console.log('Sesión iniciada correctamente', response);
 
-        const { tokenSession, data } = response;
+        const { data } = response;
 
-        // Guardamos el token en el localStorage o en un servicio de sesión
-        localStorage.setItem('tokenSession', tokenSession);
-        console.log('Local storage', localStorage);
+        localStorage.setItem('tokenSession', data.accesstoken);
+
 
         // Redirigimos al usuario a la página de inicio
         this.router.navigate(['/']);
       },
       err => {
-        this.errorSession = true;
+        this.errorSession = true; // Mostramos el error si ocurre
         console.log('⚠ Ocurrió un error con tu email o password');
       }
     );
   }
+
 
 }

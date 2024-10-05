@@ -13,6 +13,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { MatButtonModule } from '@angular/material/button';
 import {FormsModule} from "@angular/forms";
+import {AuthService} from "@modules/auth/Service/auth.service";
 
 
 
@@ -41,7 +42,8 @@ import {FormsModule} from "@angular/forms";
     FiltersComponent
   ],
   providers: [
-    AdoptionService
+    AdoptionService,
+    AuthService
   ]
 })
 export class SharedModule { }
