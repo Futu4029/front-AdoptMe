@@ -31,7 +31,6 @@ export class FiltersComponent implements OnInit {
 
   toggleMenu(): void {
     this.isMenuVisible = !this.isMenuVisible;
-    console.log('Menu visible:', this.isMenuVisible); // Para verificar el estado
   }
 
   onFilterChange(filterCategory: string, filterValue: string): void {
