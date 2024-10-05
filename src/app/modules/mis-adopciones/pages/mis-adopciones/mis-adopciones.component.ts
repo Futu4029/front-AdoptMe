@@ -18,19 +18,14 @@ export class MisAdopcionesComponent implements OnInit {
   }
 
   obtenerMisAdopciones(): void {
-    const email = localStorage.getItem('userEmail');
+    //const email = localStorage.getItem('userEmail');
 
-    if (email) {
-       //this.adoptionService.getAdoptionByemail().subscribe(response => {
-      this.adoptionService.searchFilteredAdoptions().subscribe(response => {
+      this.adoptionService.getAdoptionByemail("test.user@gmail.com").subscribe(response => {
         if (response && response.data) {
           this.misAdopciones = response.data;
         }
       }, error => {
         console.error('Error al obtener mis adopciones:', error);
       });
-    } else {
-      console.error('No se encontró el email del usuario logueado.');
-    }
   }
 }

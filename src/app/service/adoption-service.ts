@@ -24,18 +24,18 @@ export class AdoptionService {
   }
 
   // Obtener adopción por ID
-  getAdoptionById(id: string): Observable<any> {
+  getAdoptionByemail(email: string): Observable<any> {
     const headers = this.authorizationHeader();
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}/search/by-email/${email}`;
     return this.http.get<any>(url, { headers });
   }
 
-  getAdoptionByemail(): Observable<any> {
+ /* getAdoptionByemail(): Observable<any> {
     const headers = this.authorizationHeader();
 
     const url = `${this.baseUrl}/${'test.user@gmail.com'}`;
     return this.http.get<any>(url, { headers });
-  }
+  }*/
 
 
   // Buscar adopciones filtradas
