@@ -1,23 +1,72 @@
 .mis-adopciones-container {
   padding: 20px;
+  background-color: #f9f9f9; /* Fondo más suave */
+  border-radius: 8px;
+}
+
+.no-adopciones {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin: 20px 0;
 }
 
 .adopcion-card {
   display: flex;
+  flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 10px;
+}
+
+.adopcion-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .mascota-imagen {
   width: 100px;
   height: 100px;
-  border-radius: 5px;
-  margin-right: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.mascota-info {
+.adopcion-detalles {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 30px;
+}
+
+mat-card-header {
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+mat-card-title, mat-card-subtitle {
+  margin: 0;
+  padding-left: 10px;
+}
+
+mat-card-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+
+
+.estado-open {
+  color: blue;
+}
+
+.estado-completado {
+  color: green;
+}
+
+.estado-pendiente {
+  color: orange;
 }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MisAdopcionesRoutingModule } from './mis-adopciones-routing.module';
 import { MisAdopcionesComponent } from './pages/mis-adopciones/mis-adopciones.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { MisAdopcionesComponent } from './pages/mis-adopciones/mis-adopciones.co
   ],
   imports: [
     CommonModule,
-    MisAdopcionesRoutingModule
+    MisAdopcionesRoutingModule,
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class MisAdopcionesModule { }

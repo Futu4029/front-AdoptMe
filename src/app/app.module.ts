@@ -17,6 +17,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatCardModule} from "@angular/material/card";
 //import {TokenInterceptor} from "@service/token-interceptor.service";
 
 @NgModule({
@@ -40,7 +41,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
       MatButtonToggleModule,
       MatSidenavModule,
       FormsModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      MatCardModule,
+      MatButtonModule,
     ],
   providers: [
     //{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
