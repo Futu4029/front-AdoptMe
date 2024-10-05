@@ -30,12 +30,13 @@ export class AdoptionService {
     return this.http.get<any>(url, { headers });
   }
 
-  getAdoptionByOwnerId(): Observable<any> {
+  getAdoptionByemail(): Observable<any> {
     const headers = this.authorizationHeader();
 
-    const url = `${this.baseUrl}/${'1'}`;
+    const url = `${this.baseUrl}/${'test.user@gmail.com'}`;
     return this.http.get<any>(url, { headers });
   }
+
 
   // Buscar adopciones filtradas
   searchFilteredAdoptions(size?: string, age?: string, type?: string, gender?: string): Observable<any> {

@@ -21,6 +21,7 @@ export class MisAdopcionesComponent implements OnInit {
     const email = localStorage.getItem('userEmail');
 
     if (email) {
+       //this.adoptionService.getAdoptionByemail().subscribe(response => {
       this.adoptionService.searchFilteredAdoptions().subscribe(response => {
         if (response && response.data) {
           this.misAdopciones = response.data;
