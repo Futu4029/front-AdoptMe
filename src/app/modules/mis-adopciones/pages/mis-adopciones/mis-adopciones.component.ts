@@ -20,7 +20,7 @@ export class MisAdopcionesComponent implements OnInit {
   obtenerMisAdopciones(): void {
     //const email = localStorage.getItem('userEmail');
 
-      this.adoptionService.getAdoptionByemail("test.user@gmail.com").subscribe(response => {
+      this.adoptionService.getAdoptionsById().subscribe(response => {
         if (response && response.data) {
           this.misAdopciones = response.data;
         }
