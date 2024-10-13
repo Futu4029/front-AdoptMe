@@ -19,6 +19,14 @@ export interface Pet {
     province: string;
   }
 
+  export interface Adoption {
+    id: number;
+    adopterUser: User;
+    pet: Pet;
+    owner: User;
+    status: string;
+  }
+
   export enum PetType {
     DOG = 'DOG',
     CAT = 'CAT'
