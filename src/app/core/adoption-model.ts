@@ -11,20 +11,12 @@ export interface Pet {
     description: string;
   }
 
-  export interface Owner {
+  export interface User {
     email: string;
     name: string;
     surName: string;
     locality: string;
     province: string;
-  }
-
-  export interface Adoption {
-    id: number;
-    adopterUser: Owner;
-    pet: Pet;
-    owner: Owner;
-    status: string;
   }
 
   export enum PetType {
@@ -42,3 +34,8 @@ export interface Pet {
     MEDIUM = 'MEDIUM',
     LARGE  ='LARGE'
   }
+
+export interface GeneralResponse {
+  message: string;
+  data: any;
+}
