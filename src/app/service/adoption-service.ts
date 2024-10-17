@@ -8,6 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class AdoptionService {
   private baseUrl = 'http://localhost:8085/adoption';
+  private baseUrl2 = 'http://localhost:8085/application';
 
   constructor(private http: HttpClient) {}
 
@@ -34,7 +35,7 @@ export class AdoptionService {
     return this.http.get<any>(url, { params }).pipe(
       catchError(error => {
         console.error('Error en la solicitud:', error);
-        return throwError(error); // O manejar el error como prefieras
+        return throwError(error);
       })
     );
   }
@@ -42,6 +43,10 @@ export class AdoptionService {
   // Crear adopción
   createAdoption(formData: FormData): Observable<any> {
     return this.http.post(`${this.baseUrl}`, formData, { });
+  }
+
+  applyToAdoption(formData: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl2}`, formData, { });
   }
 
 

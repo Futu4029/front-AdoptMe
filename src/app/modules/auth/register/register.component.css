@@ -1,0 +1,45 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--color-background-container);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 100%; /* Asegura que todos los campos de entrada tengan el mismo ancho */
+}
+
+mat-checkbox {
+  margin-top: 10px;
+}
+
+button {
+  align-self: flex-end;
+  margin-top: 20px;
+  background-color: var(--color-primary); /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  padding: 10px 20px; /* Tamaño del botón */
+  border-radius: 5px; /* Bordes redondeados en el botón */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
+  transition: transform 0.2s ease; /* Transición suave */
+}
+
+button:hover {
+  transform: scale(1.05); /* Efecto de agrandamiento al pasar el ratón */
+}
+
+button:disabled {
+  background-color: #ccc; /* Botón deshabilitado */
+  color: #666; /* Color de texto cuando el botón está deshabilitado */
+}

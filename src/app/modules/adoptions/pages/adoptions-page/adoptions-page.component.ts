@@ -77,8 +77,32 @@ export class AdoptionsPageComponent implements OnInit {
 
   onLike(): void {
     console.log("Quiero hacer match");
+
+    const adoptionId = localStorage.getItem('adoptionId');
+    const userId = localStorage.getItem('userId');
+
+    if (adoptionId && userId) {
+
+      const formData = new FormData();
+      formData.append('adoptionId', adoptionId);
+      formData.append('userId', userId);
+
+
+      this.adoptionService.applyToAdoption(formData).subscribe(
+        response => {
+          console.log('Solicitud enviada correctamente', response);
+        },
+        error => {
+          console.error('Error al enviar la solicitud:', error);
+        }
+      );
+    } else {
+      console.error('No se encontraron los datos necesarios en el LocalStorage');
+    }
+
     this.nextImage();
   }
+
 
   onReject(): void {
     console.log("Lo dejo para otra familia");
@@ -86,11 +110,11 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   nextImage(): void {
-    this.currentState = 'next'; // Cambiar al estado de 'next'
+    this.currentState = 'next';
     setTimeout(() => {
       this.currentIndex = (this.currentIndex + 1) % this.pets.length;
-      this.currentState = 'current'; // Regresar al estado 'current'
-    }, 500); // Tiempo de animación
+      this.currentState = 'current';
+    }, 500);
   }
 
   fetchAllAdoptions(): void {
