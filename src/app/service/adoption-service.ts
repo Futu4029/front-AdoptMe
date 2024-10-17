@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -45,8 +45,12 @@ export class AdoptionService {
     return this.http.post(`${this.baseUrl}`, formData, { });
   }
 
-  applyToAdoption(formData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl2}`, formData, { });
+  applyToAdoption(adoptionRequest: any): Observable<any> {
+    return this.http.post(`${this.baseUrl2}`,adoptionRequest ,{ });
+  }
+
+  blackListAdoption(adoptionRequest: any): Observable<any> {
+    return this.http.put(`${this.baseUrl2}`,adoptionRequest ,{ });
   }
 
 

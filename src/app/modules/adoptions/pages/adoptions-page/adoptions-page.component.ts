@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdoptionService } from '@service/adoption-service';
-import {trigger, transition, style, animate, state} from '@angular/animations';
+import { trigger, transition, style, animate, state } from '@angular/animations';
+import { Pet } from "@core/adoption-model";
 
 @Component({
   selector: 'app-adoptions-page',
@@ -27,7 +28,7 @@ import {trigger, transition, style, animate, state} from '@angular/animations';
   ]
 })
 export class AdoptionsPageComponent implements OnInit {
-  pets: { image: string, name: string, age: number, desc: string, color:string, breed: string, size: string, gender: string }[] = [];
+  pets: { image: string, name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string }[] = [];
   currentIndex: number = 0;
   currentState: string = 'current';
   showDescription: boolean = false;
@@ -70,43 +71,62 @@ export class AdoptionsPageComponent implements OnInit {
     return this.pets[this.currentIndex]?.desc || '';
   }
 
+  get currentID(): string {
+    return this.pets[this.currentIndex]?.adoptionId || '';
+  }
+
   get notFoundImage(): string {
-    //Crear alias para la ruta.
+    // Crear alias para la ruta.
     return "../../../../../assets/notfound.png";
   }
 
   onLike(): void {
     console.log("Quiero hacer match");
+    const adoptionRequest = { 'adoptionId': this.currentID };
+    console.log(adoptionRequest);
 
-    const adoptionId = localStorage.getItem('adoptionId');
-    const userId = localStorage.getItem('userId');
-
-    if (adoptionId && userId) {
-
-      const formData = new FormData();
-      formData.append('adoptionId', adoptionId);
-      formData.append('userId', userId);
-
-
-      this.adoptionService.applyToAdoption(formData).subscribe(
-        response => {
-          console.log('Solicitud enviada correctamente', response);
-        },
-        error => {
-          console.error('Error al enviar la solicitud:', error);
-        }
-      );
-    } else {
-      console.error('No se encontraron los datos necesarios en el LocalStorage');
-    }
-
-    this.nextImage();
+    this.adoptionService.applyToAdoption(adoptionRequest).subscribe(
+      response => {
+        console.log('Solicitud enviada correctamente', response);
+        this.removeCurrentPet(); // Elimino la mascota luego de la solicitud exitosa
+      },
+      error => {
+        console.error('Error al enviar la solicitud:', error);
+      }
+    );
   }
-
 
   onReject(): void {
     console.log("Lo dejo para otra familia");
-    this.nextImage();
+    const adoptionRequest = { 'adoptionId': this.currentID };
+    console.log(adoptionRequest);
+
+    this.adoptionService.blackListAdoption(adoptionRequest).subscribe(
+      response => {
+        console.log('Rechazo enviado correctamente', response);
+        this.removeCurrentPet(); // Elimino la mascota luego del rechazo exitoso
+      },
+      error => {
+        console.error('Error al rechazar la solicitud:', error);
+      }
+    );
+  }
+
+  removeCurrentPet(): void {
+    if (this.pets.length > 0) {
+      this.pets.splice(this.currentIndex, 1); // Elimino la mascota actual
+      // Ajusto el índice de la siguiente mascota
+      if (this.currentIndex >= this.pets.length) {
+        this.currentIndex = 0;
+      }
+    }
+    // Si hay mascotas se avanza a la siguiente
+    if (this.pets.length > 0) {
+      this.currentState = 'next';
+      setTimeout(() => {
+        this.currentState = 'current';
+      }, 500);
+    }
   }
 
   nextImage(): void {
@@ -120,7 +140,10 @@ export class AdoptionsPageComponent implements OnInit {
   fetchAllAdoptions(): void {
     this.adoptionService.searchFilteredAdoptions().subscribe(
       (responses: any) => {
-        const petsData = responses.data.map((adoption: { pet: any; }) => adoption.pet).filter((pet: any) => pet);
+        const petsData = responses.data.map((adoption: { id: string, pet: Pet }) => ({
+          ...adoption.pet,
+          adoptionId: adoption.id
+        }));
         this.updatePetsList(petsData);
       },
       (error) => {
@@ -152,8 +175,8 @@ export class AdoptionsPageComponent implements OnInit {
       color: petData.color,
       breed: petData.breed,
       size: petData.size,
-      gender: petData.gender
-
+      gender: petData.gender,
+      adoptionId: petData.adoptionId
     }));
   }
 
@@ -166,10 +189,10 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   onPreviousProfile(): void {
-    this.currentState = 'prev'; // Cambiar al estado de 'prev'
+    this.currentState = 'prev';
     setTimeout(() => {
       this.currentIndex = (this.currentIndex === 0) ? this.pets.length - 1 : this.currentIndex - 1;
-      this.currentState = 'current'; // Regresar al estado 'current'
+      this.currentState = 'current';
     }, 500);
   }
 
