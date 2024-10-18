@@ -21,7 +21,7 @@ export class SideBarComponent implements OnInit {
       { name: 'Home', icon: 'home', router: ['/'] },
       { name: 'Perfil', icon: 'person', router: ['/perfil'] },
       { name: 'Solicitudes', icon: 'mail', router: ['/solicitudes'] },
-      { name: 'Crear Solicitud', icon: 'add_circle', router: ['/crearAdoption'] },
+      { name: 'Crear Adopcion', icon: 'add_circle', router: ['/crearAdoption'] },
       { name: 'Mis adopciones', icon: 'pets', router: ['/misAdopciones'] },
     ];
   }

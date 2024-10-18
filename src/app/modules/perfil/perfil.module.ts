@@ -11,4 +11,4 @@ import { PerfilRoutingModule } from './perfil-routing.module';
     PerfilRoutingModule
   ]
 })
-export class HistoryModule { }
+export class PerfilModule { }

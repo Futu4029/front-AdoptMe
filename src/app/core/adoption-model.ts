@@ -1,15 +1,18 @@
 
 export interface Pet {
-    id: number;
     name: string;
     age: number;
     type: string;
     size: string;
     color: string;
     breed: string;
+    gender: string;
     image: string | null;
     description: string;
+    adoptionId: string;
   }
+
+
 
   export interface User {
     email: string;

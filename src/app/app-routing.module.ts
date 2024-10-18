@@ -6,6 +6,8 @@ import {
 } from "@modules/crear-adopcion/pages/crear-adoption-page/crear-adoption-page.component";
 import { MisAdopcionesComponent } from '@modules/mis-adopciones/pages/mis-adopciones/mis-adopciones.component';
 import {AuthGuard} from "@modules/auth/Service/auth.guard";
+import {PerfilComponent} from "@modules/perfil/pages/perfil/perfil.component";
+import {SolicitudesComponent} from "@modules/solicitudes/pages/solicitudes/solicitudes.component";
 
 //Declaracion de rutas del proyecto
 const routes: Routes = [
@@ -30,8 +32,19 @@ const routes: Routes = [
     component: MisAdopcionesComponent,
     loadChildren: () => import(`./modules/mis-adopciones/mis-adopciones.module`).then(m => m.MisAdopcionesModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent,
+    loadChildren: () => import(`./modules/perfil/perfil.module`).then(m => m.PerfilModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'solicitudes',
+    component: SolicitudesComponent,
+    loadChildren: () => import('./modules/solicitudes/solicitudes.module').then(m => m.SolicitudesModule),
+    canActivate: [AuthGuard]
   }
-
 ];
 
 @NgModule({
