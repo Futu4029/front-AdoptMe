@@ -1,1 +1,57 @@
-<p>pages works!</p>
+<div class="user-profile-container">
+  <h2>Información del Usuario</h2>
+  <mat-card *ngIf="user" class="user-card">
+    <mat-card-header>
+      <div class="user-avatar">
+        <img src="assets/Calu.jpeg" alt="Avatar" class="avatar-image" />
+      </div>
+      <div class="user-info">
+        <mat-card-title>{{ user.name }} {{ user.surName }}</mat-card-title>
+        <mat-card-subtitle>
+          Localidad: <strong>{{ user.locality }}</strong>, Provincia: <strong>{{ user.province }}</strong>
+        </mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="user-details">
+        <mat-list>
+          <mat-list-item>
+            <mat-icon>home</mat-icon>
+            <strong>¿Vive en casa?</strong>
+            <span class="response">{{ user.livesOnHouse ? 'Sí' : 'No' }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>check_circle</mat-icon>
+            <strong>¿Es propietario?</strong>
+            <span class="response">{{ user.isPropertyOwner ? 'Sí' : 'No' }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>pets</mat-icon>
+            <strong>¿Puede tener mascotas en la propiedad?</strong>
+            <span class="response">{{ user.canHavePetsOnProperty ? 'Sí' : 'No' }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>pets</mat-icon>
+            <strong>¿Tiene mascotas castradas?</strong>
+            <span class="response">{{ user.haveAnyPetsCastrated ? 'Sí' : 'No' }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>holiday_village</mat-icon>
+            <strong>¿Qué hace en vacaciones?</strong>
+            <span class="response">{{ user.whatToDoIfHolydays }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>move_to_inbox</mat-icon>
+            <strong>¿Qué hace si se muda?</strong>
+            <span class="response">{{ user.whatToDoIfMoving }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>favorite</mat-icon>
+            <strong>¿Acepta compromiso?</strong>
+            <span class="response">{{ user.compromiseAccepted ? 'Sí' : 'No' }}</span>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

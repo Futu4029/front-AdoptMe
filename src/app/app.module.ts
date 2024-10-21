@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, HammerModule} from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,9 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatCardModule} from "@angular/material/card";
 import {JwtInterceptor} from "./jwt.interceptor";
+import {SwiperModule} from "swiper/angular";
+import {MatListModule} from "@angular/material/list";
+
 
 
 @NgModule({
@@ -44,6 +47,9 @@ import {JwtInterceptor} from "./jwt.interceptor";
       MatSnackBarModule,
       MatCardModule,
       MatButtonModule,
+      SwiperModule,
+      HammerModule,
+      MatListModule
     ],
   providers: [
     {

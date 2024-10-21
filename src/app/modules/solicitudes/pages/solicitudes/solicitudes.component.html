@@ -1,1 +1,6 @@
-<p>solicitudes works!</p>
+<div class="mis-solicitudes-container">
+  <h2>Mis Solicitudes</h2>
+  <mat-card *ngIf="misSolicitudes.length === 0" class="no-solicitudes">
+    <mat-card-content>No tienes solicitudes realizadas.</mat-card-content>
+  </mat-card>
+</div>

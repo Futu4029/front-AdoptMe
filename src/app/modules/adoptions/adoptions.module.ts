@@ -7,8 +7,9 @@ import { SharedModule } from '@shared/shared.module';
 import { AdoptionService } from '@service/adoption-service';
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-//import {TokenInterceptor} from "@service/token-interceptor.service";
+import {SwiperModule} from "swiper/angular";
+import {HammerModule} from "@angular/platform-browser";
+
 
 
 
@@ -21,7 +22,9 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     AdoptionsRoutingModule,
     SharedModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    SwiperModule,
+    HammerModule
   ],
   providers: [AdoptionService
     //,{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

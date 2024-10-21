@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AdoptionService } from '@service/adoption-service';
 import { trigger, transition, style, animate, state } from '@angular/animations';
 import { Pet } from "@core/adoption-model";
+// @ts-ignore
+import { PanGesture } from 'hammerjs';
 
 @Component({
   selector: 'app-adoptions-page',
@@ -32,6 +34,8 @@ export class AdoptionsPageComponent implements OnInit {
   currentIndex: number = 0;
   currentState: string = 'current';
   showDescription: boolean = false;
+  offset: number = 0;
+  isSwiping: boolean = false;
 
   constructor(private adoptionService: AdoptionService) { }
 
@@ -197,6 +201,28 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   onNextProfile(): void {
-    this.nextImage();
+    this.currentState = 'next';
+    setTimeout(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.pets.length;
+      this.currentState = 'current';
+    }, 500);
+  }
+
+  onPanEnd(): void {
+    this.isSwiping = false;
+    if (this.offset > 50) {
+      this.onNextProfile();
+    } else if (this.offset < -50) {
+      this.onPreviousProfile();
+    } else {
+      this.currentState = 'current';
+    }
+
+    this.offset = 0;
+  }
+
+  onPanMove(event: PanGesture): void {
+    this.isSwiping = true; // Activar el estado de deslizamiento
+    this.offset = event.deltaX; // Mueve el contenedor según el movimiento del dedo
   }
 }

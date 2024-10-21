@@ -14,19 +14,26 @@ export interface Pet {
 
 
 
-  export interface User {
-    email: string;
-    name: string;
-    surName: string;
-    locality: string;
-    province: string;
-  }
+export interface UserResponse {
+  name: string;
+  surName: string;
+  locality: string;
+  province: string;
+  livesOnHouse: boolean;
+  isPropertyOwner: boolean;
+  canHavePetsOnProperty: boolean;
+  haveAnyPetsCastrated: boolean;
+  whatToDoIfHolydays: string;
+  whatToDoIfMoving: string;
+  compromiseAccepted: boolean;
+}
 
-  export interface Adoption {
+
+export interface Adoption {
     id: number;
-    adopterUser: User;
+    adopterUser: UserResponse;
     pet: Pet;
-    owner: User;
+    owner: UserResponse;
     status: string;
   }
 

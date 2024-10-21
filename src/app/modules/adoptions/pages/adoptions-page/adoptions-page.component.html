@@ -3,17 +3,15 @@
   (clearFilters)="onClearFilters()">
 </app-filters>
 
-<div class="profile-container" *ngIf="hasItems()" [@swipeAnimation]="currentState">
-  <!-- Botón para ir al perfil anterior -->
-  <button mat-button class="btn-left mat-icon-button" (click)="onPreviousProfile()">
-    <mat-icon>chevron_left</mat-icon>
-  </button>
-
+<div class="profile-container"
+     *ngIf="hasItems()"
+     [ngStyle]="{ transform: 'translateX(' + offset + 'px)' }"
+     (panmove)="onPanMove($event)"
+     (panend)="onPanEnd()">
   <!-- Perfil de la mascota -->
-  <mat-card class="profile">
-
+  <mat-card class="profile" [@swipeAnimation]="currentState">
     <mat-card-content>
-      <div class="FOTO" >
+      <div class="FOTO">
         <img [src]="currentImage" alt="Dog Photo" class="dog-photo" />
       </div>
     </mat-card-content>
@@ -26,7 +24,6 @@
       </button>
     </mat-card-header>
 
-
     <mat-card-content>
       <div class="description-box" *ngIf="showDescription">
         <p><strong>Género:</strong> {{ currentgender }}</p>
@@ -37,18 +34,17 @@
       </div>
     </mat-card-content>
 
-    <mat-card-actions>
-      <button mat-button  (click)="onReject()">❌</button>
+    <!-- Mostrar botones solo si no se está deslizando -->
+    <mat-card-actions class="action-buttons" *ngIf="!isSwiping">
+      <button class="circle-button reject" (click)="onReject()" aria-label="Rechazar">
+        <mat-icon class="reject-icon" style="color: white;">close</mat-icon>
+      </button>
 
-      <button mat-button  (click)="onLike()">❤️</button>
+      <button class="circle-button like" (click)="onLike()" aria-label="Me gusta">
+        <mat-icon class="like-icon" style="color: white;">favorite</mat-icon>
+      </button>
     </mat-card-actions>
-
   </mat-card>
-
-  <!-- Botón para ir al perfil siguiente -->
-  <button mat-button class="btn-right mat-icon-button" (click)="onNextProfile()"><mat-icon>chevron_right</mat-icon></button>
-
-
 </div>
 
 <mat-card-content *ngIf="!hasItems()">

@@ -4,19 +4,19 @@
   justify-content: space-between; /* Alinea el logo a la izquierda y el botón a la derecha */
   align-items: center;
   background-color: var(--color-tertiary);
-  padding: 10px;
+  padding: 15px;
 }
 
 .logo img {
-  max-height: 50px; /* Ajusta el tamaño del logo si es necesario */
+  max-height: 100px; /* Ajusta el tamaño del logo si es necesario */
 }
 
 .logout-btn button {
   background-color: #00b39d;
   color: white;
   border: none;
-  padding: 10px 15px;
-  font-size: 16px;
+  padding: 15px 20px; /* Aumenta el padding */
+  font-size: 18px; /* Aumenta el tamaño de la fuente */
   cursor: pointer;
   border-radius: 5px;
 }

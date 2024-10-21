@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SolicitudesComponent } from './pages/solicitudes/solicitudes.component';
-import { SolicitudesRoutingModule } from './solicitudes-routing.module';  // Importa el routing
+import { SolicitudesRoutingModule } from './solicitudes-routing.module';
+import {MatCardModule} from "@angular/material/card";  // Importa el routing
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { SolicitudesRoutingModule } from './solicitudes-routing.module';  // Imp
   ],
   imports: [
     CommonModule,
-    SolicitudesRoutingModule
+    SolicitudesRoutingModule,
+    MatCardModule
   ],
   exports: [
     SolicitudesComponent

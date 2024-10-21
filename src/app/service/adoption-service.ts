@@ -2,20 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import {UserResponse} from "@core/adoption-model";
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdoptionService {
-  private baseUrl = 'http://localhost:8085/adoption';
-  private baseUrl2 = 'http://localhost:8085/application';
+  private adoption = 'http://localhost:8085/adoption';
+  private aplication = 'http://localhost:8085/application';
+  private user = 'http://localhost:8085/user';
 
   constructor(private http: HttpClient) {}
 
   // Obtener adopción por ID
   getAdoptionsById(): Observable<any> {
-    const url = `${this.baseUrl}`;
-    return this.http.get<any>(url, {  });
+    return this.http.get<any>(this.adoption, {  });
   }
 
   // Buscar adopciones filtradas
@@ -30,7 +32,7 @@ export class AdoptionService {
       }
     });
 
-    const url = `${this.baseUrl}/search`;
+    const url = `${this.adoption}/search`;
 
     return this.http.get<any>(url, { params }).pipe(
       catchError(error => {
@@ -42,17 +44,20 @@ export class AdoptionService {
 
   // Crear adopción
   createAdoption(formData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}`, formData, { });
+    return this.http.post(`${this.adoption}`, formData, { });
   }
 
   applyToAdoption(adoptionRequest: any): Observable<any> {
-    return this.http.post(`${this.baseUrl2}`,adoptionRequest ,{ });
+    return this.http.post(`${this.aplication}`,adoptionRequest ,{ });
   }
 
   blackListAdoption(adoptionRequest: any): Observable<any> {
-    return this.http.put(`${this.baseUrl2}`,adoptionRequest ,{ });
+    return this.http.put(`${this.aplication}`,adoptionRequest ,{ });
   }
 
+  userProfile(): Observable<any> {
+    return this.http.get<any>(this.user);
+  }
 
 
 }

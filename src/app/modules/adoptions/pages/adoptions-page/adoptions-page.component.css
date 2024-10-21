@@ -1,13 +1,13 @@
 /* Contenedor principal para la imagen y los botones laterales */
 .profile-container {
-  display: grid;
-  grid-template-columns: 60px 1fr 60px; /* Ajusta los botones laterales */
-  align-items: center;
+  display: flex; /* Cambia a flex para facilitar la alineación */
+  align-items: center; /* Alinea verticalmente los elementos */
+  justify-content: center; /* Centra horizontalmente */
   gap: 10px;
   margin-top: 5%;
   padding-top: 10px;
   min-height: 60vh;
-  place-items: center; /* Centra horizontal y verticalmente */
+  transition: transform 0.3s ease; /* Suaviza el movimiento */
 }
 
 /* Perfil de la mascota */
@@ -25,21 +25,21 @@
 /* Contenedor de la imagen */
 .FOTO {
   width: 100%;
-  aspect-ratio: 2/3; /* Relación de aspecto fija 1:1 para mantener el contenedor cuadrado */
+  aspect-ratio: 2/3; /* Relación de aspecto fija 2:3 */
   text-align: center;
   overflow: hidden;
   border-radius: 10px;
 }
 
+/* Contenedor para la imagen no encontrada */
 .not-found-photo {
   width: 100%;
-  aspect-ratio: 3/3; /* Relación de aspecto fija 1:1 para mantener el contenedor cuadrado */
+  aspect-ratio: 1/1; /* Relación de aspecto 1:1 para mantener el contenedor cuadrado */
   text-align: center;
   overflow: hidden;
   border-radius: 10px;
   margin-top: 100px !important;
 }
-
 
 /* Imagen del perro */
 .dog-photo {
@@ -55,6 +55,12 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+}
+
+.btn-left mat-icon,
+.btn-right mat-icon {
+  font-size: 36px;
 }
 
 .btn-left:hover, .btn-right:hover {
@@ -66,27 +72,41 @@
 }
 
 /* Estilos para los botones de acción (❌ ❤️) */
-mat-card-actions {
+.action-buttons {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-evenly; /* Asegúrate de que haya espacio entre los botones */
   padding: 10px;
 }
-mat-card-actions button {
-  width: 8vw;
-  height: 8vw;
-  border: none;
-  background-color: transparent;
+
+.circle-button {
+  width: 50px; /* Ancho del botón */
+  height: 50px; /* Alto del botón */
+  border-radius: 50%; /* Hace que el botón sea circular */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 26px;
-  margin: 5px;
-  transition: transform 0.3s ease;
+  align-items: center; /* Centra el ícono verticalmente */
+  justify-content: center; /* Centra el ícono horizontalmente */
+  border: none; /* Elimina el borde */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s, transform 0.3s; /* Agrega una transición suave al color de fondo y escala */
+  margin: 0 10px; /* Espacio horizontal entre los botones */
 }
 
-mat-card-actions button:hover {
-  transform: scale(1.1);
+.reject {
+  background-color: #f44336; /* Color de fondo rojo para el botón de rechazo */
 }
+
+.reject:hover {
+  background-color: #d32f2f; /* Color de fondo rojo más oscuro al pasar el mouse */
+}
+
+.like {
+  background-color: #4caf50; /* Color de fondo verde para el botón de me gusta */
+}
+
+.like:hover {
+  background-color: #388e3c; /* Color de fondo verde más oscuro al pasar el mouse */
+}
+
 
 /* Título */
 mat-card-header {
