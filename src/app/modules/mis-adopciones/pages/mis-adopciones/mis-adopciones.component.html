@@ -20,8 +20,20 @@
           <p [ngClass]="{'estado-en-proceso': adoption.status === 'Pending', 'estado-open': adoption.status === 'Open','estado-completado': adoption.status === 'Approved'}">
             <strong>Estado:</strong> {{ adoption.status }}
           </p>
-        </mat-card-content>
 
+          <!-- Mostrar lista de candidatos -->
+          <div *ngIf="(misCandidatos[adoption.id] ?? []).length > 0">
+            <h4>Candidatos interesados:</h4>
+            <ul>
+              <li *ngFor="let candidato of misCandidatos[adoption.id]">
+                {{ candidato.name }} <!-- Asegúrate de que 'name' sea la propiedad correcta -->
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="!(misCandidatos[adoption.id] ?? []).length">
+            <p>No hay candidatos interesados por el momento.</p>
+          </div>
+        </mat-card-content>
       </div>
     </div>
   </mat-card>

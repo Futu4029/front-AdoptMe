@@ -3,7 +3,7 @@
   <mat-card *ngIf="user" class="user-card">
     <mat-card-header>
       <div class="user-avatar">
-        <img src="assets/Calu.jpeg" alt="Avatar" class="avatar-image" />
+        <img [src]="user.image ? 'data:image/jpeg;base64,' + user.image : 'ruta_por_defecto.jpg'" alt="Avatar" class="avatar-image" />
       </div>
       <div class="user-info">
         <mat-card-title>{{ user.name }} {{ user.surName }}</mat-card-title>

@@ -1,0 +1,58 @@
+.solicitudes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 16px;
+}
+
+.solicitud-card {
+  width: 350px;
+  margin: 10px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.user-avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.avatar-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00b39d;
+}
+
+.user-info {
+  margin-left: 16px;
+}
+
+mat-card-header {
+  display: flex;
+  align-items: center;
+}
+
+.pet-details {
+  display: block;
+  margin-top: 8px;
+}
+
+.solicitud-details {
+  margin-top: 16px;
+}
+
+mat-list-item {
+  display: flex;
+  align-items: center;
+}
+
+mat-list-item mat-icon {
+  margin-right: 8px;
+}
+
+mat-card {
+  border-radius: 12px;
+  padding: 16px;
+}

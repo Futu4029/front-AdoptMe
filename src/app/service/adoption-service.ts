@@ -12,6 +12,8 @@ export class AdoptionService {
   private adoption = 'http://localhost:8085/adoption';
   private aplication = 'http://localhost:8085/application';
   private user = 'http://localhost:8085/user';
+  private aplicationUser = 'http://localhost:8085/application/user';
+  private aplicationAdoption = 'http://localhost:8085/application/adoption';
 
   constructor(private http: HttpClient) {}
 
@@ -57,6 +59,15 @@ export class AdoptionService {
 
   userProfile(): Observable<any> {
     return this.http.get<any>(this.user);
+  }
+
+  getApplicationsByAdoption(adoptionRequest: any): Observable<any> {
+    return this.http.get<any>(`${this.aplicationAdoption}`, adoptionRequest);
+  }
+
+
+  getApplicationsByUserId(): Observable<any> {
+    return this.http.get<any>(this.aplicationUser);
   }
 
 
