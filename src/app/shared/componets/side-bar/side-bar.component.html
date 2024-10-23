@@ -10,12 +10,11 @@
     <!-- Lista de navegación -->
     <mat-nav-list>
       <mat-list-item *ngFor="let item of mainMenu.defaultOptions" [routerLink]="item.router" (click)="sidenav.toggle()">
-        <mat-icon matListIcon>{{item.icon}}</mat-icon>
-        {{item.name}}
+        <mat-icon matListIcon class="nav-icon">{{item.icon}}</mat-icon>
+        <span class="nav-text">{{item.name}}</span>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
-
   <!-- Barra de herramientas superior -->
   <mat-toolbar color="primary" class="toolbar">
     <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
@@ -25,7 +24,9 @@
     <!-- Imagen centrada en el banner -->
     <img src="assets/logo3.png" class="logo" alt="Logo Final">
     <div class="logout-btn">
-      <button mat-button (click)="logout()">Logout</button>
+      <button mat-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon> Logout
+      </button>
     </div>
   </mat-toolbar>
 

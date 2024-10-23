@@ -3,14 +3,19 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  height: 100px;
+}
+
+mat-sidenav {
+  width: 300px;
 }
 
 .logo {
-  height: 60px;
-  margin: 0 auto; /* Centra el logo */
-  position: absolute; /* Permite centrar el logo */
-  left: 50%; /* Mueve el logo al 50% del ancho */
-  transform: translateX(-50%); /* Ajusta la posición del logo */
+  height: 80px;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .menu-button {
@@ -18,23 +23,31 @@
   left: 9px;
   top: 50%;
   transform: translateY(-50%);
+  font-size: 36px;
+}
+
+.menu-button mat-icon {
+  font-size: 36px;
+}
+
+
+.mat-nav-list mat-list-item .mat-list-icon {
+  font-size: 40px !important;
+}
+
+.mat-nav-list mat-list-item .nav-text {
+  font-size: 24px !important;
+  margin-left: 30px;
+  margin-top: 23px;
+  display: inline-block;
 }
 
 .logout-btn {
-  margin-left: auto; /* Empuja el botón de logout al extremo derecho */
+  margin-left: auto;
+
 }
 
-.nav-item {
-  font-size: 50px; /* Cambia el tamaño de la letra aquí */
+.logout-icon {
+  font-size: 36px; /* Ajusta el tamaño según tus necesidades */
+  margin-right: 8px; /* Espacio entre el icono y el texto */
 }
-
-.nav-item-text {
-  font-size: 50px; /* Esto ajusta el texto del nombre del ítem */
-  font-weight: 500; /* O puedes ajustar el grosor si lo deseas */
-}
-
-mat-icon {
-  font-size: 24px; /* Si quieres agrandar también los íconos */
-}
-
-

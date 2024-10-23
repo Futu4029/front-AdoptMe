@@ -1,6 +1,6 @@
 .filter-drawer {
   position: fixed;
-  top: 100px;
+  top: 140px;
   left: 0px;
   height: 55vh;
   width: 250px;
@@ -22,18 +22,19 @@
 
 .toggle-menu-btn {
   position: fixed;
-  top: 4rem;
-  left: 0.6rem;
+  top: 6rem;
+  left: 0.9rem;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 70px;
   z-index: 11;
+  color: black;
 }
 
 .toggle-menu-btn i {
-  font-size: 15px;
-  color: var(--color-dark);
+  font-size: 36px;
+  color: white;
 }
 
 .filters-container .filter-group h4 {

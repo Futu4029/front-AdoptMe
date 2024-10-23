@@ -28,7 +28,7 @@ export class MisAdopcionesComponent implements OnInit {
 
         // Llamar a getApplicationsByAdoption para cada adopción
         this.misAdopciones.forEach(adoption => {
-          this.getApplicationsByAdoption(adoption.id); // Asegúrate de que el ID de adopción esté correctamente definido
+          this.getApplicationsByAdoption(adoption.id);
         });
       }
     }, error => {
@@ -46,7 +46,7 @@ export class MisAdopcionesComponent implements OnInit {
     this.adoptionService.getApplicationsByAdoption(requestDto).subscribe(
       (response: any) => {
         if (response && response.data) {
-          this.misCandidatos[adoptionId] = response.data; // Almacena los candidatos por ID de adopción
+          this.misCandidatos[adoptionId] = response.data;
           console.log('Datos de los candidatos para la adopción ID', adoptionId, ':', this.misCandidatos[adoptionId]);
         }
       },

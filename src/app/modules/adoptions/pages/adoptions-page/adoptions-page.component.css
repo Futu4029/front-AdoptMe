@@ -18,8 +18,8 @@
   flex-direction: column;
   justify-content: center;
   background-color: var(--color-background-container);
-  width: 100%;
-  max-width: 600px;
+  width: 70%;
+
 }
 
 /* Contenedor de la imagen */
@@ -50,18 +50,6 @@
   border-radius: 8px;
 }
 
-/* Botones de navegación */
-.btn-left, .btn-right {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-
-}
-
-.btn-left mat-icon,
-.btn-right mat-icon {
-  font-size: 36px;
-}
 
 .btn-left:hover, .btn-right:hover {
   transform: scale(1.05);
@@ -106,6 +94,7 @@
 .like:hover {
   background-color: #388e3c; /* Color de fondo verde más oscuro al pasar el mouse */
 }
+
 
 
 /* Título */
