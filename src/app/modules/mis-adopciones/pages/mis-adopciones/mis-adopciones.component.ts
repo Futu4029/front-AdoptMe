@@ -37,17 +37,12 @@ export class MisAdopcionesComponent implements OnInit {
   }
 
 
-  getApplicationsByAdoption(adoptionId: number): void {
-    const requestDto = {
-      adoptionId: adoptionId,
-      userId: 1
-    };
+  getApplicationsByAdoption(adoptionId: string): void {
 
-    this.adoptionService.getApplicationsByAdoption(requestDto).subscribe(
+    this.adoptionService.getApplicationsByAdoption(adoptionId).subscribe(
       (response: any) => {
         if (response && response.data) {
-          this.misCandidatos[adoptionId] = response.data;
-          console.log('Datos de los candidatos para la adopción ID', adoptionId, ':', this.misCandidatos[adoptionId]);
+          this.misCandidatos = response.data;
         }
       },
       (error) => {

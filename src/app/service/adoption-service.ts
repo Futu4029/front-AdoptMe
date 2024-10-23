@@ -61,8 +61,8 @@ export class AdoptionService {
     return this.http.get<any>(this.user);
   }
 
-  getApplicationsByAdoption(adoptionRequest: any): Observable<any> {
-    return this.http.get<any>(`${this.aplicationAdoption}`, adoptionRequest);
+  getApplicationsByAdoption(adoptionId: any): Observable<any> {
+    return this.http.get<any>(`${this.aplicationAdoption+'/'+adoptionId}`);
   }
 
 
