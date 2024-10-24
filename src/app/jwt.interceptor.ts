@@ -22,7 +22,6 @@ export class JwtInterceptor implements HttpInterceptor {
     const token = localStorage.getItem('tokenSession');
 
     if (token) {
-      console.log('Token agregado:', token);
       // Clonar la request para agregar el header Authorization con el token
       request = request.clone({
         setHeaders: {

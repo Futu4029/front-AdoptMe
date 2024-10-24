@@ -20,19 +20,32 @@
           <p [ngClass]="{'estado-en-proceso': adoption.status === 'Pending', 'estado-open': adoption.status === 'Open','estado-completado': adoption.status === 'Approved'}">
             <strong>Estado:</strong> {{ adoption.status }}
           </p>
+          <!-- Botón para mostrar/ocultar candidatos -->
+          <button mat-button class="candidatos-button" (click)="toggleCandidatos(adoption.id)">
+            {{ mostrarCandidatos[adoption.id] ? 'Ocultar Candidatos' : 'Mostrar Candidatos' }}
+          </button>
 
+          <span class="candidato-contador" *ngIf="misCandidatos[adoption.id]">
+      {{ misCandidatos[adoption.id].length }}
+    </span>
           <!-- Mostrar lista de candidatos -->
-          <!--div *ngIf="(misCandidatos[adoption.id] ?? []).length > 0">
-            <h4>Candidatos interesados:</h4>
+          <div *ngIf="mostrarCandidatos[adoption.id]">
+            <h4>
+              Candidatos interesados:
+
+            </h4>
             <ul>
               <li *ngFor="let candidato of misCandidatos[adoption.id]">
-                {{ candidato.name }}
+                {{ candidato.user.name }} - {{ candidato.user.email }}
+                <!-- Botón para ir al perfil del candidato -->
+                <button mat-button>Ver Perfil</button>
               </li>
             </ul>
           </div>
-          <div-- *ngIf="!(misCandidatos[adoption.id] ?? []).length">
+          <div *ngIf="misCandidatos && (!misCandidatos[adoption.id] || misCandidatos[adoption.id].length === 0)">
             <p>No hay candidatos interesados por el momento.</p>
-          </div -->
+          </div>
+
         </mat-card-content>
       </div>
     </div>

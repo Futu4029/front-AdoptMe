@@ -10,8 +10,8 @@ import {Adoption} from "@core/adoption-model";
 export class MisAdopcionesComponent implements OnInit {
 
   misAdopciones: Adoption[] = [];
-  misCandidatos: { [adoptionId: number]: any[] } = {};
-
+  misCandidatos: { [adoptionId: string]: any[] } = {};
+  mostrarCandidatos: { [adoptionId: string]: boolean } = {};
 
 
   constructor(private adoptionService: AdoptionService) { }
@@ -42,7 +42,8 @@ export class MisAdopcionesComponent implements OnInit {
     this.adoptionService.getApplicationsByAdoption(adoptionId).subscribe(
       (response: any) => {
         if (response && response.data) {
-          this.misCandidatos = response.data;
+          this.misCandidatos[adoptionId] = response.data;
+          console.log('Candidatos para la adopción ' + adoptionId + ':', this.misCandidatos[adoptionId]);
         }
       },
       (error) => {
@@ -50,6 +51,8 @@ export class MisAdopcionesComponent implements OnInit {
       }
     );
   }
-
+  toggleCandidatos(adoptionId: string): void {
+    this.mostrarCandidatos[adoptionId] = !this.mostrarCandidatos[adoptionId]; // Alternar visibilidad
+  }
 
 }

@@ -70,3 +70,34 @@ mat-card-title {
 .estado-pendiente {
   color: orange;
 }
+
+.candidato-contador {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  margin-left: 20px;
+}
+
+.candidatos-button {
+  border: 2px solid var(--color-primary);
+  background-color: white;
+  color: var(--color-primary);
+  border-radius: 5px;
+  padding: 8px;
+  width: 150px;
+  height: 50px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
+
+.candidatos-button:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
