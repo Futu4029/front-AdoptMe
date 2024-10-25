@@ -36,9 +36,14 @@
             </h4>
             <ul>
               <li *ngFor="let candidato of misCandidatos[adoption.id]">
-                {{ candidato.user.name }} - {{ candidato.user.email }}
-                <!-- Botón para ir al perfil del candidato -->
-                <button mat-button>Ver Perfil</button>
+                <p>{{ candidato.user.name }}</p>
+                <p>{{ candidato.user.email }}</p>
+                <p>{{ candidato.user.telefono }}</p>
+                <div class="botonera">
+                  <button mat-button class="ver-perfil-btn">Ver Perfil</button>
+                  <button mat-button class="acepto-btn" (click)="acceptOrRejectcandidato(adoption.id, candidato.user.id, 'acepto')">Acepto</button>
+                  <button mat-button class="rechazo-btn" (click)="acceptOrRejectcandidato(adoption.id, candidato.user.id, 'rechazo')">Rechazo</button>
+                </div>
               </li>
             </ul>
           </div>

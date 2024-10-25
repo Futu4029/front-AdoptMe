@@ -9,23 +9,19 @@ import {UserResponse} from "@core/adoption-model";
   providedIn: 'root',
 })
 export class AdoptionService {
-  private adoption = 'http://localhost:8085/adoption';
-  private aplication = 'http://localhost:8085/application';
-  private user = 'http://localhost:8085/user';
-  private aplicationUser = 'http://localhost:8085/application/user';
-  private aplicationAdoption = 'http://localhost:8085/application/adoption';
+  private URL_BASE = 'http://localhost:8085/';
 
   constructor(private http: HttpClient) {}
 
   // Obtener adopción por ID
   getAdoptionsById(): Observable<any> {
-    return this.http.get<any>(this.adoption, {  });
+    const url = `${this.URL_BASE}adoption`;
+    return this.http.get<any>(url);
   }
 
   // Buscar adopciones filtradas
   searchFilteredAdoptions(size?: string, age?: string, type?: string, gender?: string): Observable<any> {
     let params = new HttpParams();
-
     const filters = { size, age, type, gender };
 
     Object.entries(filters).forEach(([key, value]) => {
@@ -34,8 +30,7 @@ export class AdoptionService {
       }
     });
 
-    const url = `${this.adoption}/search`;
-
+    const url = `${this.URL_BASE}adoption/search`;
     return this.http.get<any>(url, { params }).pipe(
       catchError(error => {
         console.error('Error en la solicitud:', error);
@@ -46,29 +41,43 @@ export class AdoptionService {
 
   // Crear adopción
   createAdoption(formData: FormData): Observable<any> {
-    return this.http.post(`${this.adoption}`, formData, { });
+    const url = `${this.URL_BASE}adoption`;
+    return this.http.post(url, formData);
   }
 
+  // Aplicar a adopción
   applyToAdoption(adoptionRequest: any): Observable<any> {
-    return this.http.post(`${this.aplication}`,adoptionRequest ,{ });
+    const url = `${this.URL_BASE}application`;
+    return this.http.post(url, adoptionRequest);
   }
 
+  // Lista negra de adopciones
   blackListAdoption(adoptionRequest: any): Observable<any> {
-    return this.http.put(`${this.aplication}`,adoptionRequest ,{ });
+    const url = `${this.URL_BASE}application`;
+    return this.http.put(url, adoptionRequest);
   }
 
+  // Perfil de usuario
   userProfile(): Observable<any> {
-    return this.http.get<any>(this.user);
+    const url = `${this.URL_BASE}user`;
+    return this.http.get<any>(url);
   }
 
+  // Obtener aplicaciones por adopción
   getApplicationsByAdoption(adoptionId: any): Observable<any> {
-    return this.http.get<any>(`${this.aplicationAdoption+'/'+adoptionId}`);
+    const url = `${this.URL_BASE}application/adoption/${adoptionId}`;
+    return this.http.get<any>(url);
   }
 
-
+  // Obtener aplicaciones por usuario
   getApplicationsByUserId(): Observable<any> {
-    return this.http.get<any>(this.aplicationUser);
+    const url = `${this.URL_BASE}application/user`;
+    return this.http.get<any>(url);
   }
 
-
+  // Aceptar o rechazar candidato
+  acceptOrRejectcandidato(request: any): Observable<any> {
+    const url = `${this.URL_BASE}acceptOrReject`;
+    return this.http.put(url, request);
+  }
 }
