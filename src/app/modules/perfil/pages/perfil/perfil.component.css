@@ -1,14 +1,10 @@
-.user-profile-container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 16px;
+.user-card {
+  max-width: 400px;
+  margin: 0px auto;
+  padding: 10px;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.user-card {
-  border-radius: 8px;
 }
 
 .user-avatar {
@@ -20,14 +16,20 @@
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #00b39d;
 }
 
 .user-info {
   flex: 1;
+  margin-bottom: 20px;
+}
+
+.user-name {
+  margin-bottom: 60px;
 }
 
 .user-details {
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 mat-list {
@@ -48,7 +50,7 @@ mat-list-item:last-child {
 
 mat-icon {
   margin-right: 8px;
-  color: #00b39d;
+  color: var(--color-primary)
 }
 
 .response {

@@ -7,7 +7,7 @@
 }
 
 mat-sidenav {
-  width: 300px;
+  width: 250px;
 }
 
 .logo {
@@ -32,11 +32,11 @@ mat-sidenav {
 
 
 .mat-nav-list mat-list-item .mat-list-icon {
-  font-size: 40px !important;
+  font-size: 36px !important;
 }
 
 .mat-nav-list mat-list-item .nav-text {
-  font-size: 24px !important;
+  font-size: 22px !important;
   margin-left: 30px;
   margin-top: 23px;
   display: inline-block;
@@ -48,6 +48,6 @@ mat-sidenav {
 }
 
 .logout-icon {
-  font-size: 36px; /* Ajusta el tamaño según tus necesidades */
-  margin-right: 8px; /* Espacio entre el icono y el texto */
+  font-size: 36px;
+  margin-right: 8px;
 }

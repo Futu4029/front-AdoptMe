@@ -1,14 +1,22 @@
-<div class="user-profile-container">
-  <h2>Información del Usuario</h2>
+
+  <h2>Perfil Usuario</h2>
   <mat-card *ngIf="user" class="user-card">
     <mat-card-header>
       <div class="user-avatar">
-        <img [src]="user.image ? 'data:image/jpeg;base64,' + user.image : 'ruta_por_defecto.jpg'" alt="Avatar" class="avatar-image" />
+        <img [src]="user.image" alt="{{ user.image }}" class="avatar-image" mat-card-avatar />
       </div>
+
       <div class="user-info">
-        <mat-card-title>{{ user.name }} {{ user.surName }}</mat-card-title>
-        <mat-card-subtitle>
-          Localidad: <strong>{{ user.locality }}</strong>, Provincia: <strong>{{ user.province }}</strong>
+        <mat-card-title class="user-name">{{ user.name }} {{ user.surName }}</mat-card-title>
+        <br>
+        <mat-card-subtitle class="location-info">
+          <div>
+            Localidad: <strong>{{ user.locality }}</strong>
+          </div>
+          <br>
+          <div>
+            Provincia: <strong>{{ user.province }}</strong>
+          </div>
         </mat-card-subtitle>
       </div>
     </mat-card-header>
@@ -54,4 +62,4 @@
       </div>
     </mat-card-content>
   </mat-card>
-</div>
+

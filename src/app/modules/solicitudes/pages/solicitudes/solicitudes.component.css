@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 16px;
+  margin: 0px auto;
 }
 
 .solicitud-card {
@@ -50,9 +51,13 @@ mat-list-item {
 
 mat-list-item mat-icon {
   margin-right: 8px;
+  color: var(--color-primary)
 }
 
 mat-card {
   border-radius: 12px;
   padding: 16px;
+}
+.response {
+  margin-left: 8px;
 }

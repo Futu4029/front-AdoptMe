@@ -12,13 +12,34 @@
           <mat-card-subtitle>Edad: {{ adoption.pet.age }} años</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p><strong>Tipo:</strong> {{ adoption.pet.type }}</p>
-          <p><strong>Tamaño:</strong> {{ adoption.pet.size }}</p>
-          <p><strong>Color:</strong> {{ adoption.pet.color }}</p>
-          <p><strong>Raza:</strong> {{ adoption.pet.breed }}</p>
-          <p><strong>Dueño:</strong> {{ adoption.owner?.name }}</p>
+          <p>
+            <mat-icon style="color: var(--color-primary);">pets</mat-icon>
+            <strong>Tipo:</strong>
+            <span class="response">{{ adoption.pet.type }}</span>
+          </p>
+          <p>
+            <mat-icon style="color: var(--color-primary);">height</mat-icon>
+            <strong>Tamaño:</strong>
+            <span class="response">{{ adoption.pet.size }}</span>
+          </p>
+          <p>
+            <mat-icon style="color: var(--color-primary);">palette</mat-icon>
+            <strong>Color:</strong> {{ adoption.pet.color }}
+          </p>
+          <p>
+            <mat-icon style="color: var(--color-primary);">info</mat-icon>
+            <strong>Raza:</strong>
+            <span class="response">{{ adoption.pet.breed }}</span>
+          </p>
+          <p>
+            <mat-icon style="color: var(--color-primary);">person</mat-icon>
+            <strong>Dueño:</strong>
+            <span class="response">{{ adoption.owner?.name }}</span>
+          </p>
           <p [ngClass]="{'estado-en-proceso': adoption.status === 'Pending', 'estado-open': adoption.status === 'Open','estado-completado': adoption.status === 'Approved'}">
-            <strong>Estado:</strong> {{ adoption.status }}
+            <mat-icon style="color: var(--color-primary);">check_circle</mat-icon>
+            <strong>Estado:</strong>
+            <span class="response">{{ adoption.status }}</span>
           </p>
           <!-- Botón para mostrar/ocultar candidatos -->
           <button mat-button class="candidatos-button" (click)="toggleCandidatos(adoption.id)">
@@ -41,8 +62,8 @@
                 <p>{{ candidato.user.telefono }}</p>
                 <div class="botonera">
                   <button mat-button class="ver-perfil-btn">Ver Perfil</button>
-                  <button mat-button class="acepto-btn" (click)="acceptOrRejectcandidato(adoption.id, candidato.user.id, 'acepto')">Acepto</button>
-                  <button mat-button class="rechazo-btn" (click)="acceptOrRejectcandidato(adoption.id, candidato.user.id, 'rechazo')">Rechazo</button>
+                  <button mat-button class="acepto-btn" (click)="acceptOrRejectcandidato(adoption.id, candidato.user.id, true)">Acepto</button>
+                  <button mat-button class="rechazo-btn" (click)="acceptOrRejectcandidato(adoption.id, candidato.user.id, false)">Rechazo</button>
                 </div>
               </li>
             </ul>

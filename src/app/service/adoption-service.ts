@@ -77,7 +77,7 @@ export class AdoptionService {
 
   // Aceptar o rechazar candidato
   acceptOrRejectcandidato(request: any): Observable<any> {
-    const url = `${this.URL_BASE}acceptOrReject`;
+    const url = `${this.URL_BASE}adoption`;
     return this.http.put(url, request);
   }
 }

@@ -11,10 +11,10 @@
           <br>
           <mat-card-subtitle>
             <div class="pet-details">
-              Edad: <strong>{{ solicitud.adoption.pet.age }} años</strong>
+              Edad:<strong>{{' ' + solicitud.adoption.pet.age }} años</strong>
               <br>
               <br>
-              Tamaño: <strong>{{ solicitud.adoption.pet.size }}</strong>
+              Tamaño:<strong>{{' ' + solicitud.adoption.pet.size }}</strong>
             </div>
           </mat-card-subtitle>
         </div>
@@ -30,8 +30,8 @@
             </mat-list-item>
             <mat-list-item>
               <mat-icon>check_circle</mat-icon>
-              <strong>Estado de la Solicitud:</strong>
-              <span class="response">{{ solicitud.applicationStatus }}</span>
+              <strong>Estado:</strong>
+              <span class="response">{{solicitud.applicationStatus }}</span>
             </mat-list-item>
           </mat-list>
         </div>

@@ -55,31 +55,30 @@ export class MisAdopcionesComponent implements OnInit {
     this.mostrarCandidatos[adoptionId] = !this.mostrarCandidatos[adoptionId]; // Alternar visibilidad
   }
 
-  acceptOrRejectcandidato(adoptionId: string, userId: string, respuesta: string): void {
+  acceptOrRejectcandidato(adoptionId: string, adopterId: string, status: Boolean): void {
     const request = {
       adoptionId,
-      userId,
-      respuesta // "acepto" o "rechazo"
+      adopterId,
+      status // "acepto" o "rechazo"
     };
 
     this.adoptionService.acceptOrRejectcandidato(request).subscribe(
       (response) => {
-        console.log(`Candidato ${respuesta === 'acepto' ? 'aceptado' : 'rechazado'} exitosamente:`, response);
-        if (respuesta === 'rechazo') {
-          this.misCandidatos[adoptionId] = this.misCandidatos[adoptionId].filter(candidato => candidato.userId !== userId);
+        console.log(`Candidato ${status === true ? 'aceptado' : 'rechazado'} exitosamente:`, response);
+        this.obtenerMisAdopciones();
+        if (status === false) {
+          this.misCandidatos[adoptionId] = this.misCandidatos[adoptionId].filter(candidato => candidato.userId !== status);
           console.log('Candidatos actualizados:', this.misCandidatos[adoptionId]);
         }
       },
       (error) => {
-        console.error(`Error al ${respuesta === 'acepto' ? 'aceptar' : 'rechazar'} al candidato:`, error);
+        console.error(`Error al ${status === true ? 'aceptar' : 'rechazar'} al candidato:`, error);
       }
     );
   }
 
 
-
 }
 
 
-//Adoption ID , UserID, acepto o rechazo
 
