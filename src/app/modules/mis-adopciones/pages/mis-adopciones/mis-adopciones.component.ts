@@ -56,7 +56,26 @@ export class MisAdopcionesComponent implements OnInit {
     this.mostrarCandidatos[adoptionId] = !this.mostrarCandidatos[adoptionId]; // Alternar visibilidad
   }
 
-  acceptOrRejectcandidato(adoptionId: string, adopterId: string, status: Boolean): void {
+  acceptarcandidato(adoptionId: string, adopterId: string, status: Boolean): void {
+    const request = {
+      adoptionId,
+      adopterId,
+      status // "acepto" o "rechazo"
+    };
+
+    this.adoptionService.acceptOrRejectcandidato(request).subscribe(
+      (response) => {
+        console.log(`Candidato ${status === true ? 'aceptado' : 'rechazado'} exitosamente:`, response);
+        this.obtenerMisAdopciones();
+        this.misCandidatos[adoptionId] = this.misCandidatos[adoptionId].filter(candidato => candidato.userId === request.adoptionId);
+      },
+      (error) => {
+        console.error(`Error al ${status === true ? 'aceptar' : 'rechazar'} al candidato:`, error);
+      }
+    );
+
+  }
+  rechazarCandidato(adoptionId: string, adopterId: string, status: Boolean): void {
     const request = {
       adoptionId,
       adopterId,
@@ -78,6 +97,8 @@ export class MisAdopcionesComponent implements OnInit {
     );
 
   }
+
+
 
   obtenerPerfil(email: string): void {
     this.router.navigate(['/perfil', email]); // Navega a PerfilComponent con el email

@@ -63,8 +63,10 @@
                 <p>{{ candidato.user.telefono }}</p>
                 <div class="botonera">
                   <button mat-button class="ver-perfil-btn" (click)="obtenerPerfil(candidato.user.email)">Ver Perfil</button>
-                  <button mat-button class="acepto-btn" (click)="acceptOrRejectcandidato(adoption.id, candidato.user.id, true)">Acepto</button>
-                  <button mat-button class="rechazo-btn" (click)="acceptOrRejectcandidato(adoption.id, candidato.user.id, false)">Rechazo</button>
+                  <div class="botonera-accion" *ngIf="adoption.status === 'Open'">
+                    <button mat-button class="acepto-btn" (click)="acceptarcandidato(adoption.id, candidato.user.id, true)">Acepto</button>
+                    <button mat-button class="rechazo-btn" (click)="rechazarCandidato(adoption.id, candidato.user.id, false)">Rechazo</button>
+                  </div>
                 </div>
               </li>
             </ul>

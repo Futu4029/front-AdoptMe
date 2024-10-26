@@ -100,6 +100,11 @@
   margin-top: 10px;
 }
 
+.botonera-accion {
+  display: flex;
+  justify-content: space-between;
+}
+
 .ver-perfil-btn,
 .acepto-btn,
 .rechazo-btn {
