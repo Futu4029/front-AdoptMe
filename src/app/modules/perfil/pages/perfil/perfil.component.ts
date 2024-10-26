@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AdoptionService } from "@service/adoption-service";
-import { UserResponse } from "@core/adoption-model";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -10,7 +9,6 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class PerfilComponent implements OnInit {
   user!: any;
-
 
   constructor(private adoptionService: AdoptionService, private route: ActivatedRoute) {
   }

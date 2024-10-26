@@ -68,11 +68,10 @@
                 </div>
               </li>
             </ul>
+            <div *ngIf="misCandidatos && (!misCandidatos[adoption.id] || misCandidatos[adoption.id].length === 0)">
+              <p>No hay candidatos interesados por el momento.</p>
+            </div>
           </div>
-          <div *ngIf="misCandidatos && (!misCandidatos[adoption.id] || misCandidatos[adoption.id].length === 0)">
-            <p>No hay candidatos interesados por el momento.</p>
-          </div>
-
         </mat-card-content>
       </div>
     </div>

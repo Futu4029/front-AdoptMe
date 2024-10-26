@@ -1,5 +1,5 @@
+<h2>Mis Solicitudes</h2>
 <div *ngIf="misSolicitudes.length > 0; else noSolicitudes">
-  <h2>Mis Solicitudes</h2>
   <div class="solicitudes-container">
     <mat-card *ngFor="let solicitud of misSolicitudes" class="solicitud-card">
       <mat-card-header>
@@ -41,5 +41,9 @@
 </div>
 
 <ng-template #noSolicitudes>
-  <p>No tienes solicitudes aún.</p>
+  <div class="solicitudes-container">
+    <mat-card class="no-solicitudes-card">
+      <mat-card-content>No tienes solicitudes aún.</mat-card-content>
+    </mat-card>
+  </div>
 </ng-template>

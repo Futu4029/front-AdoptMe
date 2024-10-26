@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'perfil/:email',
     component: PerfilComponent },
 
-{
+  {
     path: 'solicitudes',
     component: SolicitudesComponent,
     loadChildren: () => import('./modules/solicitudes/solicitudes.module').then(m => m.SolicitudesModule),

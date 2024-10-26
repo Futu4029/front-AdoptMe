@@ -51,13 +51,14 @@ mat-list-item {
 
 mat-list-item mat-icon {
   margin-right: 8px;
-  color: var(--color-primary)
+  color: var(--color-primary);
 }
 
 mat-card {
   border-radius: 12px;
   padding: 16px;
 }
+
 .response {
   margin-left: 8px;
 }

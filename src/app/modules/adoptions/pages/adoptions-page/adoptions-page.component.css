@@ -134,7 +134,7 @@ mat-card-title {
   display: flex;
   align-items: center;
   gap: 5px;
-  animation: blink 5s forwards;
+  animation: blink 6s forwards;
 }
 
 .arrow-icon {
