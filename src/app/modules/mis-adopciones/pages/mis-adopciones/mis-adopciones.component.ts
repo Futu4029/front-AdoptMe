@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AdoptionService} from "@service/adoption-service";
 import {Adoption} from "@core/adoption-model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-mis-adopciones',
@@ -14,7 +15,7 @@ export class MisAdopcionesComponent implements OnInit {
   mostrarCandidatos: { [adoptionId: string]: boolean } = {};
 
 
-  constructor(private adoptionService: AdoptionService) { }
+  constructor(private adoptionService: AdoptionService, private router: Router) { }
 
   ngOnInit(): void {
     this.obtenerMisAdopciones();
@@ -75,8 +76,12 @@ export class MisAdopcionesComponent implements OnInit {
         console.error(`Error al ${status === true ? 'aceptar' : 'rechazar'} al candidato:`, error);
       }
     );
+
   }
 
+  obtenerPerfil(email: string): void {
+    this.router.navigate(['/perfil', email]); // Navega a PerfilComponent con el email
+  }
 
 }
 

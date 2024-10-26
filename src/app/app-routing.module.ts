@@ -39,7 +39,11 @@ const routes: Routes = [
     loadChildren: () => import(`./modules/perfil/perfil.module`).then(m => m.PerfilModule),
     canActivate: [AuthGuard]
   },
-  {
+
+  { path: 'perfil/:email',
+    component: PerfilComponent },
+
+{
     path: 'solicitudes',
     component: SolicitudesComponent,
     loadChildren: () => import('./modules/solicitudes/solicitudes.module').then(m => m.SolicitudesModule),

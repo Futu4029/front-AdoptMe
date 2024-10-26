@@ -1,5 +1,4 @@
 <mat-sidenav-container>
-  <!-- Side-bar que se puede ocultar y desocultar -->
   <mat-sidenav #sidenav mode="push" [ngStyle]="{width: sidenavWidth}">
     <mat-toolbar color="primary">
       <button mat-icon-button (click)="sidenav.toggle()">
@@ -7,7 +6,6 @@
       </button>
     </mat-toolbar>
 
-    <!-- Lista de navegación -->
     <mat-nav-list>
       <mat-list-item *ngFor="let item of mainMenu.defaultOptions" [routerLink]="item.router" (click)="sidenav.toggle()">
         <mat-icon matListIcon class="nav-icon">{{item.icon}}</mat-icon>
@@ -15,22 +13,33 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
-  <!-- Barra de herramientas superior -->
+
   <mat-toolbar color="primary" class="toolbar">
     <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
-    <!-- Imagen centrada en el banner -->
     <img src="assets/logo3.png" class="logo" alt="Logo Final">
+
     <div class="logout-btn">
-      <button mat-button (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon> Logout
+      <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+        <img *ngIf="userProfile?.data.image" [src]="userProfile.data.image" alt="Profile Picture" class="profile-picture" />
       </button>
+
+      <!-- Menú de perfil -->
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item (click)="goToProfile()">
+          <mat-icon>person</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
     </div>
   </mat-toolbar>
 
-  <!-- Contenido principal -->
   <div class="content">
     <router-outlet></router-outlet>
   </div>

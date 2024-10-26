@@ -63,6 +63,12 @@ export class AdoptionService {
     return this.http.get<any>(url);
   }
 
+  // Perfil de usuario por email
+  obtenerPerfilPorEmail(emailRequest: string): Observable<any> {
+    const url = `${this.URL_BASE}user/${emailRequest}`;
+    return this.http.get<any>(url)
+  }
+
   // Obtener aplicaciones por adopción
   getApplicationsByAdoption(adoptionId: any): Observable<any> {
     const url = `${this.URL_BASE}application/adoption/${adoptionId}`;
