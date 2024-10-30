@@ -1,29 +1,39 @@
 
 export interface Pet {
-    id: number;
     name: string;
     age: number;
     type: string;
     size: string;
     color: string;
     breed: string;
+    gender: string;
     image: string | null;
     description: string;
+    adoptionId: string;
   }
 
-  export interface Owner {
-    email: string;
-    name: string;
-    surName: string;
-    locality: string;
-    province: string;
-  }
 
-  export interface Adoption {
-    id: number;
-    adopterUser: Owner;
+
+export interface UserResponse {
+  name: string;
+  surName: string;
+  locality: string;
+  province: string;
+  livesOnHouse: boolean;
+  isPropertyOwner: boolean;
+  canHavePetsOnProperty: boolean;
+  haveAnyPetsCastrated: boolean;
+  whatToDoIfHolydays: string;
+  whatToDoIfMoving: string;
+  compromiseAccepted: boolean;
+}
+
+
+export interface Adoption {
+    id: string;
+    adopterUser: UserResponse;
     pet: Pet;
-    owner: Owner;
+    owner: UserResponse;
     status: string;
   }
 
@@ -42,3 +52,8 @@ export interface Pet {
     MEDIUM = 'MEDIUM',
     LARGE  ='LARGE'
   }
+
+export interface GeneralResponse {
+  message: string;
+  data: any;
+}

@@ -5,8 +5,7 @@ import { AdoptionsPageComponent } from '@modules/adoptions/pages/adoptions-page/
 const routes: Routes = [
   {
     path: '',
-    component: AdoptionsPageComponent,
-    outlet: 'child'
+    component: AdoptionsPageComponent
   }
 ];
 

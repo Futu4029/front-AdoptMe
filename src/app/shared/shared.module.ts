@@ -5,6 +5,17 @@ import { HeaderUserComponent } from './componets/header-user/header-user.compone
 import { RouterModule } from '@angular/router';
 import { FiltersComponent } from './componets/filters/filters.component';
 import {AdoptionService} from "@service/adoption-service";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatIconModule} from "@angular/material/icon";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatListModule} from "@angular/material/list";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { MatButtonModule } from '@angular/material/button';
+import {FormsModule} from "@angular/forms";
+import {AuthService} from "@modules/auth/Service/auth.service";
+import {MatMenuModule} from "@angular/material/menu";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
@@ -16,7 +27,19 @@ import {AdoptionService} from "@service/adoption-service";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatListModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatSidenavModule,
+    FormsModule,
+    MatButtonModule,
+    MatMenuModule
+
+
   ],
   exports:[
     SideBarComponent,
@@ -24,7 +47,8 @@ import {AdoptionService} from "@service/adoption-service";
     FiltersComponent
   ],
   providers: [
-    AdoptionService
+    AdoptionService,
+    AuthService
   ]
 })
 export class SharedModule { }

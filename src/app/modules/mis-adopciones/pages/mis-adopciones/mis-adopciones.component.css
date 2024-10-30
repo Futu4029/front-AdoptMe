@@ -1,0 +1,172 @@
+.mis-adopciones-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 0px auto;
+}
+
+.no-adopciones {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  margin: 20px 0;
+}
+
+.adopcion-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.adopcion-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Alinea verticalmente los elementos */
+  width: 100%;
+}
+
+.mascota-imagen {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #00b39d;
+}
+
+.adopcion-detalles p {
+  display: flex; /* Utiliza flex para alinear icono y texto */
+  align-items: center; /* Alinea verticalmente el icono y el texto */
+  margin: 10px 0; /* Espaciado entre las descripciones */
+}
+
+.adopcion-detalles mat-icon {
+  margin-right: 10px; /* Espacio entre el ícono y el texto */
+  min-width: 24px; /* Ancho mínimo para asegurar el espacio */
+  font-weight: bold;
+}
+
+.acciones-adopcion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.candidatos-button {
+  border: 2px solid var(--color-primary);
+  background-color: white;
+  color: var(--color-primary);
+  border-radius: 5px;
+  padding: 1px 1px;
+  margin-bottom: 0px; /* Añadir margen para separarlo de la sección de candidatos */
+  cursor: pointer;
+  align-self: flex-start;
+  margin-left: 0;
+}
+
+.candidatos-button:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.candidato-contador {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  margin-left: 10px;
+}
+
+.lista-candidatos {
+  margin-top: 10px;
+}
+
+.candidato-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.botonera {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.botonera-accion {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ver-perfil-btn,
+.acepto-btn,
+.rechazo-btn {
+  margin-left: 10px;
+  font-size: 12px;
+  padding: 5px 5px;
+}
+
+.acepto-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.ver-perfil-btn{
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.rechazo-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Ajustar tamaño de los botones Aceptar y Rechazar */
+.acepto-btn, .rechazo-btn, .ver-perfil-btn{
+  width: 30px; /* Ancho del botón */
+  height: 30px; /* Alto del botón */
+  font-size: 12px; /* Tamaño del texto dentro de los botones */
+  padding: 0; /* Elimina el relleno para que el tamaño del botón sea preciso */
+  border-radius: 5px;
+  margin-left: 5px; /* Añadir margen entre botones */
+
+  /* Alineación del texto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Opcional: elimina el espacio entre el texto y el borde del botón */
+  text-align: center;
+}
+
+/* Ajustar los estilos de estado de adopción */
+.estado-en-proceso {
+  color: orange;
+}
+
+.estado-open {
+  color: green;
+}
+
+.estado-completado {
+  color: blue;
+}
+
+/* Ajustes al footer de la tarjeta */
+mat-card-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.response {
+  margin-left: 7px;
+}

@@ -1,0 +1,49 @@
+<h2>Mis Solicitudes</h2>
+<div *ngIf="misSolicitudes.length > 0; else noSolicitudes">
+  <div class="solicitudes-container">
+    <mat-card *ngFor="let solicitud of misSolicitudes" class="solicitud-card">
+      <mat-card-header>
+        <div class="user-avatar">
+          <img [src]="solicitud.adoption.pet.image" alt="Imagen de {{ solicitud.adoption.pet.name }}" class="avatar-image">
+        </div>
+        <div class="user-info">
+          <mat-card-title>Mascota: {{ solicitud.adoption.pet.name }}</mat-card-title>
+          <br>
+          <mat-card-subtitle>
+            <div class="pet-details">
+              Edad:<strong>{{' ' + solicitud.adoption.pet.age }} años</strong>
+              <br>
+              <br>
+              Tamaño:<strong>{{' ' + solicitud.adoption.pet.size }}</strong>
+            </div>
+          </mat-card-subtitle>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="solicitud-details">
+          <mat-list>
+            <mat-list-item>
+              <mat-icon>pets</mat-icon>
+              <strong>Tipo:</strong>
+              <span class="response">{{ solicitud.adoption.pet.type }}</span>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon>check_circle</mat-icon>
+              <strong>Estado:</strong>
+              <span class="response">{{solicitud.applicationStatus }}</span>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #noSolicitudes>
+  <div class="solicitudes-container">
+    <mat-card class="no-solicitudes-card">
+      <mat-card-content>No tienes solicitudes aún.</mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>

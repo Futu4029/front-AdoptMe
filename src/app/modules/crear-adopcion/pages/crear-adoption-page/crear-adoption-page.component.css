@@ -1,0 +1,56 @@
+.adoption-form {
+  margin: 20px auto;
+  width: 90%;
+  padding: 20px;
+  background-color: var(--color-background-container);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+input[type="file"] {
+  display: block;
+  margin-top: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.mat-error {
+  font-size: 0.85rem;
+  color: #ff1744;
+}
+
+.mat-label, input, select, textarea {
+  color: #000;
+}
+
+input[type="file"],
+.adoption-form button {
+  color: #000;
+}
+
+.adoption-form button.mat-raised-button {
+  background-color:var(--color-primary);
+  color: #111111;
+}
+
+.mat-snack-bar-container {
+  background-color: #375a6e;
+  color: white;
+  font-size: 16px;
+}
+
+.empty-message-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* O ajusta según el contenedor padre /
+  text-align: center; / Alinea el texto dentro del div */
+}

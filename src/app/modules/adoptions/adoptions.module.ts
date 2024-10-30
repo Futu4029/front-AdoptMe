@@ -5,6 +5,11 @@ import { AdoptionsRoutingModule } from './adoptions-routing.module';
 import { AdoptionsPageComponent } from '@modules/adoptions/pages/adoptions-page/adoptions-page.component';
 import { SharedModule } from '@shared/shared.module';
 import { AdoptionService } from '@service/adoption-service';
+import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
+import {SwiperModule} from "swiper/angular";
+import {HammerModule} from "@angular/platform-browser";
+
 
 
 
@@ -15,8 +20,14 @@ import { AdoptionService } from '@service/adoption-service';
   imports: [
     CommonModule,
     AdoptionsRoutingModule,
-    SharedModule
+    SharedModule,
+    MatCardModule,
+    MatIconModule,
+    SwiperModule,
+    HammerModule
   ],
-  providers: [AdoptionService]
+  providers: [AdoptionService
+    //,{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ]
 })
 export class AdoptionsModule { }

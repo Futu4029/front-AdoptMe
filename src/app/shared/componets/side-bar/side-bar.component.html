@@ -1,16 +1,46 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="push" [ngStyle]="{width: sidenavWidth}">
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
 
-<button class="toggle-menu-btn" (click)="toggleSideBarMenu()">
-  <i class="fas fa-bars"></i>
-</button>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of mainMenu.defaultOptions" [routerLink]="item.router" (click)="sidenav.toggle()">
+        <mat-icon matListIcon class="nav-icon">{{item.icon}}</mat-icon>
+        <span class="nav-text">{{item.name}}</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
 
+  <mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-<div class="side-bar-menu" [ngClass]="{ 'visible': isSideBarMenuVisible, 'hidden': !isSideBarMenuVisible }">
-  <ul class="side-bar__list list-one">
-    <li [routerLink]="item.router" *ngFor="let item of mainMenu.defaultOptions" (click)="toggleSideBarMenu()">
-      <div class="list-wrapper-item">
-        <i [ngClass]="['fas', item.icon]"></i>
-        <span class="side-bar__list list-label">{{ item.name }}</span>
-      </div>
-    </li>
-  </ul>
-</div>
+    <img src="assets/logo3.png" class="logo" alt="Logo Final">
+
+    <div class="logout-btn">
+      <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+        <img *ngIf="userProfile?.data.image" [src]="userProfile.data.image" alt="Profile Picture" class="profile-picture" />
+      </button>
+
+      <!-- Menú de perfil -->
+      <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item (click)="goToProfile()">
+          <mat-icon>person</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

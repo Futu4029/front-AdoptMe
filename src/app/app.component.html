@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>  <!-- punto de entrada de la redireccion de las rutas -->
+<div *ngIf="!authService.isLoggedIn(); else loggedInContent">
+  <router-outlet></router-outlet>
+</div>
+
+<ng-template #loggedInContent>
+  <app-navigation></app-navigation>
+</ng-template>
+

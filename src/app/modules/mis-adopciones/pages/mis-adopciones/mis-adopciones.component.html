@@ -1,0 +1,81 @@
+<div class="mis-adopciones-container">
+  <h2>Mis Adopciones</h2>
+  <mat-card *ngIf="misAdopciones.length === 0" class="no-adopciones">
+    <mat-card-content>No tienes adopciones realizadas.</mat-card-content>
+  </mat-card>
+  <mat-card *ngFor="let adoption of misAdopciones" class="adopcion-card">
+    <div class="adopcion-content">
+      <img [src]="adoption.pet.image" alt="{{ adoption.pet.name }}" class="mascota-imagen" mat-card-avatar />
+      <div class="adopcion-detalles">
+        <mat-card-header>
+          <mat-card-title>{{ adoption.pet.name }}</mat-card-title>
+          <mat-card-subtitle>Edad: {{ adoption.pet.age }} años</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <mat-icon style="color: var(--color-primary);">pets</mat-icon>
+            <strong>Tipo:</strong>
+            <span class="response">{{ adoption.pet.type }}</span>
+          </p>
+          <p>
+            <mat-icon style="color: var(--color-primary);">height</mat-icon>
+            <strong>Tamaño:</strong>
+            <span class="response">{{ adoption.pet.size }}</span>
+          </p>
+          <p>
+            <mat-icon style="color: var(--color-primary);">palette</mat-icon>
+            <strong>Color:</strong>
+            <span class="response">{{ adoption.pet.color }}</span>
+          </p>
+          <p>
+            <mat-icon style="color: var(--color-primary);">info</mat-icon>
+            <strong>Raza:</strong>
+            <span class="response">{{ adoption.pet.breed }}</span>
+          </p>
+          <p>
+            <mat-icon style="color: var(--color-primary);">person</mat-icon>
+            <strong>Dueño:</strong>
+            <span class="response">{{ adoption.owner?.name }}</span>
+          </p>
+          <p [ngClass]="{'estado-en-proceso': adoption.status === 'Pending', 'estado-open': adoption.status === 'Open','estado-completado': adoption.status === 'Approved'}">
+            <mat-icon style="color: var(--color-primary);">check_circle</mat-icon>
+            <strong>Estado:</strong>
+            <span class="response">{{ adoption.status }}</span>
+          </p>
+          <!-- Botón para mostrar/ocultar candidatos -->
+          <button mat-button class="candidatos-button" (click)="toggleCandidatos(adoption.id)">
+            {{ mostrarCandidatos[adoption.id] ? 'Ocultar Candidatos' : 'Mostrar Candidatos' }}
+          </button>
+
+          <span class="candidato-contador" *ngIf="misCandidatos[adoption.id]">
+      {{ misCandidatos[adoption.id].length }}
+    </span>
+          <!-- Mostrar lista de candidatos -->
+          <div *ngIf="mostrarCandidatos[adoption.id]">
+            <h4>
+              Candidatos interesados:
+
+            </h4>
+            <ul>
+              <li *ngFor="let candidato of misCandidatos[adoption.id]">
+                <p>{{ candidato.user.name }}</p>
+                <p>{{ candidato.user.email }}</p>
+                <p>{{ candidato.user.telefono }}</p>
+                <div class="botonera">
+                  <button mat-button class="ver-perfil-btn" (click)="obtenerPerfil(candidato.user.email)">Ver Perfil</button>
+                  <div class="botonera-accion" *ngIf="adoption.status === 'Open'">
+                    <button mat-button class="acepto-btn" (click)="acceptarcandidato(adoption.id, candidato.user.id, true)">Acepto</button>
+                    <button mat-button class="rechazo-btn" (click)="rechazarCandidato(adoption.id, candidato.user.id, false)">Rechazo</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div *ngIf="misCandidatos && (!misCandidatos[adoption.id] || misCandidatos[adoption.id].length === 0)">
+              <p>No hay candidatos interesados por el momento.</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -1,49 +1,44 @@
-.filters-container {
+.filter-drawer {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 180px;
-  background-color: var(--color-secondary);
+  top: 140px;
+  left: 0px;
+  height: 55vh;
+  width: 250px;
   box-shadow: var(--shadow-medium);
-  padding: 20px;
+  padding: 3px;
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
-  z-index: 10;
-  display: flex;
+  z-index: 10px;
   flex-direction: column;
-  padding-top: 100px
-  }
+}
 
-  .filters-container.visible {
-    transform: translateX(0);
-  }
+.filters-container.visible {
+  transform: translateX(0);
+}
 
-  .filters-container.hidden {
-    transform: translateX(-100%);
-  }
+.filters-container.hidden {
+  transform: translateX(-100%);
+}
 
+.toggle-menu-btn {
+  position: fixed;
+  top: 6rem;
+  left: 0.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 70px;
+  z-index: 11;
+  color: black;
+}
 
-  .toggle-menu-btn {
-    position: fixed;
-    top: 4rem;
-    left: 0.6rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 2rem;
-    z-index: 11;
-  }
-
-  .toggle-menu-btn i {
-    font-size: 24px;
-    color: var(--color-dark);
-  }
-
-
+.toggle-menu-btn i {
+  font-size: 36px;
+  color: white;
+}
 
 .filters-container .filter-group h4 {
-  font-size: 1rem;
+  font-size: var(--font-size-small);
   font-weight: bolder;
   margin: 10px;
   color: var(--color-dark);
@@ -54,19 +49,28 @@
 .filters-container .filter-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  padding: 0;
-  display: block;
-  margin-bottom: 10px;
+  gap: 5px; /* Reduce el espacio entre botones */
+  padding: 0; /* Quita cualquier espacio extra interno */
+  margin-bottom: 5px; /* Reduce el espacio debajo del contenedor */
+  width: 60%; /* Ajusta el ancho del contenedor */
 }
 
-.filters-container .filter-options label {
-  font-size: 1rem;
-  white-space: nowrap;
-  display: block;
-  margin-bottom: 10px;
+/* Ajusta el tamaño de los botones dentro del contenedor */
+.filters-container .filter-options mat-button-toggle {
+  padding: 3px 5px; /* Reduce el espacio interno de los botones */
+  font-size: 12px;  /* Disminuye el tamaño del texto */
+  min-width: 40px;  /* Ajusta el ancho mínimo del botón */
+  height: 20px;     /* Ajusta la altura del botón */
+}
 
+.filters-container .filter-options button.active {
+  background-color: #375a6e; /* Color activo */
+  color: white;
+}
 
+.filters-container .filter-options button:hover {
+  background-color: #00b39d; /* Color al pasar el mouse */
+  color: white;
 }
 
 .apply-button {
@@ -89,12 +93,37 @@
 }
 
 .buttons-container {
-  display: flex;
-  justify-content: flex-start;
+  /*revisar*/
+  gap: 5px; /* Espacio entre botones */
   margin-top: 20px;
-  margin-left: -10px
-
+  font-size: 12px;          /* Tamaño del texto */
+  height: 30px;             /* Altura del botón */
+  width: auto;              /* El ancho se ajusta al contenido */
+  min-width: 50px;          /* Reduce el ancho mínimo */
+  text-align: center;       /* Centrar el texto */
+  display: flex;            /* Flexbox para centrar */
+  align-items: center;
 }
 
+button.mat-raised-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  transition: all 0.5s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+}
+
+/* Botón de aplicar */
+button[color="primary"] {
+  background-color:var(--color-primary);
+  color: white;
+}
+
+/* Botón de borrar */
+button[color="warn"] {
+  background-color: var(--color-secondary);
+  color: white;
+}
 
 

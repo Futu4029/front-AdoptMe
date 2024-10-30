@@ -1,12 +1,40 @@
 .banner {
   width: 100%;
-  display: flex; /* Convertir el banner en un contenedor flexible */
-  justify-content: center; /* Centrar horizontalmente la imagen */
-  align-items: center; /* Centrar verticalmente la imagen */
+  display: flex;
+  justify-content: space-between; /* Alinea el logo a la izquierda y el botón a la derecha */
+  align-items: center;
   background-color: var(--color-tertiary);
-
+  padding: 15px;
 }
 
-.img{
-
+.logo img {
+  max-height: 100px; /* Ajusta el tamaño del logo si es necesario */
 }
+
+.profile-logout {
+  display: flex;
+  align-items: center;
+}
+
+.profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.logout-btn button {
+  background-color: #00b39d;
+  color: white;
+  border: none;
+  padding: 15px 20px; /* Aumenta el padding */
+  font-size: 18px; /* Aumenta el tamaño de la fuente */
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.logout-btn button:hover {
+  background-color: #008f7a;
+}
+
+

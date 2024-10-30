@@ -1,97 +1,167 @@
+/* Contenedor principal para la imagen y los botones laterales */
+.profile-container {
+  display: flex; /* Cambia a flex para facilitar la alineación */
+  align-items: center; /* Alinea verticalmente los elementos */
+  justify-content: center; /* Centra horizontalmente */
+  gap: 10px;
+  margin-top: 5%;
+  padding-top: 10px;
+  min-height: 60vh;
+  transition: transform 0.3s ease; /* Suaviza el movimiento */
+}
+
+/* Perfil de la mascota */
 .profile {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-    padding: 2rem;
-    box-sizing: border-box;
-    width: 100%;
-    background-color: var(--color-primary);
+  margin: 0 2%;
+  min-height: 50vh; /* Altura mínima relativa a la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--color-background-container);
+  width: 70%;
 
 }
 
-.profile--wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 90%;
-    background-color: var(--color-secondary);
-    padding: 0;
-    border-radius: var(--border-radius-large);
-    box-shadow: var(--shadow-medium);
-    height: auto;
-
-}
-
-.profile-details {
-    color: var(--color-text);
-    font-size: var(--font-size-large);
-    font-weight: bold;
-    font-family: var(--font-family-secundary);
-    padding: 10px;
-    background-color: var(--color-secondary);
-
-  }
-
-.description-box {
-
-  color: var(--color-text);
-  font-size: var(--font-size-base);
-  font-family: var(--font-family-secundary);
-  width: 90%;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: var(--color-secondary);
-  border-radius: var(--border-radius-large);
-  text-align: justify;
-}
-
-.empty-message-box  {
-
-  text-align: center;
-  color: var(--color-text);
-  font-size: var(--font-size-title);
-  font-family: var(--font-family-secundary);
-  width: 90%;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: var(--color-secondary);
-  border-radius: var(--border-radius-large);
-}
-
+/* Contenedor de la imagen */
 .FOTO {
-    flex-grow: 2;
-    display: flex;
-    align-items: center;
+  width: 100%;
+  aspect-ratio: 2/3; /* Relación de aspecto fija 2:3 */
+  text-align: center;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
-.FOTO .dog-photo {
-    width: 100%;
-    object-fit: cover;
-    border-radius: var(--border-radius-large);
+/* Contenedor para la imagen no encontrada */
+.not-found-photo {
+  width: 100%;
+  aspect-ratio: 1/1; /* Relación de aspecto 1:1 para mantener el contenedor cuadrado */
+  text-align: center;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-top: 100px !important;
 }
 
-.Boton {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: var(--color-transparente);
+/* Imagen del perro */
+.dog-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* La imagen cubre el contenedor */
+  object-position: center;
+  border-radius: 8px;
 }
 
-.Boton button {
-    background-color: var(--color-text);
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: var(--shadow-medium);
-    transition: transform 0.1s;
+
+.btn-left:hover, .btn-right:hover {
+  transform: scale(1.05);
 }
 
-app-filters {
-    position: fixed;
-    top: 10px;
-    left: 10px;
+.mat-icon {
+  font-size: 24px;
+}
+
+/* Estilos para los botones de acción (❌ ❤️) */
+.action-buttons {
+  display: flex;
+  justify-content: space-evenly; /* Asegúrate de que haya espacio entre los botones */
+  padding: 10px;
+}
+
+.circle-button {
+  width: 50px; /* Ancho del botón */
+  height: 50px; /* Alto del botón */
+  border-radius: 50%; /* Hace que el botón sea circular */
+  display: flex;
+  align-items: center; /* Centra el ícono verticalmente */
+  justify-content: center; /* Centra el ícono horizontalmente */
+  border: none; /* Elimina el borde */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s, transform 0.3s; /* Agrega una transición suave al color de fondo y escala */
+  margin: 0 10px; /* Espacio horizontal entre los botones */
+}
+
+.reject {
+  background-color: #f44336; /* Color de fondo rojo para el botón de rechazo */
+}
+
+.reject:hover {
+  background-color: #d32f2f; /* Color de fondo rojo más oscuro al pasar el mouse */
+}
+
+.like {
+  background-color: #4caf50; /* Color de fondo verde para el botón de me gusta */
+}
+
+.like:hover {
+  background-color: #388e3c; /* Color de fondo verde más oscuro al pasar el mouse */
+}
+
+
+
+/* Título */
+mat-card-header {
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  font-size: var(--font-size-large);
+}
+
+mat-card-title {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Descripción de la mascota */
+.description-box {
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  padding: 5px;
+  margin-top: 10px;
+  color: var(--color-dark);
+  transition: font-size 0.3s ease, padding 0.3s ease;
+}
+
+.swipe-hint {
+  position: absolute;
+  bottom: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  animation: blink 6s forwards;
+}
+
+.arrow-icon {
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(45deg);
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
   }
-
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0; /* Desaparece por completo */
+  }
+}

@@ -1,25 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 import { AdoptionService } from '@service/adoption-service';
-import { forkJoin } from 'rxjs';
+import { trigger, transition, style, animate, state } from '@angular/animations';
+import { Pet } from "@core/adoption-model";
+// @ts-ignore
+import { PanGesture } from 'hammerjs';
 
 @Component({
   selector: 'app-adoptions-page',
   templateUrl: './adoptions-page.component.html',
-  styleUrls: ['./adoptions-page.component.css']
+  styleUrls: ['./adoptions-page.component.css'],
+  animations: [
+    trigger('swipeAnimation', [
+      state('current', style({ opacity: 1, transform: 'translateX(0) scale(1)', filter: 'blur(0)' })),
+      state('next', style({ opacity: 0, transform: 'translateX(100%) scale(0.95)', filter: 'blur(4px)' })),
+      state('prev', style({ opacity: 0, transform: 'translateX(-100%) scale(0.95)', filter: 'blur(4px)' })),
+      transition('current => next', [
+        animate('0.5s ease-out')
+      ]),
+      transition('current => prev', [
+        animate('0.5s ease-out')
+      ]),
+      transition('next => current', [
+        animate('0.5s ease-in')
+      ]),
+      transition('prev => current', [
+        animate('0.5s ease-in')
+      ])
+    ])
+  ]
 })
-
 export class AdoptionsPageComponent implements OnInit {
-  pets: { image: string, name: string, age: number, desc: string }[] = [
-
-  ];
-
+  pets: { image: string, name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string }[] = [];
   currentIndex: number = 0;
+  currentState: string = 'current';
+  showDescription: boolean = false;
+  offset: number = 0;
+  isSwiping: boolean = false;
 
   constructor(private adoptionService: AdoptionService) { }
 
   ngOnInit(): void {
-    console.log('Initial pets array:', this.pets);
     this.fetchAllAdoptions();
+  }
+
+  get currentcolor(): string {
+    return this.pets[this.currentIndex]?.color || '';
+  }
+
+  get currentbreed(): string {
+    return this.pets[this.currentIndex]?.breed || '';
+  }
+
+  get currentsize(): string {
+    return this.pets[this.currentIndex]?.size || '';
+  }
+
+  get currentgender(): string {
+    return this.pets[this.currentIndex]?.gender || '';
   }
 
   get currentImage(): string {
@@ -38,28 +75,79 @@ export class AdoptionsPageComponent implements OnInit {
     return this.pets[this.currentIndex]?.desc || '';
   }
 
+  get currentID(): string {
+    return this.pets[this.currentIndex]?.adoptionId || '';
+  }
+
+  get notFoundImage(): string {
+    // Crear alias para la ruta.
+    return "../../../../../assets/notfound.png";
+  }
+
   onLike(): void {
     console.log("Quiero hacer match");
-    this.nextImage();
+    const adoptionRequest = { 'adoptionId': this.currentID };
+    console.log(adoptionRequest);
+
+    this.adoptionService.applyToAdoption(adoptionRequest).subscribe(
+      response => {
+        console.log('Solicitud enviada correctamente', response);
+        this.removeCurrentPet(); // Elimino la mascota luego de la solicitud exitosa
+      },
+      error => {
+        console.error('Error al enviar la solicitud:', error);
+      }
+    );
   }
 
   onReject(): void {
     console.log("Lo dejo para otra familia");
-    this.nextImage();
+    const adoptionRequest = { 'adoptionId': this.currentID };
+    console.log(adoptionRequest);
+
+    this.adoptionService.blackListAdoption(adoptionRequest).subscribe(
+      response => {
+        console.log('Rechazo enviado correctamente', response);
+        this.removeCurrentPet(); // Elimino la mascota luego del rechazo exitoso
+      },
+      error => {
+        console.error('Error al rechazar la solicitud:', error);
+      }
+    );
+  }
+
+  removeCurrentPet(): void {
+    if (this.pets.length > 0) {
+      this.pets.splice(this.currentIndex, 1); // Elimino la mascota actual
+      // Ajusto el índice de la siguiente mascota
+      if (this.currentIndex >= this.pets.length) {
+        this.currentIndex = 0;
+      }
+    }
+    // Si hay mascotas se avanza a la siguiente
+    if (this.pets.length > 0) {
+      this.currentState = 'next';
+      setTimeout(() => {
+        this.currentState = 'current';
+      }, 500);
+    }
   }
 
   nextImage(): void {
-    this.currentIndex = (this.currentIndex + 1) % this.pets.length;
+    this.currentState = 'next';
+    setTimeout(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.pets.length;
+      this.currentState = 'current';
+    }, 500);
   }
 
   fetchAllAdoptions(): void {
-
-      this.adoptionService.searchFilteredAdoptions()
-    .subscribe(
+    this.adoptionService.searchFilteredAdoptions().subscribe(
       (responses: any) => {
-        console.log(responses);
-        const petsData = responses.data.map((adoption: { pet: any; }) => adoption.pet).filter((pet: any) => pet);
-
+        const petsData = responses.data.map((adoption: { id: string, pet: Pet }) => ({
+          ...adoption.pet,
+          adoptionId: adoption.id
+        }));
         this.updatePetsList(petsData);
       },
       (error) => {
@@ -72,11 +160,9 @@ export class AdoptionsPageComponent implements OnInit {
     const petsData = filteredPets.map((filteredPet) => filteredPet.pet);
     this.updatePetsList(petsData);
     this.currentIndex = 0;
-    console.log('Updated pets array after filtering:', this.pets);
   }
 
   onClearFilters(): void {
-    // Volver a cargar todas las adopciones al borrar los filtros
     this.fetchAllAdoptions();
   }
 
@@ -85,18 +171,58 @@ export class AdoptionsPageComponent implements OnInit {
       this.pets = [];
       return;
     }
-
     this.pets = petsData.map((petData) => ({
       image: petData.image,
       name: petData.name,
       age: petData.age,
-      desc:petData.description
+      desc: petData.description,
+      color: petData.color,
+      breed: petData.breed,
+      size: petData.size,
+      gender: petData.gender,
+      adoptionId: petData.adoptionId
     }));
-
-    console.log('Updated pets array:', this.pets);
   }
 
   hasItems(): boolean {
     return this.pets && this.pets.length > 0;
+  }
+
+  toggleDescription(): void {
+    this.showDescription = !this.showDescription;
+  }
+
+  onPreviousProfile(): void {
+    this.currentState = 'prev';
+    setTimeout(() => {
+      this.currentIndex = (this.currentIndex === 0) ? this.pets.length - 1 : this.currentIndex - 1;
+      this.currentState = 'current';
+    }, 500);
+  }
+
+  onNextProfile(): void {
+    this.currentState = 'next';
+    setTimeout(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.pets.length;
+      this.currentState = 'current';
+    }, 500);
+  }
+
+  onPanEnd(): void {
+    this.isSwiping = false;
+    if (this.offset > 50) {
+      this.onNextProfile();
+    } else if (this.offset < -50) {
+      this.onPreviousProfile();
+    } else {
+      this.currentState = 'current';
+    }
+
+    this.offset = 0;
+  }
+
+  onPanMove(event: PanGesture): void {
+    this.isSwiping = true; // Activar el estado de deslizamiento
+    this.offset = event.deltaX; // Mueve el contenedor según el movimiento del dedo
   }
 }
