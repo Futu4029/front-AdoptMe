@@ -37,6 +37,9 @@ export class AdoptionsPageComponent implements OnInit {
   showDescription: boolean = false;
   offset: number = 0;
   isSwiping: boolean = false;
+  showReactionAnimation: boolean = false;
+  isLiked: boolean = false;
+  isRejected: boolean = false;
 
   constructor(private adoptionService: AdoptionService) { }
 
@@ -84,19 +87,21 @@ export class AdoptionsPageComponent implements OnInit {
     // Crear alias para la ruta.
     return "../../../../../assets/notfound.png";
   }
+
   get currentPetImages(): string[] {
     return this.pets[this.currentIndex]?.images || [];
   }
 
   onLike(): void {
     console.log("Quiero hacer match");
+    this.showReaction('like');
     const adoptionRequest = { 'adoptionId': this.currentID };
     console.log(adoptionRequest);
 
     this.adoptionService.applyToAdoption(adoptionRequest).subscribe(
       response => {
         console.log('Solicitud enviada correctamente', response);
-        this.removeCurrentPet(); // Elimino la mascota luego de la solicitud exitosa
+        // La mascota se eliminará tras la animación
       },
       error => {
         console.error('Error al enviar la solicitud:', error);
@@ -106,18 +111,34 @@ export class AdoptionsPageComponent implements OnInit {
 
   onReject(): void {
     console.log("Lo dejo para otra familia");
+    this.showReaction('reject');
     const adoptionRequest = { 'adoptionId': this.currentID };
     console.log(adoptionRequest);
 
     this.adoptionService.blackListAdoption(adoptionRequest).subscribe(
       response => {
         console.log('Rechazo enviado correctamente', response);
-        this.removeCurrentPet(); // Elimino la mascota luego del rechazo exitoso
+        // La mascota se eliminará tras la animación
       },
       error => {
         console.error('Error al rechazar la solicitud:', error);
       }
     );
+  }
+
+  private showReaction(type: 'like' | 'reject'): void {
+    this.showReactionAnimation = true;
+    this.isLiked = type === 'like';
+    this.isRejected = type === 'reject';
+
+    // Después de 1 segundo, quitamos la animación y cambiamos el perfil
+    setTimeout(() => {
+      this.showReactionAnimation = false;
+      this.isLiked = false;
+      this.isRejected = false;
+
+      this.removeCurrentPet(); // Elimina la mascota actual tras la animación
+    }, 1500); // Ajusta el tiempo según la duración de la animación que prefieras
   }
 
   removeCurrentPet(): void {
@@ -136,6 +157,7 @@ export class AdoptionsPageComponent implements OnInit {
       }, 500);
     }
   }
+
 
   nextImage(): void {
     this.currentState = 'next';
@@ -236,5 +258,4 @@ export class AdoptionsPageComponent implements OnInit {
       this.currentImageIndex = (this.currentImageIndex + 1) % currentPet.images.length; // Cambia al siguiente índice
     }
   }
-
 }

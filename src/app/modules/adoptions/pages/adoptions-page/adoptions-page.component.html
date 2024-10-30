@@ -8,6 +8,7 @@
      [ngStyle]="{ transform: 'translateX(' + offset + 'px)' }"
      (panmove)="onPanMove($event)"
      (panend)="onPanEnd()">
+
   <!-- Perfil de la mascota -->
   <mat-card class="profile" [@swipeAnimation]="currentState">
     <mat-card-content>
@@ -15,13 +16,21 @@
         <img [src]="currentImage" alt="Dog Photo" class="dog-photo" (click)="nextImageInProfile()" />
       </div>
 
+      <div class="reaction-overlay" *ngIf="showReactionAnimation">
+        <div class="reaction-icon" [class.liked]="isLiked" [class.rejected]="isRejected">
+          <mat-icon *ngIf="isLiked">favorite</mat-icon>
+          <mat-icon *ngIf="isRejected">close</mat-icon>
+        </div>
+      </div>
+
       <!-- Contenedor de los puntitos -->
       <div class="dots-container">
-          <span *ngFor="let img of currentPetImages; let i = index"
-                class="dot"
-                [class.active]="i === currentImageIndex">
-          </span>
+        <span *ngFor="let img of currentPetImages; let i = index"
+              class="dot"
+              [class.active]="i === currentImageIndex">
+        </span>
       </div>
+
       <!-- Indicador de swipe -->
       <div class="swipe-hint">
         <span>Deslice</span>
@@ -62,6 +71,6 @@
 
 <mat-card-content *ngIf="!hasItems()">
   <div class="not-found-photo">
-    <img [src]="notFoundImage" />
+    <img [src]="notFoundImage" alt="No encontrado" />
   </div>
 </mat-card-content>

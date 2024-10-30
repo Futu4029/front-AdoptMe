@@ -19,7 +19,6 @@
   justify-content: center;
   background-color: var(--color-background-container);
   width: 70%;
-
 }
 
 /* Contenedor de la imagen */
@@ -50,11 +49,12 @@
   border-radius: 8px;
 }
 
-
+/* Efecto hover para los botones de navegación */
 .btn-left:hover, .btn-right:hover {
   transform: scale(1.05);
 }
 
+/* Estilo para íconos */
 .mat-icon {
   font-size: 24px;
 }
@@ -95,9 +95,7 @@
   background-color: #388e3c; /* Color de fondo verde más oscuro al pasar el mouse */
 }
 
-
-
-/* Título */
+/* Estilo para el título */
 mat-card-header {
   text-align: center;
   margin-top: 10px;
@@ -121,6 +119,7 @@ mat-card-title {
   transition: font-size 0.3s ease, padding 0.3s ease;
 }
 
+/* Indicación de deslizamiento */
 .swipe-hint {
   position: absolute;
   bottom: 150px;
@@ -145,6 +144,7 @@ mat-card-title {
   transform: rotate(45deg);
 }
 
+/* Animación de parpadeo */
 @keyframes blink {
   0% {
     opacity: 0;
@@ -166,6 +166,7 @@ mat-card-title {
   }
 }
 
+/* Contenedor para los puntos de navegación */
 .dots-container {
   display: flex;
   justify-content: center;
@@ -185,3 +186,52 @@ mat-card-title {
 .dot.active {
   background-color: #666; /* Cambia el color para el punto activo */
 }
+
+/* Contenedor para la animación de reacción */
+.reaction-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+
+}
+
+/* Animación de latido constante */
+.reaction-icon {
+  font-size: 20rem; /* Aumenta el tamaño de los íconos */
+  opacity: 1;
+  animation: heartbeat 1s infinite; /* Latido constante */
+  transform: translateY(-60%);
+}
+
+.reaction-icon.liked {
+  color: green;
+
+}
+
+.reaction-icon.rejected {
+  color: red;
+}
+
+/* Efecto de latido para los iconos de reacción */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: translateY(-60%) scale(2); /* Eleva y escala */
+  }
+  50% {
+    transform: translateY(-60%) scale(1.7); /* Eleva y escala en el pico del latido */
+  }
+}
+
+.heart-animation,
+.reaction-icon.liked,
+.reaction-icon.rejected {
+  animation: heartbeat 1s infinite;
+}
+
+
