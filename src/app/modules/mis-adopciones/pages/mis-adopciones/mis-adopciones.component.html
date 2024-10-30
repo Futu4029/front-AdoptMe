@@ -5,7 +5,7 @@
   </mat-card>
   <mat-card *ngFor="let adoption of misAdopciones" class="adopcion-card">
     <div class="adopcion-content">
-      <img [src]="adoption.pet.image[0]" alt="{{ adoption.pet.name }}" class="mascota-imagen" mat-card-avatar />
+      <img [src]="adoption.pet.images[0]" alt="{{ adoption.pet.name }}" class="mascota-imagen" mat-card-avatar />
       <div class="adopcion-detalles">
         <mat-card-header>
           <mat-card-title>{{ adoption.pet.name }}</mat-card-title>
