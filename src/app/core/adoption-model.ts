@@ -32,7 +32,7 @@ export interface UserResponse {
 export interface Adoption {
     id: string;
     adopterUser: UserResponse;
-    pet: Pet;
+    pet: any;
     owner: UserResponse;
     status: string;
   }
