@@ -30,8 +30,9 @@ import { PanGesture } from 'hammerjs';
   ]
 })
 export class AdoptionsPageComponent implements OnInit {
-  pets: { image: string, name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string }[] = [];
+  pets: { images: string[], name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string }[] = [];
   currentIndex: number = 0;
+  currentImageIndex: number = 0;
   currentState: string = 'current';
   showDescription: boolean = false;
   offset: number = 0;
@@ -60,7 +61,7 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   get currentImage(): string {
-    return this.pets[this.currentIndex]?.image || '';
+    return this.pets[this.currentIndex]?.images[this.currentImageIndex] || ''; // Obtiene la imagen actual
   }
 
   get currentName(): string {
@@ -82,6 +83,9 @@ export class AdoptionsPageComponent implements OnInit {
   get notFoundImage(): string {
     // Crear alias para la ruta.
     return "../../../../../assets/notfound.png";
+  }
+  get currentPetImages(): string[] {
+    return this.pets[this.currentIndex]?.images || [];
   }
 
   onLike(): void {
@@ -172,7 +176,7 @@ export class AdoptionsPageComponent implements OnInit {
       return;
     }
     this.pets = petsData.map((petData) => ({
-      image: petData.image,
+      images: petData.images,
       name: petData.name,
       age: petData.age,
       desc: petData.description,
@@ -225,4 +229,12 @@ export class AdoptionsPageComponent implements OnInit {
     this.isSwiping = true; // Activar el estado de deslizamiento
     this.offset = event.deltaX; // Mueve el contenedor según el movimiento del dedo
   }
+
+  nextImageInProfile(): void {
+    const currentPet = this.pets[this.currentIndex];
+    if (currentPet && currentPet.images.length > 0) {
+      this.currentImageIndex = (this.currentImageIndex + 1) % currentPet.images.length; // Cambia al siguiente índice
+    }
+  }
+
 }

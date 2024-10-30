@@ -98,8 +98,6 @@ export class MisAdopcionesComponent implements OnInit {
 
   }
 
-
-
   obtenerPerfil(email: string): void {
     this.router.navigate(['/perfil', email]); // Navega a PerfilComponent con el email
   }

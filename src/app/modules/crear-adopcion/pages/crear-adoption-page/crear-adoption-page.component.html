@@ -1,3 +1,4 @@
+<div class="creacion-adopciones-container">
 <h2>Crea tu adopcion</h2>
 <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()" class="adoption-form" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="center center">
 
@@ -75,11 +76,17 @@
         <input matInput formControlName="breed" placeholder="Raza de la mascota">
       </mat-form-field>
 
-      <!-- Imagen -->
-      <div>
-        <label for="file-upload" class="mat-label">Subir Imagen</label>
-        <input type="file" id="file-upload" (change)="onFileChange($event)" accept="image/*">
-      </div>
+    <!-- Imagen -->
+    <div>
+      <label for="file-upload" class="mat-label">Subir Imágenes (hasta 5)</label>
+      <input type="file" id="file-upload" (change)="onFileChange($event)" accept="image/*" multiple>
+      <mat-error *ngIf="adoptionForm.get('petDto.images')?.hasError('required')">
+        Se requiere al menos una imagen.
+      </mat-error>
+      <mat-error *ngIf="adoptionForm.get('petDto.images')?.hasError('maxLength')">
+        Solo puedes subir hasta 5 imágenes.
+      </mat-error>
+    </div>
 
       <!-- Descripción -->
       <mat-form-field appearance="outline">
@@ -96,3 +103,4 @@
     <button mat-stroked-button type="reset">Limpiar</button>
 </div>
 </form>
+</div>

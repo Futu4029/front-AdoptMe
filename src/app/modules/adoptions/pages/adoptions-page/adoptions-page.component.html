@@ -12,9 +12,16 @@
   <mat-card class="profile" [@swipeAnimation]="currentState">
     <mat-card-content>
       <div class="FOTO">
-        <img [src]="currentImage" alt="Dog Photo" class="dog-photo" />
+        <img [src]="currentImage" alt="Dog Photo" class="dog-photo" (click)="nextImageInProfile()" />
       </div>
 
+      <!-- Contenedor de los puntitos -->
+      <div class="dots-container">
+          <span *ngFor="let img of currentPetImages; let i = index"
+                class="dot"
+                [class.active]="i === currentImageIndex">
+          </span>
+      </div>
       <!-- Indicador de swipe -->
       <div class="swipe-hint">
         <span>Deslice</span>
