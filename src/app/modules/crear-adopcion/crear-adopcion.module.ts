@@ -14,9 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import {SharedModule} from "@shared/shared.module";
 import {AdoptionService} from "@service/adoption-service";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-//import {TokenInterceptor} from "@service/token-interceptor.service";
-
+import {GoogleMapsModule} from "@angular/google-maps";
 
 
 @NgModule({
@@ -37,7 +35,8 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     MatMenuModule,
     SharedModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    GoogleMapsModule
 
   ],
   providers: [AdoptionService

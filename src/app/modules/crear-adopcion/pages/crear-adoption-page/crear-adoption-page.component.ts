@@ -10,6 +10,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CrearAdoptionPageComponent implements OnInit {
   adoptionForm: FormGroup;
+  zoom: number = 8; // Ajusta el nivel de zoom según sea necesario
+  center: google.maps.LatLngLiteral = {lat: -34.6037, lng: -58.3816}; // Coordenadas por defecto (Buenos Aires)
+  markerPosition: google.maps.LatLngLiteral = this.center; // Posición del marcador
+  markerLabel: string = 'Ubicación seleccionada';
 
   constructor(
     private fb: FormBuilder,
@@ -23,10 +27,15 @@ export class CrearAdoptionPageComponent implements OnInit {
         type: ['', Validators.required],
         size: ['', Validators.required],
         gender: ['', Validators.required],
+        location: this.fb.group({
+          latitude: [null],
+          longitude: [null]
+        }),
         images: [[], [Validators.required, this.maxImagesValidator(5)]], // Validación para máximo de 5 imágenes
         color: [''],
         breed: [''],
-        description: ['', Validators.required]
+        description: ['', Validators.required],
+
       })
     });
   }
@@ -38,7 +47,7 @@ export class CrearAdoptionPageComponent implements OnInit {
   maxImagesValidator(max: number) {
     return (control: any) => {
       const files = control.value as string[] | null;
-      return files && files.length > max ? { maxLength: true } : null;
+      return files && files.length > max ? {maxLength: true} : null;
     };
   }
 
@@ -55,7 +64,7 @@ export class CrearAdoptionPageComponent implements OnInit {
 
           if (index === files.length - 1) {
             this.adoptionForm.patchValue({
-              petDto: { images: base64Images }
+              petDto: {images: base64Images}
             });
           }
         };
@@ -114,4 +123,23 @@ export class CrearAdoptionPageComponent implements OnInit {
       }
     });
   }
+
+  setLocation(event: google.maps.MouseEvent): void {
+    const lat = event.latLng?.lat();
+    const lng = event.latLng?.lng();
+    if (lat !== undefined && lng !== undefined) {
+      this.markerPosition = {lat, lng};
+
+      // Actualiza el FormGroup con las coordenadas
+      this.adoptionForm.patchValue({
+        petDto: {
+          location: {
+            latitude: lat,
+            longitude: lng
+          }
+        }
+      });
+    }
+  }
+
 }

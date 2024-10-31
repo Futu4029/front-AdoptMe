@@ -20,6 +20,7 @@ import {MatCardModule} from "@angular/material/card";
 import {JwtInterceptor} from "./jwt.interceptor";
 import {SwiperModule} from "swiper/angular";
 import {MatListModule} from "@angular/material/list";
+import {GoogleMapsModule} from "@angular/google-maps";
 
 
 
@@ -49,7 +50,8 @@ import {MatListModule} from "@angular/material/list";
       MatButtonModule,
       SwiperModule,
       HammerModule,
-      MatListModule
+      MatListModule,
+      GoogleMapsModule
     ],
   providers: [
     {
