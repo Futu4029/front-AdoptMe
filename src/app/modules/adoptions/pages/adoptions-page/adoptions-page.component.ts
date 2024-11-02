@@ -158,15 +158,6 @@ export class AdoptionsPageComponent implements OnInit {
     }
   }
 
-
-  nextImage(): void {
-    this.currentState = 'next';
-    setTimeout(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.pets.length;
-      this.currentState = 'current';
-    }, 500);
-  }
-
   fetchAllAdoptions(): void {
     this.adoptionService.searchFilteredAdoptions().subscribe(
       (responses: any) => {
@@ -236,6 +227,7 @@ export class AdoptionsPageComponent implements OnInit {
 
   onPanEnd(): void {
     this.isSwiping = false;
+    this.currentImageIndex = 0;
     if (this.offset > 50) {
       this.onNextProfile();
     } else if (this.offset < -50) {
