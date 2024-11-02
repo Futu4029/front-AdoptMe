@@ -4,6 +4,8 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 import { Pet } from "@core/adoption-model";
 // @ts-ignore
 import { PanGesture } from 'hammerjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-adoptions-page',
@@ -41,7 +43,7 @@ export class AdoptionsPageComponent implements OnInit {
   isLiked: boolean = false;
   isRejected: boolean = false;
 
-  constructor(private adoptionService: AdoptionService) { }
+  constructor(private adoptionService: AdoptionService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.fetchAllAdoptions();
@@ -105,6 +107,7 @@ export class AdoptionsPageComponent implements OnInit {
       },
       error => {
         console.error('Error al enviar la solicitud:', error);
+        this.onError('Hubo un error al dar like a la solicitud');
       }
     );
   }
@@ -122,8 +125,17 @@ export class AdoptionsPageComponent implements OnInit {
       },
       error => {
         console.error('Error al rechazar la solicitud:', error);
+        this.onError('Hubo un error al rechazar la solicitud');
       }
     );
+  }
+
+  onError(message : string): void {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      verticalPosition: 'top', // Posición del toast (arriba)
+      horizontalPosition: 'center' // Posición horizontal (centro)
+    });
   }
 
   private showReaction(type: 'like' | 'reject'): void {
@@ -167,8 +179,9 @@ export class AdoptionsPageComponent implements OnInit {
         }));
         this.updatePetsList(petsData);
       },
-      (error) => {
+      error => {
         console.error('Error fetching adoptions:', error);
+        this.onError('Hubo un error al buscar las adopciones');
       }
     );
   }
