@@ -201,24 +201,24 @@ mat-card-title {
 
 }
 
-/* Animación de latido constante */
+
 .reaction-icon {
-  font-size: 20rem; /* Aumenta el tamaño de los íconos */
+  font-size: 20rem;
   opacity: 1;
-  animation: heartbeat 1s infinite; /* Latido constante */
+  animation: heartbeat 1s infinite;
   transform: translateY(-60%);
 }
 
-.reaction-icon.liked {
-  color: green;
 
+.reaction-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  animation: heartbeat 1s infinite;
 }
 
-.reaction-icon.rejected {
-  color: red;
-}
 
-/* Efecto de latido para los iconos de reacción */
+
 @keyframes heartbeat {
   0%, 100% {
     transform: translateY(-60%) scale(2); /* Eleva y escala */

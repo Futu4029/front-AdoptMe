@@ -18,8 +18,8 @@
 
       <div class="reaction-overlay" *ngIf="showReactionAnimation">
         <div class="reaction-icon" [class.liked]="isLiked" [class.rejected]="isRejected">
-          <mat-icon *ngIf="isLiked">favorite</mat-icon>
-          <mat-icon *ngIf="isRejected">close</mat-icon>
+          <img *ngIf="isLiked" src="assets/CHECK3.png" alt="Like Icon" class="reaction-image" />
+          <img *ngIf="isRejected" src="assets/NOCHECK2.png" alt="Reject Icon" class="reaction-image" />
         </div>
       </div>
 

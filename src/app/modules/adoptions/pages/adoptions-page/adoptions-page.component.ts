@@ -138,7 +138,7 @@ export class AdoptionsPageComponent implements OnInit {
       this.isRejected = false;
 
       this.removeCurrentPet(); // Elimina la mascota actual tras la animación
-    }, 1500);
+    }, 1300);
   }
 
   removeCurrentPet(): void {
