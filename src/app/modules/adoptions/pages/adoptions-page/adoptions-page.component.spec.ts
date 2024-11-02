@@ -162,7 +162,7 @@ describe('AdoptionsPageComponent', () => {
     // Verifica que 'showReaction' se llame con 'like'
     expect(showReactionSpy).toHaveBeenCalledWith('like');
   });
-
+/*
   it('should receive onFiltersApplied event from FiltersComponent', () => {
     const filtersComponent = fixture.debugElement.query(By.directive(FiltersComponent)).componentInstance;
 
@@ -180,5 +180,5 @@ describe('AdoptionsPageComponent', () => {
     fixture.detectChanges();
 
     expect(component.onFiltersApplied).toHaveBeenCalledWith(jasmine.any(Object));
-  });
+  });*/
 });

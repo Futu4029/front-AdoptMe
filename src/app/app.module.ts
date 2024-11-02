@@ -20,6 +20,7 @@ import {MatCardModule} from "@angular/material/card";
 import {JwtInterceptor} from "./jwt.interceptor";
 import {SwiperModule} from "swiper/angular";
 import {MatListModule} from "@angular/material/list";
+import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 
 
 
@@ -49,7 +50,8 @@ import {MatListModule} from "@angular/material/list";
       MatButtonModule,
       SwiperModule,
       HammerModule,
-      MatListModule
+      MatListModule,
+      LeafletModule
     ],
   providers: [
     {
