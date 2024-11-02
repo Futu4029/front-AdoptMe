@@ -138,7 +138,7 @@ export class AdoptionsPageComponent implements OnInit {
       this.isRejected = false;
 
       this.removeCurrentPet(); // Elimina la mascota actual tras la animación
-    }, 1500); // Ajusta el tiempo según la duración de la animación que prefieras
+    }, 1500);
   }
 
   removeCurrentPet(): void {
