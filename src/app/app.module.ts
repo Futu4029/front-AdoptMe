@@ -21,6 +21,7 @@ import {JwtInterceptor} from "./jwt.interceptor";
 import {SwiperModule} from "swiper/angular";
 import {MatListModule} from "@angular/material/list";
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+import { MatSliderModule } from '@angular/material/slider';
 
 
 
@@ -51,7 +52,8 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
       SwiperModule,
       HammerModule,
       MatListModule,
-      LeafletModule
+      LeafletModule,
+      MatSliderModule
     ],
   providers: [
     {

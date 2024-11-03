@@ -20,9 +20,9 @@ export class AdoptionService {
   }
 
   // Buscar adopciones filtradas
-  searchFilteredAdoptions(size?: string, age?: string, type?: string, gender?: string): Observable<any> {
+  searchFilteredAdoptions(size?: string, age?: string, type?: string, gender?: string, distance?:string) : Observable<any> {
     let params = new HttpParams();
-    const filters = { size, age, type, gender };
+    const filters = { size, age, type, gender, distance };
 
     Object.entries(filters).forEach(([key, value]) => {
       if (value) {

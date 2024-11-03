@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {FormsModule} from "@angular/forms";
 import {AuthService} from "@modules/auth/Service/auth.service";
 import {MatMenuModule} from "@angular/material/menu";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MatSliderModule } from '@angular/material/slider';
 
 
 
@@ -37,9 +37,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatSidenavModule,
     FormsModule,
     MatButtonModule,
-    MatMenuModule
-
-
+    MatMenuModule,
+    MatSliderModule
   ],
   exports:[
     SideBarComponent,
@@ -50,5 +49,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AdoptionService,
     AuthService
   ]
+
 })
 export class SharedModule { }
