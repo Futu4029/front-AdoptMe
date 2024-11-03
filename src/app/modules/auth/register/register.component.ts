@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RegisterService } from '../Service/register';
+import { GeocodingService } from '../Service/GeocodingService'; // Importa el servicio de geocodificación
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
 
@@ -17,12 +18,15 @@ export class RegisterComponent implements OnInit {
   marker: L.Marker | null = null;
   options: any;
   selectedCoords: { lat: number; lng: number } | null = null;
+  fullAddress: string | undefined;
 
   constructor(
     private fb: FormBuilder,
     private registerService: RegisterService,
+    private geocodingService: GeocodingService, // Inyecta el servicio de geocodificación
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+
   ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
@@ -40,15 +44,17 @@ export class RegisterComponent implements OnInit {
       whatToDoIfHolydays: ['', Validators.required],
       whatToDoIfMoving: ['', Validators.required],
       compromiseAccepted: [false, Validators.requiredTrue],
-      localization:{
+      localization: {
         latitude: ['', Validators.required],
-        longitude: ['', Validators.required]}
+        longitude: ['', Validators.required]
+      }
     });
   }
 
   ngOnInit(): void {
     console.log('RegisterComponent ngOnInit');
 
+    console.log(this.fullAddress); // Para verificar
     this.options = {
       layers: [
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -66,9 +72,8 @@ export class RegisterComponent implements OnInit {
     const lng = event.latlng.lng;
 
     const icon = L.icon({
-      iconUrl: 'assets/icon.png', // Ruta a tu imagen de marcador
-      iconSize: [50, 30], // Tamaño del icono
-
+      iconUrl: 'assets/icon.png',
+      iconSize: [50, 30],
     });
 
     console.log(`Clicked location: Latitude: ${lat}, Longitude: ${lng}`);
@@ -85,7 +90,27 @@ export class RegisterComponent implements OnInit {
       }
     });
     this.selectedCoords = { lat, lng };
+
+    // Llamar al servicio de geocodificación para obtener la dirección completa
+    this.geocodingService.getCoordinates(`${lat}, ${lng}`).subscribe(
+      (coords) => {
+        if (coords && Array.isArray(coords) && coords.length > 0) {
+          const { display_name } = coords[0]; // Obtener la dirección completa
+          this.fullAddress = display_name; // Guardar la dirección completa
+
+          // Aquí podrías mostrar la dirección de otra manera, por ejemplo, en un div
+          console.log(`Dirección seleccionada: ${this.fullAddress}`);
+        } else {
+          console.error('No se encontraron coordenadas para la dirección');
+        }
+      },
+      (error) => {
+        console.error('Error obteniendo coordenadas:', error);
+        // Manejo de errores en caso de que no se pueda encontrar la dirección
+      }
+    );
   }
+
 
   onMapReady(map: L.Map): void {
     this.map = map;
@@ -110,11 +135,62 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
 
+  searchAddress(): void {
+    const locality = this.registerForm.get('locality')?.value;
+    const province = this.registerForm.get('province')?.value;
+
+    if (locality && province) {
+      this.geocodingService.getCoordinates(`${locality}, ${province}`).subscribe(
+        (coords) => {
+          if (coords && Array.isArray(coords) && coords.length > 0) {
+            const { lat, lon, display_name } = coords[0]; // Obtener el primer resultado y la dirección completa
+
+            if (this.map && this.marker) {
+              this.map.removeLayer(this.marker);
+            }
+
+            this.marker = L.marker([lat, lon]).addTo(this.map!);
+            this.map?.setView([lat, lon], 15);
+
+            this.registerForm.patchValue({
+              localization: {
+                latitude: lat,
+                longitude: lon
+              }
+            });
+            this.fullAddress = display_name; // Guarda la dirección completa
+            this.selectedCoords = { lat, lng: lon };
+          } else {
+            this.snackBar.open('No se encontraron coordenadas para la dirección', 'Cerrar', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
+          }
+        },
+        (error) => {
+          console.error('Error obteniendo coordenadas:', error);
+          this.snackBar.open('No se pudo encontrar la dirección', 'Cerrar', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
+      );
+    }
+  }
+
+
+
+
+  onSubmit(): void {
     if (this.registerForm.valid) {
-      const registerRequest = this.registerForm.value;
-      console.log(`Formualrio:`, registerRequest);
+      const registerRequest = {
+        ...this.registerForm.value,
+        address: this.fullAddress // Añadir la dirección completa al registro
+      };
+      console.log(`Formulario:`, registerRequest);
       this.registerService.createUser(registerRequest).subscribe(
         response => {
           this.snackBar.open('Usuario registrado correctamente', 'Cerrar', {
@@ -137,7 +213,6 @@ export class RegisterComponent implements OnInit {
       console.error('Formulario inválido');
     }
   }
-
   resetForm(): void {
     this.registerForm.reset();
     this.registerForm.markAsPristine();
@@ -155,7 +230,5 @@ export class RegisterComponent implements OnInit {
       const control = this.registerForm.get(key);
       control?.setErrors(null);
     });
-
-
   }
 }

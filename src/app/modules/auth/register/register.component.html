@@ -91,7 +91,11 @@
       style="height: 100%; width: 100%;">
     </div>
   </div>
-  <p>Coordenadas seleccionadas: Latitud: {{ selectedCoords?.lat }}, Longitud: {{ selectedCoords?.lng }}</p>
+
+  <div *ngIf="fullAddress">
+    <h3>Dirección Seleccionada:</h3>
+    <p>{{ fullAddress }}</p>
+  </div>
 
 
   <h3>Datos adicionales</h3>
