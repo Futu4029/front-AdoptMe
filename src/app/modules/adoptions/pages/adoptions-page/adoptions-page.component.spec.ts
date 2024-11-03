@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { AdoptionsPageComponent } from './adoptions-page.component';
 import {AdoptionService} from "@service/adoption-service";
@@ -11,14 +11,19 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule} from "@angular/material/card";
 import {FiltersComponent} from "@shared/componets/filters/filters.component";
 import {By} from "@angular/platform-browser";
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 describe('AdoptionsPageComponent', () => {
   let component: AdoptionsPageComponent;
   let fixture: ComponentFixture<AdoptionsPageComponent>;
   let adoptionServiceSpy: jasmine.SpyObj<AdoptionService>;
   let routerSpy: jasmine.SpyObj<Router>;
+  let snackBarSpy: jasmine.SpyObj<MatSnackBar>;
+
 
   beforeEach(async () => {
+    snackBarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
     const adoptionServiceMock = jasmine.createSpyObj('AdoptionService', [
       'applyToAdoption',
       'blackListAdoption',
@@ -37,7 +42,8 @@ describe('AdoptionsPageComponent', () => {
       ],
       providers: [
         { provide: AdoptionService, useValue: adoptionServiceMock },
-        { provide: Router, useValue: routerMock }
+        { provide: Router, useValue: routerMock },
+        { provide: MatSnackBar, useValue: snackBarSpy }
       ]
     }).compileComponents();
 
@@ -162,23 +168,93 @@ describe('AdoptionsPageComponent', () => {
     // Verifica que 'showReaction' se llame con 'like'
     expect(showReactionSpy).toHaveBeenCalledWith('like');
   });
-/*
-  it('should receive onFiltersApplied event from FiltersComponent', () => {
-    const filtersComponent = fixture.debugElement.query(By.directive(FiltersComponent)).componentInstance;
 
-    const filtersData = {
-      type: 'Perro',
-      size: undefined,
-      age: 'Joven',
-      gender: undefined
-    };
+  it('should display error toast on failure in onLike', () => {
+    // Simula un error en applyToAdoption
+    adoptionServiceSpy.applyToAdoption.and.returnValue(throwError(() => new Error('Error en like')));
 
-    filtersComponent.filters = filtersData;
+    // Llama al método onLike
+    component.onLike();
 
-    spyOn(component as any, 'onFiltersApplied').and.callThrough();
-    filtersComponent.applyFilters();
+    // Verifica que el toast se muestre con el mensaje correcto
+    expect(snackBarSpy.open).toHaveBeenCalledWith(
+      'Hubo un error al dar like a la solicitud',
+      'Cerrar',
+      { duration: 3000, verticalPosition: 'top', horizontalPosition: 'center' }
+    );
+  });
+
+  it('should display error toast on failure in onReject', () => {
+    // Simula un error en blackListAdoption
+    adoptionServiceSpy.blackListAdoption.and.returnValue(throwError(() => new Error('Error en reject')));
+
+    component.onReject();
+
+    // Verifica que el toast se muestre con el mensaje correcto
+    expect(snackBarSpy.open).toHaveBeenCalledWith(
+      'Hubo un error al rechazar la solicitud',
+      'Cerrar',
+      { duration: 3000, verticalPosition: 'top', horizontalPosition: 'center' }
+    );
+  });
+
+  it('should display error toast on failure in fetchAllAdoptions', () => {
+    // Simula un error en searchFilteredAdoptions
+    adoptionServiceSpy.searchFilteredAdoptions.and.returnValue(throwError(() => new Error('Error en fetch')));
+
+    component.fetchAllAdoptions();
+
+    expect(snackBarSpy.open).toHaveBeenCalledWith(
+      'Hubo un error al buscar las adopciones',
+      'Cerrar',
+      { duration: 3000, verticalPosition: 'top', horizontalPosition: 'center' }
+    );
+  });
+
+  it('should remove pet from petsList after animation ends ON LIKE', fakeAsync(() => {
+    component.pets = [{
+      images: ['img1.jpg'],
+      name: 'Mila',
+      age: 2,
+      desc: 'Soy Mila',
+      color: 'Marron',
+      breed: 'Salchicha',
+      size: 'Chico',
+      gender: 'Hembra',
+      adoptionId: 'adoption123'
+    }];
+    const initialPetsCount = component.pets.length;
+
+    component.onLike();
+
+    tick(1400); // Espera a que finalice la animación
     fixture.detectChanges();
 
-    expect(component.onFiltersApplied).toHaveBeenCalledWith(jasmine.any(Object));
-  });*/
+    // Verifica que la longitud de petsList haya cambiado
+    expect(component.pets.length).toBeLessThan(initialPetsCount);
+  }));
+
+  it('should remove pet from petsList after animation ends ON REJECT', fakeAsync(() => {
+    component.pets = [{
+      images: ['img1.jpg'],
+      name: 'Mila',
+      age: 2,
+      desc: 'Soy Mila',
+      color: 'Marron',
+      breed: 'Salchicha',
+      size: 'Chico',
+      gender: 'Hembra',
+      adoptionId: 'adoption123'
+    }];
+    const initialPetsCount = component.pets.length;
+
+    component.onReject();
+
+    tick(1400); // Espera a que finalice la animación
+    fixture.detectChanges();
+
+    // Verifica que la longitud de petsList haya cambiado
+    expect(component.pets.length).toBeLessThan(initialPetsCount);
+  }));
+
 });
