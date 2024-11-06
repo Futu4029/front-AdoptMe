@@ -76,7 +76,8 @@ describe('AdoptionsPageComponent', () => {
             color: "Marrón claro",
             breed: "Labrador",
             size: "Grande",
-            gender: "Macho"
+            gender: "Macho",
+            distance: 3
           }
         }
       ]
@@ -92,7 +93,8 @@ describe('AdoptionsPageComponent', () => {
         breed: "Labrador",
         size: "Grande",
         gender: "Macho",
-        adoptionId: "adoption123"
+        adoptionId: "adoption123",
+        distance: 3
       }
     ];
 
@@ -114,7 +116,8 @@ describe('AdoptionsPageComponent', () => {
       breed: 'Salchicha',
       size: 'Chico',
       gender: 'Hembra',
-      adoptionId: 'adoption123'
+      adoptionId: 'adoption123',
+      distance: 3
     }];
     component.currentIndex = 0;
     component.onLike();
@@ -134,7 +137,8 @@ describe('AdoptionsPageComponent', () => {
       breed: 'Salchicha',
       size: 'Chico',
       gender: 'Hembra',
-      adoptionId: 'adoption123'
+      adoptionId: 'adoption123',
+      distance: 3
     }];
     component.currentIndex = 0;
     component.onReject();
@@ -156,7 +160,8 @@ describe('AdoptionsPageComponent', () => {
       breed: 'Salchicha',
       size: 'Chico',
       gender: 'Hembra',
-      adoptionId: 'adoption123'
+      adoptionId: 'adoption123',
+      distance: 3
     }];
     component.currentIndex = 0;
 
@@ -179,7 +184,8 @@ describe('AdoptionsPageComponent', () => {
       breed: 'Salchicha',
       size: 'Chico',
       gender: 'Hembra',
-      adoptionId: 'adoption123'
+      adoptionId: 'adoption123',
+      distance: 3
     }];
     component.currentIndex = 0;
 
@@ -242,7 +248,8 @@ describe('AdoptionsPageComponent', () => {
       breed: 'Salchicha',
       size: 'Chico',
       gender: 'Hembra',
-      adoptionId: 'adoption123'
+      adoptionId: 'adoption123',
+      distance: 3
     }];
     const initialPetsCount = component.pets.length;
 
@@ -265,7 +272,8 @@ describe('AdoptionsPageComponent', () => {
       breed: 'Salchicha',
       size: 'Chico',
       gender: 'Hembra',
-      adoptionId: 'adoption123'
+      adoptionId: 'adoption123',
+      distance: 3
     }];
     const initialPetsCount = component.pets.length;
 
