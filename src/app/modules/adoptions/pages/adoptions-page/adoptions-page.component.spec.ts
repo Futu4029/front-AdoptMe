@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-
 import { AdoptionsPageComponent } from './adoptions-page.component';
 import {AdoptionService} from "@service/adoption-service";
 import {RouterTestingModule} from "@angular/router/testing";
@@ -10,7 +9,6 @@ import {SharedModule} from "@shared/shared.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule} from "@angular/material/card";
 import {FiltersComponent} from "@shared/componets/filters/filters.component";
-import {By} from "@angular/platform-browser";
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
@@ -169,11 +167,34 @@ describe('AdoptionsPageComponent', () => {
     expect(showReactionSpy).toHaveBeenCalledWith('like');
   });
 
+  it('should call showReaction with "Reject" when onReject is called', () => {
+    const showReactionSpy = spyOn(component as any, 'showReaction');
+
+    component.pets = [{
+      images: ['img1.jpg'],
+      name: 'Mila',
+      age: 2,
+      desc: 'Soy Mila',
+      color: 'Marron',
+      breed: 'Salchicha',
+      size: 'Chico',
+      gender: 'Hembra',
+      adoptionId: 'adoption123'
+    }];
+    component.currentIndex = 0;
+
+    adoptionServiceSpy.applyToAdoption.and.returnValue(of({ message: 'Solicitud enviada correctamente' }));
+
+    component.onReject();
+    // Verifica que 'showReaction' se llame con 'reject'
+    expect(showReactionSpy).toHaveBeenCalledWith('reject');
+  });
+
   it('should display error toast on failure in onLike', () => {
     // Simula un error en applyToAdoption
     adoptionServiceSpy.applyToAdoption.and.returnValue(throwError(() => new Error('Error en like')));
 
-    // Llama al método onLike
+    // Llama al metodo onLike
     component.onLike();
 
     // Verifica que el toast se muestre con el mensaje correcto

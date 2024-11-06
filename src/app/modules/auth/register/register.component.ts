@@ -58,11 +58,11 @@ export class RegisterComponent implements OnInit {
     this.options = {
       layers: [
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 19,
+          maxZoom: 100,
           attribution: '© OpenStreetMap contributors'
         })
       ],
-      zoom: 10,
+      zoom: 12,
       center: L.latLng([-34.72418, -58.25265]) // Coordenadas iniciales
     };
   }

@@ -18,14 +18,14 @@ export class FiltersComponent implements OnInit {
   genderFilterValue: string | undefined;
   ageFilterValue: string | undefined;
   sizeFilterValue: string | undefined;
-  distanceFilterValue: string = "1"; // Mantener como string
+  distanceFilterValue: number = 1; // Cambia a tipo number
 
-  filters: { [key: string]: string | undefined } = {
+  filters: { [key: string]: string | undefined | number } = {
     type: undefined,
     size: undefined,
     age: undefined,
     gender: undefined,
-    distance: this.distanceFilterValue // Agrega el filtro de distancia
+    distance: this.distanceFilterValue // Agrega el filtro de distancia como número
   };
 
   constructor(private adoptionService: AdoptionService) { }
@@ -36,7 +36,7 @@ export class FiltersComponent implements OnInit {
     this.isMenuVisible = !this.isMenuVisible;
   }
 
-  onFilterChange(filterCategory: string, filterValue: string): void {
+  onFilterChange(filterCategory: string, filterValue: string | number | undefined): void {
     if (this.filters.hasOwnProperty(filterCategory)) {
       this.filters[filterCategory] = filterValue;
     } else {
@@ -44,18 +44,24 @@ export class FiltersComponent implements OnInit {
     }
   }
 
-  onDistanceChange(event: any): void {
-    this.distanceFilterValue = event.value?.toString() || "1"; // Convertir a string
-    this.onFilterChange('distance', this.distanceFilterValue);
+  onDistanceChange(event: MatSliderChange): void {
+    this.distanceFilterValue = event.value || 1;
+    this.onFilterChange('distance', this.distanceFilterValue.toString()); // Convertir a string solo en esta llamada
+    this.filters['distance'] = this.distanceFilterValue; // Almacenar como número en `filters`
+  }
+
+
+  private formatFilterValue(value: string | number | undefined): string | undefined {
+    return value !== undefined ? value.toString() : undefined;
   }
 
   applyFilters(): void {
     this.adoptionService.searchFilteredAdoptions(
-      this.filters.size,
-      this.filters.age,
-      this.filters.type,
-      this.filters.gender,
-      this.filters.distance // Pasar el valor de distancia al servicio
+      this.formatFilterValue(this.filters.size),
+      this.formatFilterValue(this.filters.age),
+      this.formatFilterValue(this.filters.type),
+      this.formatFilterValue(this.filters.gender),
+      this.formatFilterValue(this.filters.distance)
     ).subscribe({
       next: (response) => {
         console.log('Datos filtrados recibidos:', response);
@@ -67,6 +73,8 @@ export class FiltersComponent implements OnInit {
     });
   }
 
+
+
   clearAllFilters(): void {
     this.clearFilters.emit();
     this.filters = {
@@ -74,13 +82,13 @@ export class FiltersComponent implements OnInit {
       size: undefined,
       age: undefined,
       gender: undefined,
-      distance: this.distanceFilterValue // Restablecer la distancia
+      distance: 1 // Restablecer la distancia como número
     };
     // Restablecer valores de filtro
     this.typeFilterValue = undefined;
     this.genderFilterValue = undefined;
     this.ageFilterValue = undefined;
     this.sizeFilterValue = undefined;
-    this.distanceFilterValue = "1"; // Restablecer a valor inicial
+    this.distanceFilterValue = 1; // Restablecer a valor inicial como número
   }
 }

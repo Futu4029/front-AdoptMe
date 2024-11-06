@@ -32,7 +32,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   ]
 })
 export class AdoptionsPageComponent implements OnInit {
-  pets: { images: string[], name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string }[] = [];
+  pets: { images: string[], name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string, distance: number }[] = [];
   currentIndex: number = 0;
   currentImageIndex: number = 0;
   currentState: string = 'current';
@@ -84,6 +84,11 @@ export class AdoptionsPageComponent implements OnInit {
   get currentID(): string {
     return this.pets[this.currentIndex]?.adoptionId || '';
   }
+
+  get currentDistance(): number {
+    return this.pets[this.currentIndex]?.distance || 0;
+  }
+
 
   get notFoundImage(): string {
     // Crear alias para la ruta.
@@ -173,9 +178,10 @@ export class AdoptionsPageComponent implements OnInit {
   fetchAllAdoptions(): void {
     this.adoptionService.searchFilteredAdoptions().subscribe(
       (responses: any) => {
-        const petsData = responses.data.map((adoption: { id: string, pet: Pet }) => ({
+        const petsData = responses.data.map((adoption: { id: string, pet: Pet, distance: number }) => ({
           ...adoption.pet,
-          adoptionId: adoption.id
+          adoptionId: adoption.id,
+          distance: adoption.distance
         }));
         this.updatePetsList(petsData);
       },
@@ -210,7 +216,8 @@ export class AdoptionsPageComponent implements OnInit {
       breed: petData.breed,
       size: petData.size,
       gender: petData.gender,
-      adoptionId: petData.adoptionId
+      adoptionId: petData.adoptionId,
+      distance: petData.distance
     }));
   }
 
