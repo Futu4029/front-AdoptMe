@@ -193,7 +193,12 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   onFiltersApplied(filteredPets: any[]): void {
-    const petsData = filteredPets.map((filteredPet) => filteredPet.pet);
+    console.log('Datos filtrados recibidos 1:', filteredPets);
+    const petsData = filteredPets.map((adoption: { id: string, pet: Pet, distance: number }) => ({
+      ...adoption.pet,
+      adoptionId: adoption.id,
+      distance: Math.round(adoption.distance)
+    }));
     this.updatePetsList(petsData);
     this.currentIndex = 0;
   }
@@ -219,6 +224,7 @@ export class AdoptionsPageComponent implements OnInit {
       adoptionId: petData.adoptionId,
       distance: petData.distance
     }));
+    console.log(this.pets);
   }
 
   hasItems(): boolean {
