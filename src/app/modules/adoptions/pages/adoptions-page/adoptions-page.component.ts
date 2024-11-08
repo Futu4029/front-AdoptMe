@@ -181,7 +181,7 @@ export class AdoptionsPageComponent implements OnInit {
         const petsData = responses.data.map((adoption: { id: string, pet: Pet, distance: number }) => ({
           ...adoption.pet,
           adoptionId: adoption.id,
-          distance: adoption.distance
+          distance: Math.round(adoption.distance)
         }));
         this.updatePetsList(petsData);
       },

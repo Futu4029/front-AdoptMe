@@ -41,7 +41,9 @@
     <!-- Nombre y edad debajo de la imagen -->
     <mat-card-header style="position: relative;">
       <mat-card-title>{{currentName}}, {{currentAge}}</mat-card-title>
-      <mat-card-title>A {{currentDistance}} km</mat-card-title>
+      <mat-card-subtitle>
+        <mat-icon>place</mat-icon>A {{currentDistance}} km de distancia
+      </mat-card-subtitle>
 
       <button mat-icon-button (click)="toggleDescription()" style="position: absolute; top: 0; right: 10px; background-color: transparent; padding: 0; border: none;">
         <mat-icon>keyboard_arrow_down</mat-icon>

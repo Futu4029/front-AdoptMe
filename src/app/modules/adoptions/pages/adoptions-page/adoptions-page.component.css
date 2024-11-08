@@ -97,7 +97,7 @@
 
 /* Estilo para el título */
 mat-card-header {
-  text-align: center;
+
   margin-top: 10px;
   padding-bottom: 10px;
   font-size: var(--font-size-large);
@@ -106,7 +106,12 @@ mat-card-header {
 mat-card-title {
   font-size: 30px;
   font-weight: bold;
-  text-align: center;
+
+}
+
+mat-card-subtitle {
+  font-size: 20px;
+
 }
 
 /* Descripción de la mascota */
