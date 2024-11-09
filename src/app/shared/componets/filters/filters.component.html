@@ -6,7 +6,7 @@
 
   <div class="distance-filter">
     <span>Distancia (km)</span>
-    <mat-slider min="1" max="100" step="1" [(ngModel)]="distanceFilterValue" (change)="onDistanceChange($event)">
+    <mat-slider min="1" max="100" step="1" [(ngModel)]="distanceFilterValue" (change)="onDistanceChange($event)"   (input)="onSliderChange($event)">
     </mat-slider>
     <span class="distance-value">{{ distanceFilterValue }} km</span>
   </div>

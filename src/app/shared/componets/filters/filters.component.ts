@@ -91,4 +91,8 @@ export class FiltersComponent implements OnInit {
     this.sizeFilterValue = undefined;
     this.distanceFilterValue = 1; // Restablecer a valor inicial como número
   }
+
+  onSliderChange(event: any): void {
+    this.distanceFilterValue = event.value;
+  }
 }
