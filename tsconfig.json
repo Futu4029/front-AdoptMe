@@ -41,7 +41,8 @@
       "@assets/*": [
         "src/assets/*"
       ]
-    }
+    },
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

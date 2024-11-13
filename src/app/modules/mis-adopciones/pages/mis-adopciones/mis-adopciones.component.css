@@ -170,3 +170,21 @@ mat-card-footer {
 .response {
   margin-left: 7px;
 }
+
+.whatsapp-link mat-icon {
+  color: #25D366; /* Color verde de WhatsApp */
+  margin-left: 5px; /* Espacio entre el teléfono y el ícono */
+  font-size: 24px; /* Tamaño del ícono de WhatsApp */
+}
+
+.whatsapp-link:hover mat-icon {
+  color: #128C7E; /* Color más oscuro al pasar el cursor */
+}
+
+.custom-icon {
+  color: #128C7E;
+  width: 30px; /* Ancho del ícono */
+  height: 30px; /* Alto del ícono */
+  vertical-align: middle; /* Alineación vertical */
+  font-size: 30px; /* Tamaño del ícono, igual al de Gmail */
+}

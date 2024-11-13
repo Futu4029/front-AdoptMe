@@ -1,10 +1,11 @@
-<h2>Mis Solicitudes</h2>
+
 <div *ngIf="misSolicitudes.length > 0; else noSolicitudes">
   <div class="solicitudes-container">
+    <h2>Mis Solicitudes</h2>
     <mat-card *ngFor="let solicitud of misSolicitudes" class="solicitud-card">
       <mat-card-header>
         <div class="user-avatar">
-          <img [src]="solicitud.adoption.pet.image" alt="Imagen de {{ solicitud.adoption.pet.name }}" class="avatar-image">
+          <img [src]="solicitud.adoption.pet.images[0]" alt="Imagen de {{ solicitud.adoption.pet.name }}" class="avatar-image">
         </div>
         <div class="user-info">
           <mat-card-title>Mascota: {{ solicitud.adoption.pet.name }}</mat-card-title>
@@ -42,6 +43,7 @@
 
 <ng-template #noSolicitudes>
   <div class="solicitudes-container">
+    <h2>Mis Solicitudes</h2>
     <mat-card class="no-solicitudes-card">
       <mat-card-content>No tienes solicitudes aún.</mat-card-content>
     </mat-card>

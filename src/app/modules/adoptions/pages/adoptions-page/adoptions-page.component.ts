@@ -4,6 +4,8 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 import { Pet } from "@core/adoption-model";
 // @ts-ignore
 import { PanGesture } from 'hammerjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-adoptions-page',
@@ -30,14 +32,18 @@ import { PanGesture } from 'hammerjs';
   ]
 })
 export class AdoptionsPageComponent implements OnInit {
-  pets: { image: string, name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string }[] = [];
+  pets: { images: string[], name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string, distance: number }[] = [];
   currentIndex: number = 0;
+  currentImageIndex: number = 0;
   currentState: string = 'current';
   showDescription: boolean = false;
   offset: number = 0;
   isSwiping: boolean = false;
+  showReactionAnimation: boolean = false;
+  isLiked: boolean = false;
+  isRejected: boolean = false;
 
-  constructor(private adoptionService: AdoptionService) { }
+  constructor(private adoptionService: AdoptionService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.fetchAllAdoptions();
@@ -60,7 +66,7 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   get currentImage(): string {
-    return this.pets[this.currentIndex]?.image || '';
+    return this.pets[this.currentIndex]?.images[this.currentImageIndex] || ''; // Obtiene la imagen actual
   }
 
   get currentName(): string {
@@ -79,41 +85,77 @@ export class AdoptionsPageComponent implements OnInit {
     return this.pets[this.currentIndex]?.adoptionId || '';
   }
 
+  get currentDistance(): number {
+    return this.pets[this.currentIndex]?.distance || 0;
+  }
+
+
   get notFoundImage(): string {
     // Crear alias para la ruta.
     return "../../../../../assets/notfound.png";
   }
 
+  get currentPetImages(): string[] {
+    return this.pets[this.currentIndex]?.images || [];
+  }
+
   onLike(): void {
     console.log("Quiero hacer match");
+    this.showReaction('like');
     const adoptionRequest = { 'adoptionId': this.currentID };
     console.log(adoptionRequest);
 
     this.adoptionService.applyToAdoption(adoptionRequest).subscribe(
       response => {
         console.log('Solicitud enviada correctamente', response);
-        this.removeCurrentPet(); // Elimino la mascota luego de la solicitud exitosa
+        // La mascota se eliminará tras la animación
       },
       error => {
         console.error('Error al enviar la solicitud:', error);
+        this.onError('Hubo un error al dar like a la solicitud');
       }
     );
   }
 
   onReject(): void {
     console.log("Lo dejo para otra familia");
+    this.showReaction('reject');
     const adoptionRequest = { 'adoptionId': this.currentID };
     console.log(adoptionRequest);
 
     this.adoptionService.blackListAdoption(adoptionRequest).subscribe(
       response => {
         console.log('Rechazo enviado correctamente', response);
-        this.removeCurrentPet(); // Elimino la mascota luego del rechazo exitoso
+        // La mascota se eliminará tras la animación
       },
       error => {
         console.error('Error al rechazar la solicitud:', error);
+        this.onError('Hubo un error al rechazar la solicitud');
       }
     );
+  }
+
+  onError(message : string): void {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 3000, // Duración en milisegundos
+      verticalPosition: 'top', // Posición del toast (arriba)
+      horizontalPosition: 'center' // Posición horizontal (centro)
+    });
+  }
+
+  private showReaction(type: 'like' | 'reject'): void {
+    this.showReactionAnimation = true;
+    this.isLiked = type === 'like';
+    this.isRejected = type === 'reject';
+
+    // Después de 1 segundo, quitamos la animación y cambiamos el perfil
+    setTimeout(() => {
+      this.showReactionAnimation = false;
+      this.isLiked = false;
+      this.isRejected = false;
+
+      this.removeCurrentPet(); // Elimina la mascota actual tras la animación
+    }, 1300);
   }
 
   removeCurrentPet(): void {
@@ -133,31 +175,30 @@ export class AdoptionsPageComponent implements OnInit {
     }
   }
 
-  nextImage(): void {
-    this.currentState = 'next';
-    setTimeout(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.pets.length;
-      this.currentState = 'current';
-    }, 500);
-  }
-
   fetchAllAdoptions(): void {
     this.adoptionService.searchFilteredAdoptions().subscribe(
       (responses: any) => {
-        const petsData = responses.data.map((adoption: { id: string, pet: Pet }) => ({
+        const petsData = responses.data.map((adoption: { id: string, pet: Pet, distance: number }) => ({
           ...adoption.pet,
-          adoptionId: adoption.id
+          adoptionId: adoption.id,
+          distance: Math.round(adoption.distance)
         }));
         this.updatePetsList(petsData);
       },
-      (error) => {
+      error => {
         console.error('Error fetching adoptions:', error);
+        this.onError('Hubo un error al buscar las adopciones');
       }
     );
   }
 
   onFiltersApplied(filteredPets: any[]): void {
-    const petsData = filteredPets.map((filteredPet) => filteredPet.pet);
+    console.log('Datos filtrados recibidos 1:', filteredPets);
+    const petsData = filteredPets.map((adoption: { id: string, pet: Pet, distance: number }) => ({
+      ...adoption.pet,
+      adoptionId: adoption.id,
+      distance: Math.round(adoption.distance)
+    }));
     this.updatePetsList(petsData);
     this.currentIndex = 0;
   }
@@ -172,7 +213,7 @@ export class AdoptionsPageComponent implements OnInit {
       return;
     }
     this.pets = petsData.map((petData) => ({
-      image: petData.image,
+      images: petData.images,
       name: petData.name,
       age: petData.age,
       desc: petData.description,
@@ -180,8 +221,10 @@ export class AdoptionsPageComponent implements OnInit {
       breed: petData.breed,
       size: petData.size,
       gender: petData.gender,
-      adoptionId: petData.adoptionId
+      adoptionId: petData.adoptionId,
+      distance: petData.distance
     }));
+    console.log(this.pets);
   }
 
   hasItems(): boolean {
@@ -210,6 +253,7 @@ export class AdoptionsPageComponent implements OnInit {
 
   onPanEnd(): void {
     this.isSwiping = false;
+    this.currentImageIndex = 0;
     if (this.offset > 50) {
       this.onNextProfile();
     } else if (this.offset < -50) {
@@ -224,5 +268,12 @@ export class AdoptionsPageComponent implements OnInit {
   onPanMove(event: PanGesture): void {
     this.isSwiping = true; // Activar el estado de deslizamiento
     this.offset = event.deltaX; // Mueve el contenedor según el movimiento del dedo
+  }
+
+  nextImageInProfile(): void {
+    const currentPet = this.pets[this.currentIndex];
+    if (currentPet && currentPet.images.length > 0) {
+      this.currentImageIndex = (this.currentImageIndex + 1) % currentPet.images.length; // Cambia al siguiente índice
+    }
   }
 }

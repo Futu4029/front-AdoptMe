@@ -1,3 +1,10 @@
+.perfil-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 0px auto;
+}
+
 .user-card {
   max-width: 400px;
   margin: 0px auto;
@@ -57,3 +64,15 @@ mat-icon {
   margin-left: 10px;
   color: #555;
 }
+
+.volver-button {
+  background-color: #128C7E; /* Color del botón */
+  color: white; /* Color del texto */
+  margin-top: 20px; /* Espacio arriba del botón */
+  margin-left: 300px;
+  width: 20%; /* Ancho completo */
+  font-size: 12px; /* Tamaño de la fuente */
+  border-radius: 4px; /* Esquinas redondeadas */
+  padding: 5px; /* Espaciado interno */
+}
+

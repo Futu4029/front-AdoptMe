@@ -8,11 +8,27 @@
      [ngStyle]="{ transform: 'translateX(' + offset + 'px)' }"
      (panmove)="onPanMove($event)"
      (panend)="onPanEnd()">
+
   <!-- Perfil de la mascota -->
   <mat-card class="profile" [@swipeAnimation]="currentState">
     <mat-card-content>
       <div class="FOTO">
-        <img [src]="currentImage" alt="Dog Photo" class="dog-photo" />
+        <img [src]="currentImage" alt="Dog Photo" class="dog-photo" (click)="nextImageInProfile()" />
+      </div>
+
+      <div class="reaction-overlay" *ngIf="showReactionAnimation">
+        <div class="reaction-icon" [class.liked]="isLiked" [class.rejected]="isRejected">
+          <img *ngIf="isLiked" src="assets/CHECK3.png" alt="Like Icon" class="reaction-image" />
+          <img *ngIf="isRejected" src="assets/NOCHECK2.png" alt="Reject Icon" class="reaction-image" />
+        </div>
+      </div>
+
+      <!-- Contenedor de los puntitos -->
+      <div class="dots-container">
+        <span *ngFor="let img of currentPetImages; let i = index"
+              class="dot"
+              [class.active]="i === currentImageIndex">
+        </span>
       </div>
 
       <!-- Indicador de swipe -->
@@ -25,6 +41,10 @@
     <!-- Nombre y edad debajo de la imagen -->
     <mat-card-header style="position: relative;">
       <mat-card-title>{{currentName}}, {{currentAge}}</mat-card-title>
+      <mat-card-subtitle>
+        <mat-icon>place</mat-icon>A {{currentDistance}} km de distancia
+      </mat-card-subtitle>
+
       <button mat-icon-button (click)="toggleDescription()" style="position: absolute; top: 0; right: 10px; background-color: transparent; padding: 0; border: none;">
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
@@ -32,6 +52,7 @@
 
     <mat-card-content>
       <div class="description-box" *ngIf="showDescription">
+
         <p><strong>Género:</strong> {{ currentgender }}</p>
         <p><strong>Tamaño:</strong> {{ currentsize }}</p>
         <p><strong>Raza:</strong> {{ currentbreed }}</p>
@@ -55,6 +76,6 @@
 
 <mat-card-content *ngIf="!hasItems()">
   <div class="not-found-photo">
-    <img [src]="notFoundImage" />
+    <img [src]="notFoundImage" alt="No encontrado" />
   </div>
 </mat-card-content>

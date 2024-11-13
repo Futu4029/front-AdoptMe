@@ -126,4 +126,18 @@ button[color="warn"] {
   color: white;
 }
 
+.distance-filter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 5px; /* Espaciado opcional */
+  font-size: 16px;
+}
+
+.distance-value {
+  font-weight: bold;
+  color: var(--color-secondary);
+  font-size: 16px;
+}
+
 

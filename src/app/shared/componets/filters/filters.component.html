@@ -2,55 +2,64 @@
   <mat-icon>filter_list</mat-icon>
 </button>
 
+<mat-drawer mode="side" [opened]="isMenuVisible" class="filter-drawer">
 
-  <mat-drawer mode="side" [opened]="isMenuVisible" class="filter-drawer">
+  <div class="distance-filter">
+    <span>Distancia (km)</span>
+    <mat-slider min="1" max="100" step="1" [(ngModel)]="distanceFilterValue" (change)="onDistanceChange($event)"   (input)="onSliderChange($event)">
+    </mat-slider>
+    <span class="distance-value">{{ distanceFilterValue }} km</span>
+  </div>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Tipo </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-button-toggle-group [(ngModel)]="typeFilterValue" (change)="onFilterChange('type', $event.value)">
-        <mat-button-toggle value="DOG">Perro</mat-button-toggle>
-        <mat-button-toggle value="CAT">Gato</mat-button-toggle>
-      </mat-button-toggle-group>
-    </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Tipo </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-button-toggle-group [(ngModel)]="typeFilterValue" (change)="onFilterChange('type', $event.value)">
+      <mat-button-toggle value="DOG">Perro</mat-button-toggle>
+      <mat-button-toggle value="CAT">Gato</mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-expansion-panel>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Género </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-button-toggle-group [(ngModel)]="genderFilterValue" (change)="onFilterChange('gender', $event.value)">
-        <mat-button-toggle value="MALE">Macho</mat-button-toggle>
-        <mat-button-toggle value="FEMALE">Hembra</mat-button-toggle>
-      </mat-button-toggle-group>
-    </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Género </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-button-toggle-group [(ngModel)]="genderFilterValue" (change)="onFilterChange('gender', $event.value)">
+      <mat-button-toggle value="MALE">Macho</mat-button-toggle>
+      <mat-button-toggle value="FEMALE">Hembra</mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-expansion-panel>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Edad </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-button-toggle-group [(ngModel)]="ageFilterValue" (change)="onFilterChange('age', $event.value)">
-        <mat-button-toggle value="PUPPY">Cachorro</mat-button-toggle>
-        <mat-button-toggle value="YOUNG">Joven</mat-button-toggle>
-        <mat-button-toggle value="ADULT">Adulto</mat-button-toggle>
-      </mat-button-toggle-group>
-    </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Edad </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-button-toggle-group [(ngModel)]="ageFilterValue" (change)="onFilterChange('age', $event.value)">
+      <mat-button-toggle value="PUPPY">Cachorro</mat-button-toggle>
+      <mat-button-toggle value="YOUNG">Joven</mat-button-toggle>
+      <mat-button-toggle value="ADULT">Adulto</mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-expansion-panel>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Tamaño </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-button-toggle-group [(ngModel)]="sizeFilterValue" (change)="onFilterChange('size', $event.value)">
-        <mat-button-toggle value="SMALL">Chico</mat-button-toggle>
-        <mat-button-toggle value="MEDIUM">Mediano</mat-button-toggle>
-        <mat-button-toggle value="LARGE">Grande</mat-button-toggle>
-      </mat-button-toggle-group>
-    </mat-expansion-panel>
-    <section>
-      <div class="buttons-container">
-        <button mat-stroked-button color="primary" (click)="applyFilters(); toggleMenu()">Aplicar Filtros</button>
-        <button mat-stroked-button color="warn" (click)="clearAllFilters(); toggleMenu()">Borrar Filtros</button>
-      </div>
-    </section>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Tamaño </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-button-toggle-group [(ngModel)]="sizeFilterValue" (change)="onFilterChange('size', $event.value)">
+      <mat-button-toggle value="SMALL">Chico</mat-button-toggle>
+      <mat-button-toggle value="MEDIUM">Mediano</mat-button-toggle>
+      <mat-button-toggle value="LARGE">Grande</mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-expansion-panel>
 
-  </mat-drawer>
+
+
+  <section>
+    <div class="buttons-container">
+      <button mat-stroked-button color="primary" (click)="applyFilters(); toggleMenu()">Aplicar Filtros</button>
+      <button mat-stroked-button color="warn" (click)="clearAllFilters(); toggleMenu()">Borrar Filtros</button>
+    </div>
+  </section>
+
+</mat-drawer>
