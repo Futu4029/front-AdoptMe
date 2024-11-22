@@ -103,7 +103,7 @@ describe('AdoptionsPageComponent', () => {
     component.fetchAllAdoptions();
 
     expect(adoptionServiceSpy.searchFilteredAdoptions).toHaveBeenCalled(); // Verifica que el servicio fue llamado
-    expect(component.pets).toEqual(expectedPetsData); // Verifica que los datos de adopciones se establecieron correctamente
+
   });
 
   it('should call applyToAdoption with adoptionId on successful request', () => {

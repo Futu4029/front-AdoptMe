@@ -32,12 +32,20 @@
 
 /* Contenedor para la imagen no encontrada */
 .not-found-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  aspect-ratio: 1/1; /* Relación de aspecto 1:1 para mantener el contenedor cuadrado */
-  text-align: center;
+  aspect-ratio: 1/1;
   overflow: hidden;
-  border-radius: 10px;
+
   margin-top: 100px !important;
+}
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
 /* Imagen del perro */
@@ -110,7 +118,7 @@ mat-card-title {
 }
 
 mat-card-subtitle {
-  font-size: 20px;
+  font-size: 17px;
 
 }
 

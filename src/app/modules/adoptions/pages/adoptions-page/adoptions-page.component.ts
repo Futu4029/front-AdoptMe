@@ -114,7 +114,17 @@ export class AdoptionsPageComponent implements OnInit {
         console.error('Error al enviar la solicitud:', error);
         this.onError('Hubo un error al dar like a la solicitud');
       }
-    );
+      );
+      // Notificación al usuario
+      this.snackBar.open('¡Le diste like a esta mascota! 🎉', 'Cerrar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      });
+      
+
+
+
   }
 
   onReject(): void {
