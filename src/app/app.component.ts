@@ -26,13 +26,19 @@ export class AppComponent {
         serverPublicKey: this.VAPID_PUBLIC_KEY,
       })
       .then((sub) => {
-        console.log('Suscripción exitosa:', sub);
-        this.sendSubscriptionToServer(sub);
+        const token = JSON.parse(JSON.stringify(sub));
+        //console.log('aca envio el token', token);
+        this.apiRest.saveToken(token).subscribe(
+          (res: Object) => {
+            console.log(res);
+          },
+          (err) => {
+            console.log('ERR', err);
+          }
+        );
       })
       .catch((err) => console.error('Error en la suscripción:', err));
   }
 
-  sendSubscriptionToServer(subscription: PushSubscription) {
-    // Aquí envías los datos al backend
-  }
+
 }

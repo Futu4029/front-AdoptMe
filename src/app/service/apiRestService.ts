@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root',
 })
 export class ApiRestService {
-  private URL_BASE = 'http://localhost:8085/';
+  private URL_BASE = 'http://localhost:8085/notifications/';
 
   constructor(private http: HttpClient) {}
 
