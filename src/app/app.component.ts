@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { AuthService } from '@modules/auth/Service/auth.service';
 import { ApiRestService } from '@service/apiRestService';
+import {MatSnackBar} from "@angular/material/snack-bar";
+
 
 @Component({
   selector: 'app-root',
@@ -10,14 +12,16 @@ import { ApiRestService } from '@service/apiRestService';
 })
 export class AppComponent {
   title = 'adopt-me';
-  private readonly VAPID_PUBLIC_KEY = 'BM3tH-xTaH4xUekOt34I9RkfkwOD2_hj_jtTG1KjtXcBSYtOURtjK2Ao0q48v74tCowwG8Y7kHvv4nSHwogqo1c';
+  private readonly VAPID_PUBLIC_KEY = 'BAZs5CHgSH7AcGtIwSEnuLvIyyHJHwT33T6-gIIhKlpSMkhE1REK0UX0oqlBasB81hCpqOalB-yM-th516RG2hE';
 
   constructor(
     public authService: AuthService,
     private swPush: SwPush,
-    private apiRest: ApiRestService
+    private apiRest: ApiRestService,
+    private snackBar: MatSnackBar
   ) {
     this.subscribeToNotifications();
+    this.listenForMessages();
   }
 
   subscribeToNotifications() {
@@ -40,5 +44,14 @@ export class AppComponent {
       .catch((err) => console.error('Error en la suscripción:', err));
   }
 
-
+  listenForMessages() {
+    this.swPush.messages.subscribe((message: any) => {
+      console.log('Mensaje recibido:', message);
+      this.snackBar.open('Te llego una noti🎉: ' + message.body, 'Cerrar', {
+        duration: 6000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      });
+    });
+  }
 }
