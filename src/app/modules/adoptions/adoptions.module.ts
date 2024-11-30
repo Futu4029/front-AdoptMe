@@ -9,6 +9,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {SwiperModule} from "swiper/angular";
 import {HammerModule} from "@angular/platform-browser";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -24,7 +25,8 @@ import {HammerModule} from "@angular/platform-browser";
     MatCardModule,
     MatIconModule,
     SwiperModule,
-    HammerModule
+    HammerModule,
+    MatProgressSpinnerModule
   ],
   providers: [AdoptionService
     //,{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

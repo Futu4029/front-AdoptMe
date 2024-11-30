@@ -43,12 +43,32 @@
       <mat-card-title>{{currentName}}, {{currentAge}}</mat-card-title>
       <mat-card-subtitle>
         <mat-icon>place</mat-icon>A {{currentDistance}} km de distancia
+
+        <mat-progress-spinner
+          *ngIf="!isSwiping"
+          [value]= "currentPercentage"
+          [diameter]="70"
+          [strokeWidth]="10"
+          color="primary"
+          mode="determinate"
+          style="margin-left: 50px;">
+        </mat-progress-spinner>
+        <span *ngIf="!isSwiping" class="spinner-value" style="position: absolute; top: 112%; left: 88%; transform: translate(-50%, -50%); font-size: 16px; font-weight: bold;">
+                {{currentPercentage}}%
+        </span>
+
+        <div *ngIf="!isSwiping" class="match-container">
+          <div>Match</div>
+        </div>
+
+
       </mat-card-subtitle>
 
       <button mat-icon-button (click)="toggleDescription()" style="position: absolute; top: 0; right: 10px; background-color: transparent; padding: 0; border: none;">
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
     </mat-card-header>
+
 
     <mat-card-content>
       <div class="description-box" *ngIf="showDescription">

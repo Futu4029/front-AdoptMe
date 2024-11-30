@@ -5,6 +5,8 @@ import { Pet } from "@core/adoption-model";
 // @ts-ignore
 import { PanGesture } from 'hammerjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @Component({
@@ -32,7 +34,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   ]
 })
 export class AdoptionsPageComponent implements OnInit {
-  pets: { images: string[], name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string, distance: number }[] = [];
+  pets: { images: string[], name: string, age: number, desc: string, color: string, breed: string, size: string, gender: string, adoptionId: string, distance: number, matchPoints: number }[] = [];
   currentIndex: number = 0;
   currentImageIndex: number = 0;
   currentState: string = 'current';
@@ -99,6 +101,10 @@ export class AdoptionsPageComponent implements OnInit {
     return this.pets[this.currentIndex]?.images || [];
   }
 
+  get currentPercentage(): number {
+    return this.pets[this.currentIndex]?.matchPoints || 0;
+  }
+
   onLike(): void {
     console.log("Quiero hacer match");
     this.showReaction('like');
@@ -121,7 +127,7 @@ export class AdoptionsPageComponent implements OnInit {
         verticalPosition: 'top',
         horizontalPosition: 'center'
       });
-      
+
 
 
 
@@ -186,12 +192,15 @@ export class AdoptionsPageComponent implements OnInit {
   }
 
   fetchAllAdoptions(): void {
+
     this.adoptionService.searchFilteredAdoptions().subscribe(
       (responses: any) => {
-        const petsData = responses.data.map((adoption: { id: string, pet: Pet, distance: number }) => ({
+        const petsData = responses.data.map((adoption: { id: string, pet: Pet, distance: number, matchPoints: number  }) => ({
           ...adoption.pet,
           adoptionId: adoption.id,
-          distance: Math.round(adoption.distance)
+          distance: Math.round(adoption.distance),
+          matchPoints: adoption.matchPoints
+
         }));
         this.updatePetsList(petsData);
       },
@@ -204,10 +213,11 @@ export class AdoptionsPageComponent implements OnInit {
 
   onFiltersApplied(filteredPets: any[]): void {
     console.log('Datos filtrados recibidos 1:', filteredPets);
-    const petsData = filteredPets.map((adoption: { id: string, pet: Pet, distance: number }) => ({
+    const petsData = filteredPets.map((adoption: { id: string, pet: Pet, distance: number, matchPoints: number }) => ({
       ...adoption.pet,
       adoptionId: adoption.id,
-      distance: Math.round(adoption.distance)
+      distance: Math.round(adoption.distance),
+      matchPoints: adoption.matchPoints
     }));
     this.updatePetsList(petsData);
     this.currentIndex = 0;
@@ -232,7 +242,9 @@ export class AdoptionsPageComponent implements OnInit {
       size: petData.size,
       gender: petData.gender,
       adoptionId: petData.adoptionId,
-      distance: petData.distance
+      distance: petData.distance,
+      matchPoints: petData.matchPoints
+
     }));
     console.log(this.pets);
   }
@@ -286,4 +298,6 @@ export class AdoptionsPageComponent implements OnInit {
       this.currentImageIndex = (this.currentImageIndex + 1) % currentPet.images.length; // Cambia al siguiente índice
     }
   }
+
+
 }
