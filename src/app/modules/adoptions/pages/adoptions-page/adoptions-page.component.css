@@ -4,7 +4,7 @@
   align-items: center; /* Alinea verticalmente los elementos */
   justify-content: center; /* Centra horizontalmente */
   gap: 10px;
-  margin-top: 5%;
+  margin-top: 15%;
   padding-top: 10px;
   min-height: 60vh;
   transition: transform 0.3s ease; /* Suaviza el movimiento */
@@ -135,7 +135,7 @@ mat-card-subtitle {
 /* Indicación de deslizamiento */
 .swipe-hint {
   position: absolute;
-  bottom: 200px;
+  bottom: 170px;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.5);
@@ -247,31 +247,31 @@ mat-card-subtitle {
   animation: heartbeat 1s infinite;
 }
 
-.spinner-container {
-  position: relative;
-}
-
-.mat-progress-spinner {
+.progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
-  top: 50px;
-  left: 71%;
-  transform: translateX(-50%);
+  top: -60%;
+  left: 85%;
+  transform: translate(-50%, -50%);
 }
 
+.spinner-value {
+  position: relative;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: -45px;
+}
 
 .match-container {
-  position: absolute;
-  top: 125px;
-  bottom: 20px;
-  left: 88%;
-  transform: translateX(-50%);
-  font-size: 18px;
-  color: var(--color-dark);
-  z-index: 2;
+  margin-top: 3px;
+  font-size: 14px;
+  text-align: center;
 }
 
 mat-card-actions {
-  margin-top: 50px;  /* Ajusta este valor según lo que necesites */
+  margin-top: 3px;
 }
 
 
