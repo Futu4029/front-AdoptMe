@@ -47,11 +47,37 @@ export class AppComponent {
   listenForMessages() {
     this.swPush.messages.subscribe((message: any) => {
       console.log('Mensaje recibido:', message);
-      this.snackBar.open('Te llego una noti🎉: ' + message.body, 'Cerrar', {
-        duration: 6000,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
+
+
+      if (Notification.permission === 'granted') {
+
+        const notification = new Notification('Te llegó una notificación 🎉', {
+          body: message.body || 'No hay contenido',
+          icon: '/assets/icons/icon-72x72.png', // Ruta a tu icono
+        });
+
+
+        notification.onclick = () => {
+
+          window.open('http://127.0.0.1:4200/', '_self');
+        };
+      } else if (Notification.permission !== 'denied') {
+
+        Notification.requestPermission().then((permission) => {
+          if (permission === 'granted') {
+            const notification = new Notification('Te llegó una notificación 🎉', {
+              body: message.body || 'No hay contenido',
+              icon: '/assets/icons/icon-72x72.png',
+            });
+
+            notification.onclick = () => {
+
+              window.open('http://127.0.0.1:4200/', '_self');
+            };
+          }
+        });
+      }
     });
   }
+
 }
