@@ -87,3 +87,34 @@ h3 {
   font-weight: bold;
   margin-bottom: 15px;
 }
+
+.btn-register{
+  background-color: #375a6e;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+  margin-top: 1.5rem;
+}
+
+.form-input,
+.btn-login,
+.btn-register {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-image{
+  display: flex; /* Activa el modelo de Flexbox */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+
+img {
+  max-width: 100%; /* Evita que la imagen se desborde */
+  height: auto; /* Mantiene la proporción de la imagen */
+}

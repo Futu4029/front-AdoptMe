@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AdoptionService } from '@service/adoption-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -65,6 +65,8 @@ export class CrearAdoptionPageComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.markAllControlsAsTouched(this.adoptionForm);
+
     if (this.adoptionForm.valid) {
       const adoptionRequest = this.adoptionForm.value;
       this.resetForm();
@@ -113,5 +115,24 @@ export class CrearAdoptionPageComponent implements OnInit {
         control?.setErrors(null);
       }
     });
+  }
+
+  markAllControlsAsTouched(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach(key => {
+      const control = formGroup.get(key);
+      if (control instanceof FormGroup) {
+        this.markAllControlsAsTouched(control); // Recursivo para controles anidados
+      } else if (control instanceof FormArray) {
+        control.controls.forEach(ctrl => this.markAllControlsAsTouched(ctrl as FormGroup));
+      } else {
+        // @ts-ignore
+        control.markAsTouched();
+      }
+    });
+  }
+
+  triggerFileInput() {
+    const fileInput = document.getElementById('file-upload') as HTMLInputElement;
+    fileInput.click();
   }
 }

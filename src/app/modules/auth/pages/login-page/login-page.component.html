@@ -1,6 +1,9 @@
 <div class="login-auth-page">
   <div class="login-auth-wrapper">
-    <h3>Para continuar, inicia sesión en AdoptMe.</h3>
+    <div class="login-image">
+      <img src="assets/icons/icon-192x192.png" alt="Logo" />
+    </div>
+    <h3>Para continuar, inicia sesión en Adopt-Me.</h3>
 
     <!-- Mensaje de error si la sesión es incorrecta -->
     <div *ngIf="errorSession" class="error-message">
@@ -9,16 +12,15 @@
 
     <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="login-auth-form">
       <div class="form-group">
-        <input type="text" placeholder="Dirección de correo o nombre de usuario" class="form-input" id="email" formControlName="email">
+        <input type="text" placeholder="Dirección de correo" class="form-input" id="email" formControlName="email">
       </div>
       <div class="form-group">
         <input type="password" placeholder="Contraseña" class="form-input" id="password" formControlName="password">
       </div>
       <button type="submit" class="btn-login">Iniciar sesión</button>
     </form>
-
     <div class="register-link">
-      <p>¿No tienes cuenta? <a routerLink="/auth/register" class="btn-register">Regístrate aquí</a></p>
+      <button class="btn-register" routerLink="/auth/register">Regístrate aquí</button>
     </div>
   </div>
 </div>

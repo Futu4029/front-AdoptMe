@@ -127,10 +127,6 @@ export class AdoptionsPageComponent implements OnInit {
         verticalPosition: 'top',
         horizontalPosition: 'center'
       });
-
-
-
-
   }
 
   onReject(): void {

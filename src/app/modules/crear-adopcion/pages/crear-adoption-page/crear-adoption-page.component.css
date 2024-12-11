@@ -27,6 +27,11 @@ input[type="file"] {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  color: white;
+}
+
+.font-button {
+  color: white; /* Cambia esto al color que desees */
 }
 
 .mat-error {

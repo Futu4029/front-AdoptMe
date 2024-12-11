@@ -117,7 +117,8 @@ describe('AdoptionsPageComponent', () => {
       size: 'Chico',
       gender: 'Hembra',
       adoptionId: 'adoption123',
-      distance: 3
+      distance: 3,
+      matchPoints: 80
     }];
     component.currentIndex = 0;
     component.onLike();
@@ -138,7 +139,8 @@ describe('AdoptionsPageComponent', () => {
       size: 'Chico',
       gender: 'Hembra',
       adoptionId: 'adoption123',
-      distance: 3
+      distance: 3,
+      matchPoints: 80
     }];
     component.currentIndex = 0;
     component.onReject();
@@ -161,7 +163,8 @@ describe('AdoptionsPageComponent', () => {
       size: 'Chico',
       gender: 'Hembra',
       adoptionId: 'adoption123',
-      distance: 3
+      distance: 3,
+      matchPoints: 80
     }];
     component.currentIndex = 0;
 
@@ -185,7 +188,8 @@ describe('AdoptionsPageComponent', () => {
       size: 'Chico',
       gender: 'Hembra',
       adoptionId: 'adoption123',
-      distance: 3
+      distance: 3,
+      matchPoints: 80
     }];
     component.currentIndex = 0;
 
@@ -249,7 +253,8 @@ describe('AdoptionsPageComponent', () => {
       size: 'Chico',
       gender: 'Hembra',
       adoptionId: 'adoption123',
-      distance: 3
+      distance: 3,
+      matchPoints: 80
     }];
     const initialPetsCount = component.pets.length;
 
@@ -273,7 +278,8 @@ describe('AdoptionsPageComponent', () => {
       size: 'Chico',
       gender: 'Hembra',
       adoptionId: 'adoption123',
-      distance: 3
+      distance: 3,
+      matchPoints: 80
     }];
     const initialPetsCount = component.pets.length;
 

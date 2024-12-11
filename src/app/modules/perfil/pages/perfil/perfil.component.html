@@ -9,13 +9,12 @@
 
     <div class="user-info">
       <mat-card-title class="user-name">{{ user.name }} {{ user.surName }}</mat-card-title>
-      <br>
       <mat-card-subtitle class="location-info">
-        <div>
+        <div class="user-ubication">
           Localidad: <strong>{{ user.locality }}</strong>
         </div>
-        <br>
-        <div>
+
+        <div class="user-ubication">
           Provincia: <strong>{{ user.province }}</strong>
         </div>
       </mat-card-subtitle>
@@ -36,7 +35,7 @@
         </mat-list-item>
         <mat-list-item>
           <mat-icon>pets</mat-icon>
-          <strong>¿Puede tener mascotas en la propiedad?</strong>
+          <strong>¿Aceptan mascotas en la propiedad?</strong>
           <span class="response">{{ user.canHavePetsOnProperty ? 'Sí' : 'No' }}</span>
         </mat-list-item>
         <mat-list-item>

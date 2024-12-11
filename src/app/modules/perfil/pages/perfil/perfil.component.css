@@ -32,7 +32,7 @@
 }
 
 .user-name {
-  margin-bottom: 60px;
+  margin-bottom: 20px !important;
 }
 
 .user-details {
@@ -74,5 +74,10 @@ mat-icon {
   font-size: 12px; /* Tamaño de la fuente */
   border-radius: 4px; /* Esquinas redondeadas */
   padding: 5px; /* Espaciado interno */
+}
+
+.user-ubication{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 

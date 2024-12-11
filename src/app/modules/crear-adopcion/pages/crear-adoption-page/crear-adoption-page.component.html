@@ -1,7 +1,6 @@
-<div class="creacion-adopciones-container">
-<h2>Crea tu adopcion</h2>
-<form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()" class="adoption-form" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="center center">
-
+<div class="crear-adopcion-container">
+  <h2>Crea tu adopcion</h2>
+  <form [formGroup]="adoptionForm" (ngSubmit)="onSubmit()" class="adoption-form" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="center center">
   <div formGroupName="petDto" fxLayout="column" fxLayoutGap="16px">
       <!-- Nombre -->
       <mat-form-field appearance="outline">
@@ -80,7 +79,7 @@
     <div>
       <label for="file-upload" class="mat-label">Subir Imágenes (hasta 5)</label>
       <input type="file" id="file-upload" (change)="onFileChange($event)" accept="image/*" multiple>
-      <mat-error *ngIf="adoptionForm.get('petDto.images')?.hasError('required')">
+      <mat-error *ngIf="adoptionForm.get('petDto.images')?.hasError('required') && adoptionForm.get('petDto.images')?.touched">
         Se requiere al menos una imagen.
       </mat-error>
       <mat-error *ngIf="adoptionForm.get('petDto.images')?.hasError('maxLength')">
@@ -88,19 +87,26 @@
       </mat-error>
     </div>
 
-      <!-- Descripción -->
+    <div><!-- Descripción -->
       <mat-form-field appearance="outline">
         <mat-label>Descripción</mat-label>
         <textarea matInput formControlName="description" placeholder="Descripción de la mascota"></textarea>
       </mat-form-field>
+      <mat-error *ngIf="adoptionForm.get('petDto.description')?.hasError('required') && adoptionForm.get('petDto.description')?.touched">
+        Se necesita una descripción.
+      </mat-error>
     </div>
+
+  </div>
 
   <!-- Botones -->
   <div class="buttons" fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-raised-button color="primary" type="submit" [disabled]="adoptionForm.invalid">
+    <button mat-raised-button color="primary" type="submit">
+      <div class="font-button">
         Crear Adopción
+      </div>
     </button>
     <button mat-stroked-button type="reset">Limpiar</button>
-</div>
-</form>
+  </div>
+  </form>
 </div>
