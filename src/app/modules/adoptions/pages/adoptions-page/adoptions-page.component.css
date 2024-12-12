@@ -279,14 +279,14 @@ mat-card-subtitle {
 
 .spinner-value {
   position: relative;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
-  margin-top: -45px;
+  margin-top: -43px;
 }
 
 .match-container {
   margin-top: 3px;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
 }
 
