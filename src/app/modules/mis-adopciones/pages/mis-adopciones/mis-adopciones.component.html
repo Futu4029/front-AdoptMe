@@ -66,9 +66,8 @@
                   {{ candidato.user.email }}
                 </p>
                 <p>
-                  <a [href]="'https://wa.me/' + candidato.user.telefono" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 30px; height:
-                    30px; vertical-align: middle;">
+                  <a [href]="getWhatsAppLink(candidato, adoption)" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 30px; height: 30px; vertical-align: middle;">
                   </a>
                   {{ candidato.user.telefono }}
                 </p>

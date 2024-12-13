@@ -5,9 +5,9 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 20px auto; /* Margen superior y centra horizontalmente */
+  margin: 55px auto; /* Margen superior y centra horizontalmente */
   padding: 20px;
-  max-width: 700px; /* Limita el ancho del contenedor */
+  max-width: 450px; /* Limita el ancho del contenedor */
   min-height: 50vh; /* Ajusta la altura mínima */
   transition: transform 0.3s ease; /* Suaviza transiciones */
 }
@@ -272,7 +272,7 @@ mat-card-subtitle {
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 90%;
+  top: 100%;
   left: 90%;
   transform: translate(-50%, -50%);
 }

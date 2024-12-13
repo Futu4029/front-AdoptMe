@@ -18,7 +18,7 @@ export class FiltersComponent implements OnInit {
   genderFilterValue: string | undefined;
   ageFilterValue: string | undefined;
   sizeFilterValue: string | undefined;
-  distanceFilterValue: number = 1; // Cambia a tipo number
+  distanceFilterValue: number = 50; // Cambia a tipo number
 
   filters: { [key: string]: string | undefined | number } = {
     type: undefined,

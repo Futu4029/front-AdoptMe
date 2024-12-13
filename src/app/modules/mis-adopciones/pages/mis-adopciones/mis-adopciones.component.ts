@@ -102,6 +102,14 @@ export class MisAdopcionesComponent implements OnInit {
     this.router.navigate(['/perfil', email]); // Navega a PerfilComponent con el email
   }
 
+  getWhatsAppLink(candidato: any, adoption: any): string {
+    const baseUrl = 'https://wa.me/';
+    const telefono = '+54' + candidato?.user?.telefono || '';
+    const message = `Hola, estoy interesado en saber más sobre tu perfil. Mi nombre es ${candidato?.user?.name || 'N/A'}. Te hablo por la adopción de ${adoption?.pet?.name || 'N/A'}.`;
+
+    return `${baseUrl}${telefono}?text=${encodeURIComponent(message)}`;
+  }
+
 }
 
 
